@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency 'solidus_core', '~> 1.3'
+  s.add_dependency 'solidus_core', ['< 1.4', '>= 1.3.0.alpha']
 
   s.add_development_dependency 'capybara', '~> 2.7'
   s.add_development_dependency 'poltergeist', '~> 1.10'
