@@ -1,0 +1,16 @@
+sudo: false
+language: ruby
+
+rvm:
+  - 2.3.1
+
+bundler_args: --quiet
+
+script: bundle exec rake
+
+branches:
+  only:
+    - master
+
+cache:
+  bundler: true
