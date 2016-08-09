@@ -4,7 +4,7 @@ language: ruby
 rvm:
   - 2.3.1
 
-bundler_args: --quiet
+bundler_args: "--quiet"
 
 script: bundle exec rake
 
@@ -14,3 +14,7 @@ branches:
 
 cache:
   bundler: true
+
+notifications:
+  slack:
+    secure: mjKuA2jy06lKSFjxWVw8QOnC1wn5aYO4nVQQWH3vs4eXsqs4RvgenQkyAItZHRaJ4X9mTaErh1C4KUCCqM60FIFI3fX9iagJZNz7MIuS84S0XIAFOwvb9iyy3T90Rr76YAY9BiGmPKGMjR6790jxXQ1ocFqW9fTmd+PMfpbT5yiA7BTe8Z+s81DB6ojlm2PUxPIVkGRtVtbiuYejjBoMnqjygElthThex9DhfJpowACYISGhZg9YAhUqcUI8ZFqB37XyGebO6q3Z2j0XKgvC4p/kiorRFref9IX5aCBO2tulfSb8s5/GozxAstH8i8GH6xXUyZK2ya4gk8xGKm7PhvPka6R+uaZ0XfzSPBhIxwVhHJ18KavfJcvuAJN4d6je7ejiLRxFXQW7RsJNQbDbG8vCxBiVsSbk5m5TZhHzlpvWmWSX3rqJ7R7nM5a4RfM7Vix1zUZAhKuqpZ+T8GpTHTOLksCFVIZ6RiFB9DxbwG01w1fDuWEDGSbbACI9FlpPIQhGaZmxXcBbIi++ZIN/BCYS9/H5S4fLiMmIpPP86NfEMha4b3IXbGUoiKeYrNvVS/ve3XNgmOlflsLEveJQvo4bJgjeg9PTTxXc4QgKwJadD+Fkh+/rq7OhIuoCGkUWd/dKw3seQfu9oJtEIuxxHZ8B5qRvKfHMDEplNU8LBv0=
