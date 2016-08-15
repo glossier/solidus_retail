@@ -1,13 +1,21 @@
 class ShopifyRequest
   class << self
     def create_order
-      file_path = File.join(support_folder, request_folder, 'create_order.txt')
+      read_file('create_order.txt')
+    end
+
+    def retrieve_complete_order
+      read_file('retrieve_complete_order.txt')
+    end
+
+    private
+
+    def read_file(filename)
+      file_path = File.join(support_folder, request_folder, filename)
       file = File.open(file_path)
 
       file.read
     end
-
-    private
 
     def support_folder
       File.join(SolidusRetail::Engine.root, 'spec', 'support')

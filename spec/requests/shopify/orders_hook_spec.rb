@@ -10,6 +10,7 @@ describe "Shopify webhook orders" do
 
     it 'returns HTTP 200 status code' do
       call_create_refund_hook!
+      binding.pry
       expect(response).to have_http_status(200)
     end
 

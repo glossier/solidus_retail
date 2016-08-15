@@ -6,5 +6,7 @@ gem 'shopify_api', '~> 4.0'
 
 gem 'dotenv-rails'
 group :development, :test do
-  gem 'pry-rails'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'webmock'
 end

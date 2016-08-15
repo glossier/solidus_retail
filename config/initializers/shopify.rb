@@ -1,6 +1,6 @@
 class ShopifyConfig
   def shop_url
-    "https://#{shopify_api_key}:#{shopify_password}@#{shopify_shared_secret}"
+    "https://#{shopify_api_key}:#{shopify_password}@#{shopify_shop_name}"
   end
 
   private
@@ -13,8 +13,8 @@ class ShopifyConfig
     ENV.fetch('SHOPIFY_PASSWORD')
   end
 
-  def shopify_shared_secret
-    ENV.fetch('SHOPIFY_SHARED_SECRET')
+  def shopify_shop_name
+    ENV.fetch('SHOPIFY_SHOP_NAME')
   end
 end
 
