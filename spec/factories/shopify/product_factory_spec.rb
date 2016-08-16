@@ -17,26 +17,47 @@ describe Shopify::ProductFactory do
   end
 
   context '.perform' do
-    it 'returns a shopify object' do
+    it 'returns a product shopify object' do
       result = subject.perform
       expected_result = ShopifyAPI::Product
 
       expect(result).to be_an(expected_result)
     end
 
-    context 'fills all the required fields' do
+    context 'with a product without variant' do
+      context 'fills all the required fields' do
+        before do
+          @shopify_product = subject.perform
+        end
+
+        it { expect(@shopify_product.title).to eql(spree_product.name) }
+        it { expect(@shopify_product.body_html).to be_truthy }
+        it { expect(@shopify_product.created_at).to eql(spree_product.created_at) }
+        it { expect(@shopify_product.updated_at).to eql(spree_product.updated_at) }
+        it { expect(@shopify_product.published_at).to eql(spree_product.available_on) }
+        it { expect(@shopify_product.vendor).to eql('Glossier') }
+        it { expect(@shopify_product.handle).to eql(spree_product.slug) }
+      end
+    end
+
+    context 'with a product with variants' do
+      let!(:spree_variant) { create(:variant, product: spree_product) }
+      let(:spree_product) { create(:product) }
+      let(:variant_factory) { double('variant_factory_instance', perform: true) }
+      subject { described_class.new(spree_product, shopify_product) }
+
       before do
-        @shopify_product = subject.perform
+        expect(Shopify::VariantFactory).to receive(:new).and_return(variant_factory)
       end
 
-      it { expect(@shopify_product.title).to eql(spree_product.name) }
-      it { expect(@shopify_product.created_at).to eql(spree_product.created_at) }
-      it { expect(@shopify_product.updated_at).to eql(spree_product.updated_at) }
-      it { expect(@shopify_product.published_at).to eql(spree_product.available_on) }
-      it { expect(@shopify_product.vendor).to eql('Glossier') }
-      it { expect(@shopify_product.handle).to eql(spree_product.slug) }
+      it 'calls the variant factory' do
+        expect(variant_factory).to receive(:perform).once
+        subject.perform
+      end
+    end
 
-      context 'when a product has' do
+    context 'with any types of products' do
+      context 'that has' do
         context 'a single paragraph description' do
           let(:product_description) { "In the land between bare skin ..." }
           let(:spree_product) { create(:product, description: product_description) }
