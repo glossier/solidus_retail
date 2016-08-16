@@ -1,9 +1,9 @@
 module Shopify
   class ProductExporter
-    def initialize(spree_product, factory = nil, logger = nil)
+    def initialize(spree_product_id, factory = nil, logger = nil)
       @logger = logger || default_logger
       @factory = factory || default_factory
-      @spree_product = spree_product
+      @spree_product = Spree::Product.find(spree_product_id)
       @shopify_product = find_or_initialize(spree_product)
     end
 
