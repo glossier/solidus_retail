@@ -17,7 +17,8 @@ describe Shopify::ProductExporter do
   end
 
   context '.perform' do
-    let(:factory_class) { double('factory_class', new: shopify_product) }
+    let(:factory_class) { double('factory_class', new: factory_instance) }
+    let(:factory_instance) { double('factory_instance', perform: shopify_product) }
     let(:logger_instance) { double('logger') }
     let(:shopify_product) { double('shopify_product', id: '123321', handle: 'slug', errors: error_messages) }
     let(:error_messages) { double('error_message', full_messages: ['error_1']) }
@@ -27,10 +28,12 @@ describe Shopify::ProductExporter do
 
       before do
         allow(shopify_product).to receive(:save).and_return(false)
+        allow(shopify_product).to receive(:persisted?).and_return(false)
       end
 
-      it 'returns false if was unsuccessfull' do
-        result = subject.perform
+      it 'it does not persist the shopify product' do
+        product = subject.perform
+        result = product.persisted?
         expect(result).to be_falsey
       end
     end
@@ -40,10 +43,12 @@ describe Shopify::ProductExporter do
 
       before do
         allow(shopify_product).to receive(:save).and_return(true)
+        allow(shopify_product).to receive(:persisted?).and_return(true)
       end
 
       it 'returns true if was successfull' do
-        result = subject.perform
+        product = subject.perform
+        result = product.persisted?
         expect(result).to be_truthy
       end
 
