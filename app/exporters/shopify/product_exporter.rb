@@ -4,22 +4,23 @@ module Shopify
       @logger = logger || default_logger
       @factory = factory || default_factory
       @spree_product = Spree::Product.find(spree_product_id)
-      @shopify_product = find_or_initialize(spree_product)
+      @original_shopify_product = find_or_initialize(spree_product)
     end
 
     def perform
-      shopify_product = factory.new(spree_product, shopify_product)
-      if saved = shopify_product.save
+      # NOTE(cab): Refactore the new.perform to call?
+      shopify_product = factory.new(spree_product, original_shopify_product).perform
+      if shopify_product.save
         save_pos_product_id(spree_product, shopify_product)
         logger.info("#{shopify_product.handle} imported")
       else
         logger.error("#{shopify_product.handle} not imported, reason: #{shopify_product.errors.full_messages}")
       end
 
-      saved
+      shopify_product
     end
 
-    attr_reader :logger, :factory, :spree_product, :shopify_product
+    attr_accessor :logger, :factory, :spree_product, :original_shopify_product
 
     private
 
