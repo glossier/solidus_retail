@@ -13,6 +13,8 @@ module Shopify
       if shopify_product.save
         save_pos_product_id(spree_product, shopify_product)
         save_pos_variant_ids(spree_product.variants, shopify_product.variants)
+        shopify_product.images = build_images(spree_product.variants)
+        shopify_product.save
         logger.info("#{shopify_product.handle} imported")
       else
         logger.error("#{shopify_product.handle} not imported, reason: #{shopify_product.errors.full_messages}")
@@ -37,6 +39,19 @@ module Shopify
         spree_variant.pos_variant_id = shopify_variant.id
         spree_variant.save
       end
+    end
+
+    def build_images(spree_variants)
+      return if spree_variants.empty?
+      images = []
+
+      spree_variants.each do |variant|
+        variant.reload
+        factory = ProductImagesFactory.new(variant)
+        images << factory.perform
+      end
+
+      images
     end
 
     def find_or_initialize(spree_product)

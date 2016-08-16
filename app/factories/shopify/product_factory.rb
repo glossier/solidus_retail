@@ -26,7 +26,7 @@ module Shopify
       return if spree_variants.empty?
       variants = []
       spree_variants.each do |variant|
-        shopify_variant = find_or_initialize(variant)
+        shopify_variant = find_or_initialize_variant(variant)
         factory = Shopify::VariantFactory.new(variant, shopify_variant)
         variants << factory.perform
       end
@@ -38,7 +38,7 @@ module Shopify
       [content.lines.map { |line| "<p>#{line.strip}</p>" }].join
     end
 
-    def find_or_initialize(spree_variant)
+    def find_or_initialize_variant(spree_variant)
       shopify_variant = ::ShopifyAPI::Variant.find(spree_variant.pos_variant_id) if spree_variant.pos_variant_id
       shopify_variant = ::ShopifyAPI::Variant.new if shopify_variant.nil?
 
