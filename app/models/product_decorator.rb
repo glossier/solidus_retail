@@ -4,6 +4,6 @@ Spree::Product.class_eval do
   private
 
   def export_to_shopify
-    ExportProductToShopifyJob.perform_later(id)
+    # ExportProductToShopifyJob.perform_later(id)
   end
 end
