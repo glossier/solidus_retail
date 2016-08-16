@@ -30,6 +30,8 @@ module Shopify
         factory = Shopify::VariantFactory.new(variant, shopify_variant)
         variants << factory.perform
       end
+
+      variants
     end
 
     def surround_by_p_tags(content)

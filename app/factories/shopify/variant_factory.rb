@@ -10,7 +10,6 @@ module Shopify
       shopify_variant.weight_unit = 'oz'
       shopify_variant.price = spree_variant.price
       shopify_variant.sku = spree_variant.sku
-      shopify_variant.title = spree_variant.name
       shopify_variant.updated_at = spree_variant.updated_at
       generate_options!
 

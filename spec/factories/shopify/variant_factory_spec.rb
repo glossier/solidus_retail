@@ -33,7 +33,6 @@ describe Shopify::VariantFactory do
       it { expect(@shopify_variant.weight_unit).to eql('oz') }
       it { expect(@shopify_variant.price).to eql(spree_variant.price) }
       it { expect(@shopify_variant.sku).to eql(spree_variant.sku) }
-      it { expect(@shopify_variant.title).to eql(spree_variant.name) }
       it { expect(@shopify_variant.updated_at).to eql(spree_variant.updated_at) }
       it { expect(@shopify_variant.option1).to eql(spree_variant.option_values.first.name) }
     end
