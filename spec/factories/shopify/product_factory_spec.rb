@@ -54,6 +54,12 @@ describe Shopify::ProductFactory do
         expect(variant_factory).to receive(:perform).once
         subject.perform
       end
+
+      it 'assigns the variant to the shopify instance' do
+        shopify_product = subject.perform
+        result = shopify_product.variants.count
+        expect(result).to eql(1)
+      end
     end
 
     context 'with any types of products' do
