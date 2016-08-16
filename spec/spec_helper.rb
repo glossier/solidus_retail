@@ -18,6 +18,7 @@ require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -34,6 +35,7 @@ require 'spree/testing_support/url_helpers'
 require 'solidus_retail/factories'
 
 RSpec.configure do |config|
+  WebMock.disable_net_connect!
   config.include FactoryGirl::Syntax::Methods
 
   # Infer an example group's spec type from the file location.
