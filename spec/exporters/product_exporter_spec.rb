@@ -20,7 +20,7 @@ describe Shopify::ProductExporter do
     let(:factory_class) { double('factory_class', new: factory_instance) }
     let(:factory_instance) { double('factory_instance', perform: shopify_product) }
     let(:logger_instance) { double('logger') }
-    let(:shopify_product) { double('shopify_product', id: '123321', handle: 'slug', errors: error_messages) }
+    let(:shopify_product) { double('shopify_product', id: '123321', handle: 'slug', errors: error_messages, variants: []) }
     let(:error_messages) { double('error_message', full_messages: ['error_1']) }
 
     context 'with an invalid shopify product' do
@@ -81,6 +81,7 @@ describe Shopify::ProductExporter do
           allow(shopify_product).to receive(:save).and_return(true)
           allow(logger_instance).to receive(:info).and_return(true)
           allow_any_instance_of(Shopify::ProductExporter).to receive(:save_pos_product_id).and_return(true)
+          allow_any_instance_of(Shopify::ProductExporter).to receive(:save_pos_variant_id).and_return(true)
         end
 
         it 'logs an info' do

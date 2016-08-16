@@ -8,10 +8,11 @@ module Shopify
     end
 
     def perform
-      # NOTE(cab): Refactore the new.perform to call?
+      # NOTE(cab): Refactor the new.perform to use call?
       shopify_product = factory.new(spree_product, original_shopify_product).perform
       if shopify_product.save
         save_pos_product_id(spree_product, shopify_product)
+        save_pos_variant_ids(spree_product.variants, shopify_product.variants)
         logger.info("#{shopify_product.handle} imported")
       else
         logger.error("#{shopify_product.handle} not imported, reason: #{shopify_product.errors.full_messages}")
@@ -27,6 +28,15 @@ module Shopify
     def save_pos_product_id(product, shopify_product)
       product.pos_product_id = shopify_product.id
       product.save
+    end
+
+    def save_pos_variant_ids(spree_variants, shopify_variants)
+      return if spree_variants.empty?
+      shopify_variants.each do |shopify_variant|
+        spree_variant = spree_variants.find_by(sku: shopify_variant.sku)
+        spree_variant.pos_variant_id = shopify_variant.id
+        spree_variant.save
+      end
     end
 
     def find_or_initialize(spree_product)
