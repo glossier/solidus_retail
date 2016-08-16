@@ -14,6 +14,14 @@ module Shopify
       shopify_product.vendor = 'Glossier'
       shopify_product.handle = spree_product.slug
 
+      if spree_product.variants.any?
+        factory = Shopify::VariantFactory.new
+
+        spree_product.variants.each do |_variant|
+          factory.perform
+        end
+      end
+
       shopify_product
     end
 
