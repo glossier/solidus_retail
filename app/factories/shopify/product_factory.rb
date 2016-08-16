@@ -13,14 +13,7 @@ module Shopify
       shopify_product.published_at = spree_product.available_on
       shopify_product.vendor = 'Glossier'
       shopify_product.handle = spree_product.slug
-
-      if spree_product.variants.any?
-        factory = Shopify::VariantFactory.new
-
-        spree_product.variants.each do |_variant|
-          factory.perform
-        end
-      end
+      shopify_product.variants = build_variants(spree_product.variants)
 
       shopify_product
     end
@@ -29,8 +22,25 @@ module Shopify
 
     attr_accessor :spree_product, :shopify_product
 
+    def build_variants(spree_variants)
+      return if spree_variants.empty?
+      variants = []
+      spree_variants.each do |variant|
+        shopify_variant = find_or_initialize(variant)
+        factory = Shopify::VariantFactory.new(variant, shopify_variant)
+        variants << factory.perform
+      end
+    end
+
     def surround_by_p_tags(content)
       [content.lines.map { |line| "<p>#{line.strip}</p>" }].join
+    end
+
+    def find_or_initialize(spree_variant)
+      shopify_variant = ::ShopifyAPI::Variant.find(spree_variant.pos_variant_id) if spree_variant.pos_variant_id
+      shopify_variant = ::ShopifyAPI::Variant.new if shopify_variant.nil?
+
+      shopify_variant
     end
   end
 end
