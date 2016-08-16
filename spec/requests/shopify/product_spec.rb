@@ -45,7 +45,7 @@ describe 'Export a Spree Product to Shopify' do
       spree_variant.reload
       result = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
 
-      expect(result.title).to eql(spree_variant.option_values.first.name)
+      expect(result.sku).to eql(spree_variant.sku)
 
       # Shopify doesn't let us destroy a variant nor find its product
       product = ShopifyAPI::Product.find(result.product_id)
@@ -58,7 +58,7 @@ describe 'Export a Spree Product to Shopify' do
       shopify_variant = shopify_product.variants.first
       spree_variant = spree_product.variants.first
       expect(shopify_variant).to be_truthy
-      expect(shopify_variant.title).to eql(spree_variant.option_values.first.name)
+      expect(shopify_variant.sku).to eql(spree_variant.sku)
 
       shopify_product.destroy
     end
@@ -78,7 +78,7 @@ describe 'Export a Spree Product to Shopify' do
       result = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
 
       expect(result).to be_truthy
-      expect(result.title).to eql(spree_variant.option_values.first.name)
+      expect(result.sku).to eql(spree_variant.sku)
 
       # Shopify doesn't let us destroy a variant nor find its product
       product = ShopifyAPI::Product.find(result.product_id)
@@ -111,6 +111,33 @@ describe 'Export a Spree Product to Shopify' do
 
       product = ShopifyAPI::Product.find(spree_product.pos_product_id)
       expect(product.title).to eql('new_name')
+    end
+
+    context 'when product contains variants' do
+      let(:spree_product) { create(:product) }
+      let!(:spree_variant) { create(:variant, product: spree_product) }
+      let!(:existing_variant) { subject.new(spree_product.id).perform }
+
+      it 'does not create a new variant' do
+        variants_count = ShopifyAPI::Variant.all.count
+        subject.new(spree_product.id).perform
+
+        result = ShopifyAPI::Variant.all.count
+        expect(result).to be(variants_count)
+      end
+
+      it 'saves over the already existing variant' do
+        spree_variant.reload
+        variant = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
+        expect(variant.sku).to eql(spree_variant.sku)
+
+        spree_variant.sku = 'new_sku'
+        spree_variant.save
+        subject.new(spree_product.id).perform
+
+        variant = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
+        expect(variant.sku).to eql('new_sku')
+      end
     end
 
     after do
