@@ -3,9 +3,14 @@ require 'spec_helper'
 describe Shopify::ProductExporter do
   let(:spree_product) { create(:product) }
 
-  subject { described_class.new(spree_product) }
+  before do
+    allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
+    allow(Spree::Product).to receive(:find).and_return(spree_product)
+  end
 
   context '.initialize' do
+    subject { described_class.new(spree_product.id) }
+
     it 'successfully does it\'s things' do
       expect(subject).to be_truthy
     end
@@ -18,7 +23,7 @@ describe Shopify::ProductExporter do
     let(:error_messages) { double('error_message', full_messages: ['error_1']) }
 
     context 'with an invalid shopify product' do
-      subject { described_class.new(spree_product, factory_class) }
+      subject { described_class.new(spree_product.id, factory_class) }
 
       before do
         allow(shopify_product).to receive(:save).and_return(false)
@@ -31,7 +36,7 @@ describe Shopify::ProductExporter do
     end
 
     context 'with a valid shopify product' do
-      subject { described_class.new(spree_product, factory_class) }
+      subject { described_class.new(spree_product.id, factory_class) }
 
       before do
         allow(shopify_product).to receive(:save).and_return(true)
@@ -52,7 +57,7 @@ describe Shopify::ProductExporter do
     end
 
     describe 'logging' do
-      subject { described_class.new(spree_product, factory_class, logger_instance) }
+      subject { described_class.new(spree_product.id, factory_class, logger_instance) }
 
       context 'when shopify product is invalid' do
         before do

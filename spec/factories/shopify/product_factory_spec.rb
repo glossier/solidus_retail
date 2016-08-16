@@ -6,6 +6,10 @@ describe Shopify::ProductFactory do
 
   subject { described_class.new(spree_product, shopify_product) }
 
+  before do
+    allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
+  end
+
   context '.initialize' do
     it 'successfully does it\'s things' do
       expect(subject).to be_truthy
