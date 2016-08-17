@@ -20,8 +20,15 @@ describe Shopify::ProductExporter do
     let(:factory_class) { double('factory_class', new: factory_instance) }
     let(:factory_instance) { double('factory_instance', perform: shopify_product) }
     let(:logger_instance) { double('logger') }
-    let(:shopify_product) { double('shopify_product', id: '123321', handle: 'slug', errors: error_messages, variants: []) }
+    let(:shopify_product) { ShopifyProduct.new }
     let(:error_messages) { double('error_message', full_messages: ['error_1']) }
+
+    before do
+      allow(shopify_product).to receive(:id).and_return('123321')
+      allow(shopify_product).to receive(:handle).and_return('slug')
+      allow(shopify_product).to receive(:errors).and_return(error_messages)
+      allow(shopify_product).to receive(:variants).and_return([])
+    end
 
     context 'with an invalid shopify product' do
       subject { described_class.new(spree_product.id, factory_class) }
@@ -59,6 +66,34 @@ describe Shopify::ProductExporter do
         expected_result = '123321'
         expect(result).to eql(expected_result)
       end
+
+      context 'has variant images' do
+        let!(:variant_image) { create(:image) }
+        let!(:spree_variant) { create(:variant, images: [variant_image], product: spree_product) }
+        let(:shopify_image) { ShopifyAPI::Image.new }
+
+        it 'assigns the images to the shopify product' do
+          shopify_product = subject.perform
+          expect(shopify_product.images).not_to be_empty
+        end
+
+        it 'saves the shopify product with images' do
+          expect(shopify_product).to receive(:save).twice
+          subject.perform
+        end
+      end
+
+      context 'has no variant images' do
+        it 'does not assign the variant images' do
+          shopify_product = subject.perform
+          expect(shopify_product.images).to be_empty
+        end
+
+        it 'doesn\'t saves the shopify product' do
+          expect(shopify_product).to receive(:save).once
+          subject.perform
+        end
+      end
     end
 
     describe 'logging' do
@@ -91,4 +126,12 @@ describe Shopify::ProductExporter do
       end
     end
   end
+end
+
+class ShopifyProduct
+  def initialize
+    @images = []
+  end
+
+  attr_accessor :images
 end
