@@ -3,10 +3,15 @@ require 'spec_helper'
 describe 'Export a Spree Product to Shopify' do
   before do
     allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
+    WebMock.allow_net_connect!
+  end
+
+  after do
+    WebMock.disable_net_connect!
   end
 
   context 'when product contains has no variants' do
-    let(:spree_product) { create(:product, name: 'N003') }
+    let(:spree_product) { create(:product) }
 
     subject { Shopify::ProductExporter.new(spree_product.id) }
 
@@ -27,8 +32,8 @@ describe 'Export a Spree Product to Shopify' do
   end
 
   context 'when product contains variants' do
-    let(:spree_product) { create(:product, name: 'N001') }
-    let!(:spree_variant) { create(:variant, product: spree_product, sku: 'T001') }
+    let(:spree_product) { create(:product) }
+    let!(:spree_variant) { create(:variant, product: spree_product) }
 
     subject { Shopify::ProductExporter.new(spree_product.id) }
 
@@ -47,11 +52,12 @@ describe 'Export a Spree Product to Shopify' do
     it 'associates the product with the variant' do
       subject.perform
       spree_product.reload
+
       shopify_product = ShopifyAPI::Product.find(spree_product.pos_product_id)
-      shopify_variant = shopify_product.variants.first
-      spree_variant = spree_product.variants.first
-      expect(shopify_variant).to be_truthy
-      expect(shopify_variant.sku).to eql(spree_variant.sku)
+      variant_count = shopify_product.variants.count
+
+      # Actual variant + Master variant
+      expect(variant_count).to eql(2)
 
       shopify_product.destroy
     end
@@ -82,7 +88,7 @@ describe 'Export a Spree Product to Shopify' do
 
     context 'and variant has an image' do
       let!(:variant_image) { create(:image) }
-      let!(:spree_variant) { create(:variant, images: [variant_image], product: spree_product, sku: 'T002') }
+      let!(:spree_variant) { create(:variant, images: [variant_image], product: spree_product) }
 
       it 'saves the variant with the image' do
         subject.perform
@@ -97,8 +103,55 @@ describe 'Export a Spree Product to Shopify' do
     end
   end
 
+  context 'when the product existed but was deleted' do
+    let(:spree_product) { create(:product) }
+    let!(:existing_product) { subject.new(spree_product.id).perform }
+
+    subject { Shopify::ProductExporter }
+
+    it 'creates a new product' do
+      spree_product.reload
+
+      product = ShopifyAPI::Product.find(spree_product.pos_product_id)
+      product.destroy
+
+      subject.new(spree_product.id).perform
+
+      spree_product.reload
+      result = ShopifyAPI::Product.find(spree_product.pos_product_id)
+      expect(result).to be_truthy
+
+      result.destroy
+    end
+  end
+
+  context 'when the variant existed but was deleted' do
+    let(:spree_product) { create(:product) }
+    let!(:existing_product) { subject.new(spree_product.id).perform }
+
+    subject { Shopify::ProductExporter }
+
+    it 'creates a new variant' do
+      spree_variant = spree_product.master
+
+      spree_variant.reload
+      variant = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
+      product = ShopifyAPI::Product.find(variant.product_id)
+      product.destroy
+
+      subject.new(spree_product.id).perform
+
+      spree_variant.reload
+      result = ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
+      expect(result).to be_truthy
+
+      product = ShopifyAPI::Product.find(result.product_id)
+      product.destroy
+    end
+  end
+
   context 'when the product already exists on Shopify' do
-    let(:spree_product) { create(:product, name: 'N004') }
+    let(:spree_product) { create(:product) }
     let!(:existing_product) { subject.new(spree_product.id).perform }
 
     subject { Shopify::ProductExporter }
@@ -125,8 +178,8 @@ describe 'Export a Spree Product to Shopify' do
     end
 
     context 'when product contains variants' do
-      let(:spree_product) { create(:product, name: 'N002') }
-      let!(:spree_variant) { create(:variant, product: spree_product, sku: 'T003') }
+      let(:spree_product) { create(:product) }
+      let!(:spree_variant) { create(:variant, product: spree_product) }
       let!(:existing_variant) { subject.new(spree_product.id).perform }
 
       it 'does not create a new variant' do
@@ -153,7 +206,7 @@ describe 'Export a Spree Product to Shopify' do
       context 'and variant has an image' do
         let(:new_variant_image) { create(:image, attachment: open('http://placekitten.com/g/200/300')) }
         let(:existing_variant_image) { create(:image) }
-        let!(:spree_variant_with_image) { create(:variant, images: [existing_variant_image], product: spree_product, sku: 'T004') }
+        let!(:spree_variant_with_image) { create(:variant, images: [existing_variant_image], product: spree_product) }
         let!(:existing_variant_with_image) { subject.new(spree_product.id).perform }
 
         it 'replaces the image of the variant' do

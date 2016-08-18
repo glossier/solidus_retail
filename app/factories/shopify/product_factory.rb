@@ -21,7 +21,7 @@ module Shopify
 
     private
 
-    attr_accessor :spree_product, :shopify_product
+    attr_accessor :spree_product, :shopify_product, :logger
 
     def build_variants(spree_product)
       variants = [build_variant(spree_product.master)]
@@ -46,7 +46,7 @@ module Shopify
       begin
         shopify_variant = ::ShopifyAPI::Variant.find(spree_variant.pos_variant_id) if spree_variant.pos_variant_id
       rescue ActiveResource::ResourceNotFound
-        logger.error("Variant with sku: #{shopify_variant.sku} not found with id: #{shopify_variant.pos_variant_id} -- Re-creating!")
+        logger.error("Variant with sku: #{spree_variant.sku} not found with id: #{spree_variant.pos_variant_id} -- Re-creating!")
       end
       shopify_variant = ::ShopifyAPI::Variant.new if shopify_variant.nil?
       shopify_variant
