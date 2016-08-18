@@ -19,6 +19,7 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
 require 'webmock/rspec'
+require 'vcr'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -33,6 +34,12 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/solidus_retail/factories.rb
 require 'solidus_retail/factories'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
 
 RSpec.configure do |config|
   WebMock.disable_net_connect!
@@ -82,6 +89,16 @@ RSpec.configure do |config|
   # After each spec clean the database.
   config.after :each do
     DatabaseCleaner.clean
+  end
+
+  # Make sure that only requests specs are VCRed
+  config.around(:each) do |example|
+    if example.metadata[:type] == :request
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      VCR.use_cassette(name, {}, &example)
+    else
+      VCR.turned_off(&example)
+    end
   end
 
   config.fail_fast = ENV['FAIL_FAST'] || false

@@ -1,0 +1,319 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products.json
+    body:
+      encoding: UTF-8
+      string: '{"product":{"title":"N001","body_html":"\u003cp\u003eAs seen on TV!\u003c/p\u003e","created_at":"2016-08-17T21:02:34.424Z","updated_at":"2016-08-17T21:02:34.511Z","published_at":"2015-08-17T21:02:34.394Z","vendor":"Glossier","handle":"n001","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"T002","updated_at":"2016-08-17T21:02:34.504Z","option1":"Size-11"}]}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 17 Aug 2016 21:02:35 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - https://glossier-pop-staging.myshopify.com/admin/products/8035565763
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/990441b1-1861-4a1b-b59c-bc43b668e1dd?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 990441b1-1861-4a1b-b59c-bc43b668e1dd
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"product":{"id":8035565763,"title":"N001","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Glossier","product_type":"","created_at":"2016-08-17T17:02:34-04:00","handle":"n001","updated_at":"2016-08-17T17:02:35-04:00","published_at":"2015-08-17T17:02:34-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":25980989379,"product_id":8035565763,"title":"Size-11","price":"19.99","sku":"T002","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Size-11","option2":null,"option3":null,"created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:34-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":9640900227,"product_id":8035565763,"name":"Title","position":1,"values":["Size-11"]}],"images":[],"image":null}}'
+    http_version: 
+  recorded_at: Wed, 17 Aug 2016 21:02:35 GMT
+- request:
+    method: put
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8035565763.json
+    body:
+      encoding: UTF-8
+      string: '{"product":{"title":"N001","body_html":"\u003cp\u003eAs seen on TV!\u003c/p\u003e","created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:35-04:00","published_at":"2015-08-17T17:02:34-04:00","vendor":"Glossier","handle":"n001","variants":[{"id":25980989379,"title":"Size-11","price":"19.99","sku":"T002","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Size-11","option2":null,"option3":null,"created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:34-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"id":8035565763,"product_type":"","template_suffix":null,"published_scope":"global","tags":"","options":[{"id":9640900227,"product_id":8035565763,"name":"Title","position":1,"values":["Size-11"]}],"images":[{"variant_ids":["25980989379"],"attachment":"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\nStBv/9k=\n"}],"image":null}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 17 Aug 2016 21:02:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - https://glossier-pop-staging.myshopify.com/admin/products/8035565763
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/c328f7a8-a855-453b-8279-ed98c564101a?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      X-Request-Id:
+      - c328f7a8-a855-453b-8279-ed98c564101a
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"product":{"id":8035565763,"title":"N001","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Glossier","product_type":"","created_at":"2016-08-17T17:02:34-04:00","handle":"n001","updated_at":"2016-08-17T17:02:35-04:00","published_at":"2015-08-17T17:02:34-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":25980989379,"product_id":8035565763,"title":"Size-11","price":"19.99","sku":"T002","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Size-11","option2":null,"option3":null,"created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:35-04:00","taxable":true,"barcode":null,"image_id":15503227267,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":9640900227,"product_id":8035565763,"name":"Title","position":1,"values":["Size-11"]}],"images":[{"id":15503227267,"product_id":8035565763,"position":1,"created_at":"2016-08-17T17:02:35-04:00","updated_at":"2016-08-17T17:02:35-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0677\/9563\/products\/9c9d1d19a5ccb7589ee3605cb101e477.jpg?v=1471467755","variant_ids":[25980989379]}],"image":{"id":15503227267,"product_id":8035565763,"position":1,"created_at":"2016-08-17T17:02:35-04:00","updated_at":"2016-08-17T17:02:35-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0677\/9563\/products\/9c9d1d19a5ccb7589ee3605cb101e477.jpg?v=1471467755","variant_ids":[25980989379]}}}'
+    http_version: 
+  recorded_at: Wed, 17 Aug 2016 21:02:36 GMT
+- request:
+    method: get
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/variants/25980989379.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 17 Aug 2016 21:02:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/02742297-516f-4a36-8024-63299bfc0090?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproduct_variants&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 02742297-516f-4a36-8024-63299bfc0090
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"variant":{"id":25980989379,"product_id":8035565763,"title":"Size-11","price":"19.99","sku":"T002","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Size-11","option2":null,"option3":null,"created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:35-04:00","taxable":true,"barcode":null,"image_id":15503227267,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
+    http_version: 
+  recorded_at: Wed, 17 Aug 2016 21:02:36 GMT
+- request:
+    method: get
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8035565763.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 17 Aug 2016 21:02:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/7538b84a-9834-423a-9f16-c7f645ddd42a?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 7538b84a-9834-423a-9f16-c7f645ddd42a
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"product":{"id":8035565763,"title":"N001","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Glossier","product_type":"","created_at":"2016-08-17T17:02:34-04:00","handle":"n001","updated_at":"2016-08-17T17:02:35-04:00","published_at":"2015-08-17T17:02:34-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":25980989379,"product_id":8035565763,"title":"Size-11","price":"19.99","sku":"T002","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Size-11","option2":null,"option3":null,"created_at":"2016-08-17T17:02:34-04:00","updated_at":"2016-08-17T17:02:35-04:00","taxable":true,"barcode":null,"image_id":15503227267,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":9640900227,"product_id":8035565763,"name":"Title","position":1,"values":["Size-11"]}],"images":[{"id":15503227267,"product_id":8035565763,"position":1,"created_at":"2016-08-17T17:02:35-04:00","updated_at":"2016-08-17T17:02:35-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0677\/9563\/products\/9c9d1d19a5ccb7589ee3605cb101e477.jpg?v=1471467755","variant_ids":[25980989379]}],"image":{"id":15503227267,"product_id":8035565763,"position":1,"created_at":"2016-08-17T17:02:35-04:00","updated_at":"2016-08-17T17:02:35-04:00","src":"https:\/\/cdn.shopify.com\/s\/files\/1\/0677\/9563\/products\/9c9d1d19a5ccb7589ee3605cb101e477.jpg?v=1471467755","variant_ids":[25980989379]}}}'
+    http_version: 
+  recorded_at: Wed, 17 Aug 2016 21:02:36 GMT
+- request:
+    method: delete
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8035565763.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 17 Aug 2016 21:02:37 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - https://glossier-pop-staging.myshopify.com/admin/products
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/8f99ebe2-baa2-4e19-b687-b7a8fb61f962?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 8f99ebe2-baa2-4e19-b687-b7a8fb61f962
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: "{}"
+    http_version: 
+  recorded_at: Wed, 17 Aug 2016 21:02:37 GMT
+recorded_with: VCR 2.9.3
