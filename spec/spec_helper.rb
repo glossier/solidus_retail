@@ -93,12 +93,13 @@ RSpec.configure do |config|
 
   # Make sure that only requests specs are VCRed
   config.around(:each) do |example|
-    if example.metadata[:type] == :request
-      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
-      VCR.use_cassette(name, {}, &example)
-    else
-      VCR.turned_off(&example)
-    end
+    # if example.metadata[:type] == :request
+    #   name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+    #   VCR.use_cassette(name, {}, &example)
+    # else
+    #   VCR.turned_off(&example)
+    # end
+    VCR.turned_off(&example)
   end
 
   config.fail_fast = ENV['FAIL_FAST'] || false

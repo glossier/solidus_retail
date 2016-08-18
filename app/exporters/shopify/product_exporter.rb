@@ -12,7 +12,7 @@ module Shopify
       shopify_product = factory.new(spree_product, original_shopify_product).perform
       if shopify_product.save
         save_pos_product_id(spree_product, shopify_product)
-        save_pos_variant_ids(spree_product.variants, shopify_product.variants)
+        save_pos_variant_ids(spree_product, shopify_product.variants)
         save_shopify_product_images(shopify_product, spree_product.variants)
         logger.info("#{shopify_product.handle} imported")
       else
@@ -31,13 +31,23 @@ module Shopify
       product.save
     end
 
-    def save_pos_variant_ids(spree_variants, shopify_variants)
-      return if spree_variants.empty?
+    def save_pos_variant_ids(spree_product, shopify_variants)
+      shopify_master_variant = shopify_variants.detect { |va| va.sku == spree_product.master.sku }
+      save_pos_variant_id(spree_product.master, shopify_master_variant)
+
+      return if spree_product.variants.empty?
       shopify_variants.each do |shopify_variant|
-        spree_variant = spree_variants.find_by(sku: shopify_variant.sku)
-        spree_variant.pos_variant_id = shopify_variant.id
-        spree_variant.save
+        next if shopify_variant == shopify_master_variant
+
+        spree_variant = spree_product.variants.find_by(sku: shopify_variant.sku)
+        save_pos_variant_id(spree_variant, shopify_variant)
       end
+    end
+
+    def save_pos_variant_id(spree_variant, shopify_variant)
+      return if spree_variant.nil? || shopify_variant.nil?
+      spree_variant.pos_variant_id = shopify_variant.id
+      spree_variant.save
     end
 
     def save_shopify_product_images(shopify_product, spree_variants)
