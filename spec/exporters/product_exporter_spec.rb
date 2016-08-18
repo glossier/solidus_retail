@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Shopify::ProductExporter do
   let(:spree_product) { create(:product) }
+  let(:exception_error) { double('err', code: '404') }
+  let(:exception) { ActiveResource::ResourceNotFound.new(exception_error) }
 
   before do
     allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
@@ -94,6 +96,20 @@ describe Shopify::ProductExporter do
           subject.perform
         end
       end
+
+      context 'when shopify product is not found' do
+        let(:spree_product) { double('spree_product', id: '123', pos_product_id: '321', slug: 'handle') }
+
+        before do
+          allow(Spree::Product).to receive(:find).and_return(spree_product)
+          allow(ShopifyAPI::Product).to receive(:find).and_raise(exception)
+        end
+
+        it 'generates a new shopify product' do
+          expect(ShopifyAPI::Product).to receive(:new).once
+          described_class.new(spree_product.id, factory_class, logger_instance)
+        end
+      end
     end
 
     describe 'logging' do
@@ -122,6 +138,20 @@ describe Shopify::ProductExporter do
         it 'logs an info' do
           expect(logger_instance).to receive(:info).once
           subject.perform
+        end
+      end
+
+      context 'when shopify product is not found' do
+        let(:spree_product) { double('spree_product', id: '123', pos_product_id: '321', slug: 'handle') }
+
+        before do
+          allow(Spree::Product).to receive(:find).and_return(spree_product)
+          allow(ShopifyAPI::Product).to receive(:find).and_raise(exception)
+        end
+
+        it 'logs an error' do
+          expect(logger_instance).to receive(:error).once
+          described_class.new(spree_product.id, factory_class, logger_instance)
         end
       end
     end

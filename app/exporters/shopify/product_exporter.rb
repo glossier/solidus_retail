@@ -60,9 +60,12 @@ module Shopify
     end
 
     def find_or_initialize(spree_product)
-      shopify_product = ::ShopifyAPI::Product.find(spree_product.pos_product_id) if spree_product.pos_product_id
-      shopify_product = ::ShopifyAPI::Product.new if shopify_product.nil?
-
+      begin
+        shopify_product = ShopifyAPI::Product.find(spree_product.pos_product_id) if spree_product.pos_product_id
+      rescue ActiveResource::ResourceNotFound
+        logger.error("#{spree_product.slug} not found with id: #{spree_product.pos_product_id} -- Re-creating!")
+      end
+      shopify_product = ShopifyAPI::Product.new if shopify_product.nil?
       shopify_product
     end
 
