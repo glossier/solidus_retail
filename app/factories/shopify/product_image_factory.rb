@@ -20,9 +20,9 @@ module Shopify
       # else if it's hosted online we must get the `url` of the image.
       # I haven't found a better way of doing that yet.
       begin
-        bytes = File.open(image.attachment.url, "rb").read
+        bytes = open(image.attachment.url, "rb").read
       rescue Errno::ENOENT
-        bytes = File.open(image.attachment.path, "rb").read
+        bytes = open(image.attachment.path, "rb").read
       ensure
         encoded = Base64.encode64(bytes)
       end
