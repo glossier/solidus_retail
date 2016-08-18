@@ -34,7 +34,7 @@ describe Shopify::VariantFactory do
       it { expect(@shopify_variant.price).to eql(spree_variant.price) }
       it { expect(@shopify_variant.sku).to eql(spree_variant.sku) }
       it { expect(@shopify_variant.updated_at).to eql(spree_variant.updated_at) }
-      it { expect(@shopify_variant.option1).to eql(spree_variant.option_values.first.name) }
+      it { expect(@shopify_variant.option1).to eql(spree_variant.sku) }
     end
 
     context 'with multiple option values' do
@@ -49,9 +49,10 @@ describe Shopify::VariantFactory do
 
       it 'fills all the shopify options values field' do
         option_values = spree_variant.option_values.all
-        expect(@shopify_variant.option1).to eql(option_values[0].name)
-        expect(@shopify_variant.option2).to eql(option_values[1].name)
-        expect(@shopify_variant.option3).to eql(option_values[2].name)
+        expect(@shopify_variant.option1).to eql(spree_variant.sku)
+        expect(@shopify_variant.option2).to eql(option_values[0].name)
+        expect(@shopify_variant.option3).to eql(option_values[1].name)
+        expect(@shopify_variant.option4).to eql(option_values[2].name)
       end
     end
 
