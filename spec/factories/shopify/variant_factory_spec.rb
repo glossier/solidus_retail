@@ -54,5 +54,16 @@ describe Shopify::VariantFactory do
         expect(@shopify_variant.option3).to eql(option_values[2].name)
       end
     end
+
+    context 'with no option values' do
+      before do
+        allow(spree_variant).to receive(:option_values).and_return([])
+        @shopify_variant = subject.perform
+      end
+
+      it 'uses the sku as the unique option1 instead' do
+        expect(@shopify_variant.option1).to eql(spree_variant.sku)
+      end
+    end
   end
 end

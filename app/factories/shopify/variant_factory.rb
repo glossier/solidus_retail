@@ -21,6 +21,8 @@ module Shopify
     attr_accessor :spree_variant, :shopify_variant
 
     def generate_options!
+      shopify_variant.option1 = spree_variant.sku if spree_variant.option_values.empty?
+
       spree_variant.option_values.each_with_index do |option, index|
         shopify_variant.send("option#{index + 1}=", option.name)
       end
