@@ -17,6 +17,12 @@ describe Shopify::ProductFactory do
   end
 
   context '.perform' do
+    let(:variant_factory) { double('variant_factory_instance', perform: true) }
+
+    before do
+      allow(Shopify::VariantFactory).to receive(:new).and_return(variant_factory)
+    end
+
     it 'returns a product shopify object' do
       result = subject.perform
       expected_result = ShopifyAPI::Product
@@ -38,27 +44,36 @@ describe Shopify::ProductFactory do
         it { expect(@shopify_product.vendor).to eql('Glossier') }
         it { expect(@shopify_product.handle).to eql(spree_product.slug) }
       end
+
+      describe 'for master variant' do
+        it 'calls the variant factory' do
+          expect(variant_factory).to receive(:perform).once
+          subject.perform
+        end
+
+        it 'assigns the variant to the shopify instance' do
+          shopify_product = subject.perform
+          result = shopify_product.variants.count
+          expect(result).to eql(1)
+        end
+      end
     end
 
     context 'with a product with variants' do
       let!(:spree_variant) { create(:variant, product: spree_product) }
       let(:spree_product) { create(:product) }
-      let(:variant_factory) { double('variant_factory_instance', perform: true) }
       subject { described_class.new(spree_product, shopify_product) }
 
-      before do
-        expect(Shopify::VariantFactory).to receive(:new).and_return(variant_factory)
-      end
-
       it 'calls the variant factory' do
-        expect(variant_factory).to receive(:perform).once
+        expect(variant_factory).to receive(:perform).twice
         subject.perform
       end
 
       it 'assigns the variant to the shopify instance' do
         shopify_product = subject.perform
         result = shopify_product.variants.count
-        expect(result).to eql(1)
+        # Including the master variant
+        expect(result).to eql(2)
       end
     end
 
