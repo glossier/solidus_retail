@@ -1,6 +1,7 @@
 module Shopify
   class ProductFactory
-    def initialize(spree_product, shopify_product)
+    def initialize(spree_product, shopify_product, logger = nil)
+      @logger = logger || default_logger
       @spree_product = spree_product
       @shopify_product = shopify_product
     end
@@ -42,10 +43,17 @@ module Shopify
     end
 
     def find_or_initialize_variant(spree_variant)
-      shopify_variant = ::ShopifyAPI::Variant.find(spree_variant.pos_variant_id) if spree_variant.pos_variant_id
+      begin
+        shopify_variant = ::ShopifyAPI::Variant.find(spree_variant.pos_variant_id) if spree_variant.pos_variant_id
+      rescue ActiveResource::ResourceNotFound
+        logger.error("Variant with sku: #{shopify_variant.sku} not found with id: #{shopify_variant.pos_variant_id} -- Re-creating!")
+      end
       shopify_variant = ::ShopifyAPI::Variant.new if shopify_variant.nil?
-
       shopify_variant
+    end
+
+    def default_logger
+      Logger.new(Rails.root.join('log/export_solidus_products.log'))
     end
   end
 end
