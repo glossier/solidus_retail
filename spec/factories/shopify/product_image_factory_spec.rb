@@ -2,14 +2,15 @@ require 'spec_helper'
 
 describe Shopify::ProductImageFactory do
   let(:spree_product) { create(:product, pos_product_id: '321') }
-  let!(:variant_image) { create(:image) }
-  let!(:spree_variant) { create(:variant, product: spree_product, pos_variant_id: '123', images: [variant_image]) }
-
-  subject { described_class.new(spree_variant) }
 
   before do
     allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
   end
+
+  let!(:variant_image) { create(:image) }
+  let!(:spree_variant) { create(:variant, product: spree_product, pos_variant_id: '123', images: [variant_image]) }
+
+  subject { described_class.new(spree_variant) }
 
   context '.initialize' do
     it 'successfully does it\'s things' do
