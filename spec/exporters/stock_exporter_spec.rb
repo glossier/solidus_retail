@@ -27,7 +27,7 @@ describe Shopify::StockExporter do
     let(:count_on_hand) { 10 }
 
     before do
-      allow(spree_variant).to receive(:count_on_hand).and_return(count_on_hand)
+      allow(spree_variant).to receive(:count_on_hand_for).and_return(count_on_hand)
     end
 
     it 'saves the shopify variant' do

@@ -8,8 +8,9 @@ module Shopify
 
     def perform
       old_inventory_quantity = shopify_variant.inventory_quantity
-      shopify_variant.inventory_quantity = spree_variant.count_on_hand
-      logger.info("#{spree_variant.sku} inventory quantity updated from #{old_inventory_quantity} to #{spree_variant.count_on_hand}")
+      shopify_variant.inventory_quantity = variant_count_on_hand
+      shopify_variant.old_inventory_quantity = old_inventory_quantity
+      logger.info("#{spree_variant.sku} inventory quantity updated from #{old_inventory_quantity} to #{variant_count_on_hand}")
       shopify_variant.save
 
       shopify_variant
@@ -21,6 +22,10 @@ module Shopify
 
     def default_logger
       Logger.new(Rails.root.join('log/export_solidus_stocks.log'))
+    end
+
+    def variant_count_on_hand
+      @_count ||= spree_variant.count_on_hand_for(spree_variant.default_pos_stock_location)
     end
   end
 end

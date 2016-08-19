@@ -35,6 +35,9 @@ describe Shopify::VariantFactory do
       it { expect(@shopify_variant.sku).to eql(spree_variant.sku) }
       it { expect(@shopify_variant.updated_at).to eql(spree_variant.updated_at) }
       it { expect(@shopify_variant.option1).to eql(spree_variant.sku) }
+      it { expect(@shopify_variant.inventory_management).to eql('shopify') }
+      it { expect(@shopify_variant.inventory_quantity).to eql(0) }
+      it { expect(@shopify_variant.old_inventory_quantity).to eql(0) }
     end
 
     context 'with multiple option values' do
