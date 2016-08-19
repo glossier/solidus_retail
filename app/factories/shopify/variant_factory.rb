@@ -11,6 +11,7 @@ module Shopify
       shopify_variant.price = spree_variant.price
       shopify_variant.sku = spree_variant.sku
       shopify_variant.updated_at = spree_variant.updated_at
+      shopify_variant.inventory_quantity = spree_variant.stock_items.count_on_hand
       generate_options!
 
       shopify_variant
