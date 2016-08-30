@@ -10,7 +10,6 @@ module Shopify
     end
 
     def spree_order_scope
-      # ::Spree::Order.by_channel('shopify')
       ::Spree::Order.where(channel: POS_CHANNEL)
     end
 
@@ -41,7 +40,7 @@ module Shopify
         # Assign user afterwards
         # (so a credit card payment does not get created automatically if user
         # has a CC profile in the database - see Spree::Order::Checkout)
-        if user = Spree::User.find_by(email: order.email)
+        if user = Spree.user_class.find_by(email: order.email)
           order.user = user
           order.save
         else
@@ -112,15 +111,16 @@ module Shopify
       # TODO(cab): We will need to enter more details about the payment here,
       # like the transaction_id of the Shopify Payment
       order.payments.create!(payment_method: payment_method, amount: order.total)
+      order.next!
     end
 
     def transition_order_from_confirm_to_complete!(order)
       return if order.complete?
 
-      order.next!
       # NOTE(cab): Why use capture here? The Shopify Gateway doesn't support that
       # order.payments.each(&:capture!)
       mark_as_shipped(order)
+      order.complete!
     end
 
     def mark_as_shipped(order)
