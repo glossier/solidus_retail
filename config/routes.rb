@@ -1,3 +1,5 @@
 Spree::Core::Engine.routes.draw do
-  # Add your extension routes here
+  namespace :shopify_hook do
+    resource :order, only: :create
+  end
 end
