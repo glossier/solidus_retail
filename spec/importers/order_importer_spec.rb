@@ -66,6 +66,18 @@ describe Shopify::OrderImporter do
       end
     end
 
+    context 'when the order\'s customer exists' do
+      let!(:user) { create(:user, email: 'charles@godynamo.com') }
+
+      it 'saves the customer' do
+        subject.perform
+
+        order = Spree::Order.first
+        user = order.user
+        expect(user.email).to eql('charles@godynamo.com')
+      end
+    end
+
     it 'saves the glossier address as the ship address' do
       subject.perform
 
@@ -80,18 +92,6 @@ describe Shopify::OrderImporter do
       order = Spree::Order.first
       bill_address = order.bill_address
       expect(bill_address.address1).to eql('123 Lafayette Street')
-    end
-
-    context 'when the order\'s customer exists' do
-      let!(:user) { create(:user, email: 'charles@godynamo.com') }
-
-      it 'saves the customer' do
-        subject.perform
-
-        order = Spree::Order.first
-        user = order.user
-        expect(user.email).to eql('charles@godynamo.com')
-      end
     end
 
     it 'saves the pos order identifier' do
