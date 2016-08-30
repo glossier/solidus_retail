@@ -5,12 +5,12 @@ module Shopify
 
     def initialize(pos_order_id)
       @logger = default_logger
-      @pos_order = ::ShopifyAPI::Order.find(pos_order_id)
+      @pos_order = ShopifyAPI::Order.find(pos_order_id)
       @order = spree_order_scope.where(pos_order_id: pos_order_id).first_or_create!
     end
 
     def spree_order_scope
-      ::Spree::Order.where(channel: POS_CHANNEL)
+      Spree::Order.by_channel(POS_CHANNEL)
     end
 
     def perform
