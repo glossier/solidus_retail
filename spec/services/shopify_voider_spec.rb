@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require_relative '../../lib/active_merchant/billing/gateways/shopify.rb'
 
-describe ShopifyVoider do
+describe Spree::Retail::ShopifyVoider do
   let(:transaction_id) { '0xDEADBEEF' }
   let(:order_id) { 'order_id' }
   let(:transaction_amount) { 1 }
@@ -16,14 +16,14 @@ describe ShopifyVoider do
   subject { described_class.new(transaction_id, order_id) }
 
   context '.initialize' do
-    it 'successfully does it\'s thing' do
+    it "successfully does it's thing" do
       expect(subject).to be_truthy
     end
   end
 
   context '.perform' do
     before do
-      allow(ShopifyRefunder).to receive(:new).and_return(refunder_instance)
+      allow(Spree::Retail::ShopifyRefunder).to receive(:new).and_return(refunder_instance)
     end
 
     context 'when the shopify transaction is not found' do
