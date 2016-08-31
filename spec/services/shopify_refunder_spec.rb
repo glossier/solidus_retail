@@ -31,7 +31,7 @@ describe Spree::Retail::ShopifyRefunder do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(ActiveMerchant::Billing::ShopifyGateway::TransactionNotFoundError)
+        expect(&cause).to raise_error(Shopify::TransactionNotFoundError)
       end
     end
 
@@ -62,7 +62,7 @@ describe Spree::Retail::ShopifyRefunder do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(ActiveMerchant::Billing::ShopifyGateway::CreditedAmountBiggerThanTransaction)
+        expect(&cause).to raise_error(Shopify::CreditedAmountBiggerThanTransaction)
       end
     end
   end

@@ -11,12 +11,12 @@ module Spree
       end
 
       def perform
-        raise ActiveMerchant::Billing::ShopifyGateway::TransactionNotFoundError if transaction.nil?
+        raise Shopify::TransactionNotFoundError if transaction.nil?
 
         if full_refund? || partial_refund?
           perform_refund_on_shopify
         else
-          raise ActiveMerchant::Billing::ShopifyGateway::CreditedAmountBiggerThanTransaction
+          raise Shopify::CreditedAmountBiggerThanTransaction
         end
       end
 
