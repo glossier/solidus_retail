@@ -6,14 +6,12 @@ describe Spree::Retail::ShopifyVoider do
   let(:transaction_id) { '0xDEADBEEF' }
   let(:order_id) { 'order_id' }
   let(:transaction_amount) { 1 }
-  let(:transaction) { double(:transaction, amount: transaction_amount, id: transaction_id) }
+  let(:transaction_instance) { double('transaction', amount: transaction_amount, id: transaction_id) }
+  let(:transaction_interface) { double('transaction_interface', find: transaction_instance) }
   let(:refunder_instance) { double('refunder_instance', perform: true) }
+  let(:refunder_class) { double('refunder_class', new: refunder_instance) }
 
-  before do
-    allow(ShopifyAPI::Transaction).to receive(:find).and_return(transaction)
-  end
-
-  subject { described_class.new(transaction_id, order_id) }
+  subject { described_class.new(transaction_id, order_id, transaction_interface, refunder_class) }
 
   context '.initialize' do
     it "successfully does it's thing" do
@@ -22,13 +20,9 @@ describe Spree::Retail::ShopifyVoider do
   end
 
   context '.perform' do
-    before do
-      allow(Spree::Retail::ShopifyRefunder).to receive(:new).and_return(refunder_instance)
-    end
-
     context 'when the shopify transaction is not found' do
       before do
-        allow(ShopifyAPI::Transaction).to receive(:find).and_return(nil)
+        allow(transaction_interface).to receive(:find).and_return(nil)
       end
 
       it 'throws an error' do
