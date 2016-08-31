@@ -26,24 +26,17 @@ module Spree
                      :transaction_interface, :refunder_interface
 
       def perform_refund_on_shopify
-        refund = refunder_interface.create(order_id: order_id,
-                                           shipping: { amount: 0 },
-                                           note: refund_reason,
-                                           notify: false,
-                                           restock: false,
-                                           transactions: [{
-                                             parent_id: transaction.id,
-                                             amount: amount_to_dollars(credited_money),
-                                             gateway: 'shopify-payments',
-                                             kind: 'refund'
-                                           }])
-
-        success = refund.errors == []
-        if success || refund.errors.messages.empty?
-          ActiveMerchant::Billing::Response.new(true, nil)
-        else
-          ActiveMerchant::Billing::Response.new(success, refund.errors.messages)
-        end
+        refunder_interface.create(order_id: order_id,
+                                  shipping: { amount: 0 },
+                                  note: refund_reason,
+                                  notify: false,
+                                  restock: false,
+                                  transactions: [{
+                                    parent_id: transaction.id,
+                                    amount: amount_to_dollars(credited_money),
+                                    gateway: 'shopify-payments',
+                                    kind: 'refund'
+                                  }])
       end
 
       def full_refund?

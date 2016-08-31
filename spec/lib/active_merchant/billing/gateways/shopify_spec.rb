@@ -40,6 +40,38 @@ module ActiveMerchant::Billing
         gateway.void(transaction_id, { order_id: transaction_id })
       end
 
+      it 'returns an ActiveMerchant response' do
+        result = subject.perform
+        expect(result).to be_a(ActiveMerchant::Billing::Response)
+      end
+
+      context 'when refund was successful' do
+        let(:pos_refund) { double('refund') }
+
+        before do
+          allow(refunder).to receive(:perform).and_return(pos_refund)
+        end
+
+        it 'returns an ActiveMerchant successful response' do
+          result = subject.perform
+          expect(result).to be_success
+        end
+      end
+
+      context 'when refund was not successful' do
+        let(:pos_refund) { double('refund', errors: errors) }
+        let(:errors) { double('errors', messages: ['I am ERROR']) }
+
+        before do
+          allow(refunder).to receive(:perform).and_return(pos_refund)
+        end
+
+        it 'returns an ActiveMerchant unsuccessful response' do
+          result = subject.perform
+          expect(result).not_to be_success
+        end
+      end
+
       context "when the transaction can't be found" do
         let(:transaction) { nil }
 
@@ -102,6 +134,34 @@ module ActiveMerchant::Billing
           expect(cause.call).to_not be_success
         end
       end
+
+      context 'when refund was successful' do
+        let(:pos_refund) { double('refund') }
+
+        before do
+          allow(refunder).to receive(:perform).and_return(pos_refund)
+        end
+
+        it 'returns an ActiveMerchant successful response' do
+          result = subject.perform
+          expect(result).to be_success
+        end
+      end
+
+      context 'when refund was not successful' do
+        let(:pos_refund) { double('refund', errors: errors) }
+        let(:errors) { double('errors', messages: ['I am ERROR']) }
+
+        before do
+          allow(refunder).to receive(:perform).and_return(pos_refund)
+        end
+
+        it 'returns an ActiveMerchant unsuccessful response' do
+          result = subject.perform
+          expect(result).not_to be_success
+        end
+      end
+
     end
   end
 end

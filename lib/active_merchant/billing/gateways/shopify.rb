@@ -26,12 +26,12 @@ module ActiveMerchant #:nodoc:
       def void(transaction_id, options = {})
         order_id = options[:order_id]
         voider = ShopifyVoider.new(transaction_id, order_id)
-        voider.perform
+        return_response(voider.perform)
       end
 
       def refund(money, transaction_id, options = {})
         refunder = ShopifyRefunder.new(money, transaction_id, options)
-        refunder.perform
+        return_response(refunder.perform)
       end
 
       private
@@ -44,6 +44,15 @@ module ActiveMerchant #:nodoc:
 
       def shop_url
         "https://#{api_key}:#{password}@#{shop_name}"
+      end
+
+      def return_response(result)
+        success = result.errors == []
+        if success || result.errors.messages.empty?
+          ActiveMerchant::Billing::Response.new(true, nil)
+        else
+          ActiveMerchant::Billing::Response.new(success, result.errors.messages)
+        end
       end
     end
   end
