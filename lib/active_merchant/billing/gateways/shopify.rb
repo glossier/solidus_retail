@@ -15,6 +15,9 @@ module ActiveMerchant #:nodoc:
         @password = options[:password]
         @shop_name = options[:shop_name]
 
+        @voider_class = options[:voider] || default_voider
+        @refunder_class = options[:refunder] || default_refunder
+
         init_shopify_api!
 
         super
@@ -22,18 +25,18 @@ module ActiveMerchant #:nodoc:
 
       def void(transaction_id, options = {})
         order_id = options[:order_id]
-        voider = ShopifyVoider.new(transaction_id, order_id)
+        voider = voider_class.new(transaction_id, order_id)
         return_response(voider.perform)
       end
 
       def refund(money, transaction_id, options = {})
-        refunder = ShopifyRefunder.new(money, transaction_id, options)
+        refunder = refunder_class.new(money, transaction_id, options)
         return_response(refunder.perform)
       end
 
       private
 
-      attr_reader :api_key, :password, :shop_name
+      attr_reader :api_key, :password, :shop_name, :voider_class, :refunder_class
 
       def init_shopify_api!
         ShopifyAPI::Base.site = shop_url
@@ -41,6 +44,14 @@ module ActiveMerchant #:nodoc:
 
       def shop_url
         "https://#{api_key}:#{password}@#{shop_name}"
+      end
+
+      def default_voider
+        Spree::Retail::ShopifyVoider
+      end
+
+      def default_refunder
+        Spree::Retail::ShopifyRefunder
       end
 
       def return_response(result)

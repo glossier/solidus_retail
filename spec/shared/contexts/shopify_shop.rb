@@ -1,7 +1,7 @@
 RSpec.shared_context 'shopify_shop' do
   let(:refund_amount) { 100 }
   let(:shopify_payment_method) do
-    gateway = ::Spree::Gateway::ShopifyGateway.new
+    gateway = Spree::Gateway::ShopifyGateway.new
     gateway.set_preference(:api_key, ENV.fetch('SHOPIFY_API_KEY'))
     gateway.set_preference(:password, ENV.fetch('SHOPIFY_PASSWORD'))
     gateway.set_preference(:shop_name, ENV.fetch('SHOPIFY_SHOP_NAME'))
@@ -11,7 +11,7 @@ RSpec.shared_context 'shopify_shop' do
   def create_fulfilled_paid_shopify_order
     # Refactor this
     # Should only be called once (use VCR)
-    order = ::ShopifyAPI::Order.new
+    order = ShopifyAPI::Order.new
     order.email = 'cab@godynamo.com'
     order.test = true
     order.fulfillment_status = 'fulfilled'
