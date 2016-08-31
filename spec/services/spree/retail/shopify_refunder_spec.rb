@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require_relative '../../lib/active_merchant/billing/gateways/shopify.rb'
-
 describe Spree::Retail::ShopifyRefunder do
   let(:transaction_id) { '0xDEADBEEF' }
   let(:options) { { reason: 'Actual reason', order_id: transaction_id } }
@@ -31,7 +29,7 @@ describe Spree::Retail::ShopifyRefunder do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(Shopify::TransactionNotFoundError)
+        expect(&cause).to raise_error(Spree::Retail::Shopify::TransactionNotFoundError)
       end
     end
 
@@ -62,7 +60,7 @@ describe Spree::Retail::ShopifyRefunder do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(Shopify::CreditedAmountBiggerThanTransaction)
+        expect(&cause).to raise_error(Spree::Retail::Shopify::CreditedAmountBiggerThanTransaction)
       end
     end
   end
