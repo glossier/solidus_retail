@@ -1,11 +1,13 @@
 module Spree
   module Retail
     class ShopifyRefunder
-      def initialize(credited_money, transaction_id, options)
+      def initialize(credited_money, transaction_id, options, transaction_interface = nil, refunder_interface = nil)
         @refund_reason = options[:reason]
         @order_id = options[:order_id]
         @credited_money = BigDecimal.new(credited_money)
-        @transaction = ShopifyAPI::Transaction.find(transaction_id, params: { order_id: order_id })
+        @transaction_interface = transaction_interface || default_transaction_interface
+        @refunder_interface = refunder_interface || default_refunder_interface
+        @transaction = transaction_interface.find(transaction_id, params: { order_id: order_id })
       end
 
       def perform
@@ -20,8 +22,11 @@ module Spree
 
       private
 
+      attr_accessor :credited_money, :refund_reason, :transaction, :order_id,
+                     :transaction_interface, :refunder_interface
+
       def perform_refund_on_shopify
-        refund = ShopifyAPI::Refund.create(order_id: order_id,
+        refund = refunder_interface.create(order_id: order_id,
                                            shipping: { amount: 0 },
                                            note: refund_reason,
                                            notify: false,
@@ -57,7 +62,13 @@ module Spree
         BigDecimal.new(amount) / 100
       end
 
-      attr_accessor :credited_money, :refund_reason, :transaction, :order_id
+      def default_refunder_interface
+        ShopifyAPI::Refund
+      end
+
+      def default_transaction_interface
+        ShopifyAPI::Transaction
+      end
     end
   end
 end
