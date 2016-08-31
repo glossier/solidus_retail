@@ -46,7 +46,7 @@ describe Spree::Retail::ShopifyRefunder do
         expect(result).to be_a(ActiveMerchant::Billing::Response)
       end
 
-      it 'returns an ActiveMerchant succesfull response' do
+      it 'returns an ActiveMerchant successful response' do
         result = subject.perform
         expect(result.success?).to be_truthy
       end
@@ -68,7 +68,7 @@ describe Spree::Retail::ShopifyRefunder do
         expect(result).to be_a(ActiveMerchant::Billing::Response)
       end
 
-      it 'returns an ActiveMerchant succesfull response' do
+      it 'returns an ActiveMerchant successful response' do
         result = subject.perform
         expect(result.success?).to be_truthy
       end
