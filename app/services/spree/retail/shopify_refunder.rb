@@ -7,7 +7,7 @@ module Spree
         @credited_money = BigDecimal.new(credited_money)
         @transaction_interface = transaction_interface || default_transaction_interface
         @refunder_interface = refunder_interface || default_refunder_interface
-        @transaction = transaction_interface.find(transaction_id, params: { order_id: order_id })
+        @transaction = @transaction_interface.find(transaction_id, params: { order_id: order_id })
       end
 
       def perform
