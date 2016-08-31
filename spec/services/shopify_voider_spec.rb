@@ -27,7 +27,7 @@ describe Spree::Retail::ShopifyVoider do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(ActiveMerchant::Billing::ShopifyGateway::TransactionNotFoundError)
+        expect(&cause).to raise_error(Shopify::TransactionNotFoundError)
       end
     end
 

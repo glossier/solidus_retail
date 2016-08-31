@@ -3,9 +3,6 @@ require 'shopify_api'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class ShopifyGateway < Gateway
-      class TransactionNotFoundError < Error; end
-      class CreditedAmountBiggerThanTransaction < Error; end
-
       self.homepage_url = 'https://shopify.ca/'
       self.display_name = 'Shopify'
 
@@ -39,7 +36,7 @@ module ActiveMerchant #:nodoc:
       attr_reader :api_key, :password, :shop_name
 
       def init_shopify_api!
-        ::ShopifyAPI::Base.site = shop_url
+        ShopifyAPI::Base.site = shop_url
       end
 
       def shop_url

@@ -78,7 +78,7 @@ module ActiveMerchant::Billing
         it "raises an exception" do
           cause = ->{ gateway.void(transaction_id, { order_id: transaction_id }) }
 
-          expect(&cause).to raise_error ::ActiveMerchant::Billing::ShopifyGateway::TransactionNotFoundError
+          expect(&cause).to raise_error Shopify::TransactionNotFoundError
         end
       end
     end
@@ -111,7 +111,7 @@ module ActiveMerchant::Billing
         it "raises an exception" do
           cause = ->{ gateway.refund(refund_amount, transaction_id, { order_id: transaction_id, reason: refund_reason }) }
 
-          expect(&cause).to raise_error ::ActiveMerchant::Billing::ShopifyGateway::TransactionNotFoundError
+          expect(&cause).to raise_error Shopify::TransactionNotFoundError
         end
       end
 
@@ -121,7 +121,7 @@ module ActiveMerchant::Billing
         it "raises an exception" do
           cause = ->{ gateway.refund(refund_amount, transaction_id, { order_id: transaction_id, reason: refund_reason }) }
 
-          expect(&cause).to raise_error ::ActiveMerchant::Billing::ShopifyGateway::CreditedAmountBiggerThanTransaction
+          expect(&cause).to raise_error Shopify::CreditedAmountBiggerThanTransaction
         end
       end
 
@@ -161,7 +161,6 @@ module ActiveMerchant::Billing
           expect(result).not_to be_success
         end
       end
-
     end
   end
 end
