@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require_relative '../../lib/active_merchant/billing/gateways/shopify.rb'
-
 describe Spree::Retail::ShopifyVoider do
   let(:transaction_id) { '0xDEADBEEF' }
   let(:order_id) { 'order_id' }
@@ -27,7 +25,7 @@ describe Spree::Retail::ShopifyVoider do
 
       it 'throws an error' do
         cause = ->{ subject.perform }
-        expect(&cause).to raise_error(Shopify::TransactionNotFoundError)
+        expect(&cause).to raise_error(Spree::Retail::Shopify::TransactionNotFoundError)
       end
     end
 
