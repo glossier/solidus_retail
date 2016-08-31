@@ -40,16 +40,6 @@ describe Spree::Retail::ShopifyRefunder do
         expect(refunder_interface).to receive(:create)
         subject.perform
       end
-
-      it 'returns an ActiveMerchant response' do
-        result = subject.perform
-        expect(result).to be_a(ActiveMerchant::Billing::Response)
-      end
-
-      it 'returns an ActiveMerchant successful response' do
-        result = subject.perform
-        expect(result).to be_success
-      end
     end
 
     context 'with a partial refund' do
@@ -62,16 +52,6 @@ describe Spree::Retail::ShopifyRefunder do
         expect(refunder_interface).to receive(:create)
         subject.perform
       end
-
-      it 'returns an ActiveMerchant response' do
-        result = subject.perform
-        expect(result).to be_a(ActiveMerchant::Billing::Response)
-      end
-
-      it 'returns an ActiveMerchant successful response' do
-        result = subject.perform
-        expect(result).to be_success
-      end
     end
 
     context 'with a credited amount bigger than the transaction' do
@@ -83,16 +63,6 @@ describe Spree::Retail::ShopifyRefunder do
       it 'throws an error' do
         cause = ->{ subject.perform }
         expect(&cause).to raise_error(ActiveMerchant::Billing::ShopifyGateway::CreditedAmountBiggerThanTransaction)
-      end
-    end
-
-    context 'when the refunds contains an error' do
-      let(:pos_refund) { double('refund', errors: errors) }
-      let(:errors) { double('errors', messages: ['I am ERROR']) }
-
-      it 'returns a response with an error' do
-        result = subject.perform
-        expect(result).not_to be_success
       end
     end
   end
