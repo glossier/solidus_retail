@@ -1,15 +1,16 @@
 module Shopify
   class ProductConverter
-    def initialize(spree_product, shopify_product, vendor, logger = nil)
+    def initialize(spree_product, shopify_product, vendor = nil, logger = nil, renderer = nil)
       @logger = logger || default_logger
       @spree_product = spree_product
       @shopify_product = shopify_product
       @vendor = vendor || default_vendor
+      @renderer = renderer || default_renderer
     end
 
     def perform
       shopify_product.title = spree_product.name
-      shopify_product.body_html = surround_by_p_tags(spree_product.description)
+      shopify_product.body_html = renderer.render(spree_product.description)
       shopify_product.created_at = spree_product.created_at
       shopify_product.updated_at = spree_product.updated_at
       shopify_product.published_at = spree_product.available_on
@@ -22,7 +23,7 @@ module Shopify
 
     private
 
-    attr_accessor :spree_product, :shopify_product, :logger, :vendor
+    attr_accessor :spree_product, :shopify_product, :vendor, :logger, :renderer
 
     def build_variants(spree_product)
       variants = [build_variant(spree_product.master)]
@@ -59,6 +60,10 @@ module Shopify
 
     def default_vendor
       'Default Vendor'
+    end
+
+    def default_renderer
+      Shopify::RedcarpetHTMLRenderer.new
     end
   end
 end
