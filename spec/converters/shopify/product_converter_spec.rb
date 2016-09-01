@@ -124,7 +124,7 @@ Comes in five super sheer"
               product = subject.perform
               result = product.body_html
 
-              expected_result = "<p>In the land between bare skin ...</p><p>Comes in five super sheer</p>"
+              expected_result = "<p>In the land between bare skin ...<br>\nComes in five super sheer</p>"
               expect(result).to eql(expected_result)
             end
           end
