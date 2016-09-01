@@ -1,5 +1,5 @@
 module Shopify
-  class VariantFactory
+  class VariantConverter
     def initialize(spree_variant, shopify_variant)
       @spree_variant = spree_variant
       @shopify_variant = shopify_variant
@@ -21,11 +21,15 @@ module Shopify
     attr_accessor :spree_variant, :shopify_variant
 
     def generate_options!
-      shopify_variant.option1 = spree_variant.sku
+      assign_variant_uniqueness_constraint(spree_variant.sku)
 
       spree_variant.option_values.each_with_index do |option, index|
         shopify_variant.send("option#{index + 2}=", option.name)
       end
+    end
+
+    def assign_variant_uniqueness_constraint(value)
+      shopify_variant.option1 = value
     end
   end
 end

@@ -42,7 +42,7 @@ VCR.configure do |c|
 end
 
 RSpec.configure do |config|
-  WebMock.disable_net_connect!
+  WebMock.allow_net_connect!
   config.include FactoryGirl::Syntax::Methods
 
   # Infer an example group's spec type from the file location.
