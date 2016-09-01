@@ -62,7 +62,7 @@ module Shopify
       spree_variants.each do |variant|
         variant.reload
         next if variant.images.empty?
-        factory = ProductImageFactory.new(variant)
+        factory = ProductImageConverter.new(variant)
         images << factory.perform
       end
 
@@ -84,7 +84,7 @@ module Shopify
     end
 
     def default_factory
-      ProductFactory
+      ProductConverter
     end
   end
 end

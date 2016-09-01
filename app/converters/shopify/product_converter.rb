@@ -1,9 +1,10 @@
 module Shopify
-  class ProductFactory
-    def initialize(spree_product, shopify_product, logger = nil)
+  class ProductConverter
+    def initialize(spree_product, shopify_product, vendor, logger = nil)
       @logger = logger || default_logger
       @spree_product = spree_product
       @shopify_product = shopify_product
+      @vendor = vendor || default_vendor
     end
 
     def perform
@@ -12,7 +13,7 @@ module Shopify
       shopify_product.created_at = spree_product.created_at
       shopify_product.updated_at = spree_product.updated_at
       shopify_product.published_at = spree_product.available_on
-      shopify_product.vendor = 'Glossier'
+      shopify_product.vendor = vendor
       shopify_product.handle = spree_product.slug
       shopify_product.variants = build_variants(spree_product)
 
@@ -21,7 +22,7 @@ module Shopify
 
     private
 
-    attr_accessor :spree_product, :shopify_product, :logger
+    attr_accessor :spree_product, :shopify_product, :logger, :vendor
 
     def build_variants(spree_product)
       variants = [build_variant(spree_product.master)]
@@ -35,7 +36,7 @@ module Shopify
 
     def build_variant(variant)
       shopify_variant = find_or_initialize_variant(variant)
-      Shopify::VariantFactory.new(variant, shopify_variant).perform
+      Shopify::VariantConverter.new(variant, shopify_variant).perform
     end
 
     def surround_by_p_tags(content)
@@ -54,6 +55,10 @@ module Shopify
 
     def default_logger
       Logger.new(Rails.root.join('log/export_solidus_products.log'))
+    end
+
+    def default_vendor
+      'Default Vendor'
     end
   end
 end
