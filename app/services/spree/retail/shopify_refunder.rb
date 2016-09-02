@@ -11,13 +11,7 @@ module Spree
       end
 
       def perform
-        raise Shopify::TransactionNotFoundError if transaction.nil?
-
-        if full_refund? || partial_refund?
-          perform_refund_on_shopify
-        else
-          raise Shopify::CreditedAmountBiggerThanTransaction
-        end
+        perform_refund_in_shopify if can_issue_refund?
       end
 
       private
@@ -25,7 +19,12 @@ module Spree
       attr_accessor :credited_money, :refund_reason, :transaction, :order_id,
                      :transaction_interface, :refunder_interface
 
-      def perform_refund_on_shopify
+      def can_issue_refund?
+        CanIssueRefundPolicy.new(transaction: transaction,
+                                 amount_to_credit: credited_money).allowed?
+      end
+
+      def perform_refund_in_shopify
         refunder_interface.create(order_id: order_id,
                                   shipping: { amount: 0 },
                                   note: refund_reason,
@@ -39,18 +38,6 @@ module Spree
                                   }])
       end
 
-      def full_refund?
-        credited_money == amount_to_cents(transaction.amount)
-      end
-
-      def partial_refund?
-        credited_money < amount_to_cents(transaction.amount)
-      end
-
-      def amount_to_cents(amount)
-        BigDecimal.new(amount) * 100
-      end
-
       def amount_to_dollars(amount)
         BigDecimal.new(amount) / 100
       end
@@ -61,6 +48,43 @@ module Spree
 
       def default_transaction_interface
         ShopifyAPI::Transaction
+      end
+
+      class CanIssueRefundPolicy
+        def initialize(transaction:, amount_to_credit:)
+          @amount_to_credit, @transaction = amount_to_credit, transaction
+        end
+
+        def allowed?
+          raise Spree::Retail::Shopify::TransactionNotFoundError if transaction_not_found?
+          raise Spree::Retail::Shopify::CreditedAmountBiggerThanTransaction if transaction_too_big?
+
+          true
+        end
+
+        private
+
+        attr_reader :amount_to_credit, :transaction
+
+        def transaction_not_found?
+          transaction.nil?
+        end
+
+        def transaction_too_big?
+          !(full_refund? || partial_refund?)
+        end
+
+        def full_refund?
+          amount_to_credit == amount_to_cents(transaction.amount)
+        end
+
+        def partial_refund?
+          amount_to_credit < amount_to_cents(transaction.amount)
+        end
+
+        def amount_to_cents(amount)
+          BigDecimal.new(amount) * 100
+        end
       end
     end
   end
