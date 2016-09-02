@@ -41,7 +41,7 @@ module Shopify
 
     def build_variant(variant)
       shopify_variant = find_or_initialize_variant(variant)
-      variant_converter.new(variant, shopify_variant).perform
+      variant_converter.new(spree_variant: variant, shopify_variant: shopify_variant).perform
     end
 
     def find_or_initialize_variant(spree_variant)
