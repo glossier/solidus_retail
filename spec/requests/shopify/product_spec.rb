@@ -1,35 +1,7 @@
 require 'spec_helper'
 
 describe 'Export a Spree Product to Shopify' do
-  before do
-    allow_any_instance_of(Spree::Product).to receive(:export_to_shopify).and_return(true)
-    WebMock.allow_net_connect!
-  end
-
-  after do
-    WebMock.disable_net_connect!
-  end
-
-  context 'when product contains has no variants' do
-    let(:spree_product) { create(:product) }
-
-    subject { Shopify::ProductExporter.new(spree_product.id) }
-
-    before do
-      subject.perform
-      spree_product.reload
-      @result = ShopifyAPI::Product.find(spree_product.pos_product_id)
-    end
-
-    it 'saves the product' do
-      expect(@result).to be_truthy
-      expect(@result.title).to eql(spree_product.name)
-    end
-
-    after do
-      @result.destroy
-    end
-  end
+  include_context 'ignore_export_to_shopify'
 
   context 'when product contains variants' do
     let(:spree_product) { create(:product) }
