@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-module Spree::Gateway
-  RSpec.describe ShopifyGateway do
+module Spree
+  RSpec.describe Gateway::ShopifyGateway do
     let(:transaction_id) { '0xDEADBEEF' }
     let(:pos_order_id) { '0xBAADF00D' }
     let(:refund) { double('refund', pos_order_id: pos_order_id) }
