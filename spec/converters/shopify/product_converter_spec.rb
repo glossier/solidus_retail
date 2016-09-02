@@ -6,7 +6,7 @@ module Shopify
 
     let(:shopify_product) { ShopifyAPI::Product.new }
     let(:spree_master_variant) { create(:variant, pos_variant_id: '321') }
-    let(:spree_product) { create(:product) }
+    let(:spree_product) { stub(:produc, post_# }
 
     before do
       allow(spree_product).to receive(:master).and_return(spree_master_variant)
