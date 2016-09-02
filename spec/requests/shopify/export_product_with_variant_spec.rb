@@ -19,11 +19,7 @@ describe 'Export a Spree Product that has a variant to Shopify' do
   end
 
   describe 'from the variant perspective' do
-    subject { ShopifyAPI::Variant.find(spree_variant.pos_variant_id) }
-
-    it 'generates the variant name when saving' do
-      expect(subject.sku).to eql(spree_variant.sku)
-    end
+    subject { find_shopify_variant(spree_variant) }
 
     it 'saves the variant' do
       expect(subject).to be_truthy
@@ -35,17 +31,22 @@ describe 'Export a Spree Product that has a variant to Shopify' do
   end
 
   describe 'from the product perspective' do
-    subject { ShopifyAPI::Product.find(spree_product.pos_product_id) }
+    subject { find_shopify_product(spree_product) }
 
     it 'saves the product' do
       expect(subject).to be_truthy
     end
 
-    it 'associates the product with the variant' do
+    it 'contains the master variant and the regular variant' do
       variant_count = subject.variants.count
-
-      # Actual variant + Master variant
       expect(variant_count).to eql(2)
+    end
+
+    it 'associates the product with the variant' do
+      find_shopify_variant = subject.variants.second
+      expected_result = spree_product.variants.first.pos_variant_id
+
+      expect(find_shopify_variant.id).to eql(expected_result.to_i)
     end
 
     after do
@@ -76,6 +77,14 @@ describe 'Export a Spree Product that has a variant to Shopify' do
   def cleanup_shopify_product_from_variant!(variant)
     product = ShopifyAPI::Product.find(variant.product_id)
     product.destroy
+  end
+
+  def find_shopify_product(spree_product)
+    ShopifyAPI::Product.find(spree_product.pos_product_id)
+  end
+
+  def find_shopify_variant(spree_variant)
+    ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
   end
 
   def cleanup_shopify_product!(product)
