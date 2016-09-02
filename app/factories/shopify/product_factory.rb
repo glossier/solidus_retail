@@ -21,7 +21,7 @@ module Shopify
 
     private
 
-    attr_reader :spree_product, :product_api
+    attr_reader :spree_product, :product_api, :logger
 
     def default_product_api
       ShopifyAPI::Product

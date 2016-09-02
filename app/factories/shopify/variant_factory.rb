@@ -21,7 +21,7 @@ module Shopify
 
     private
 
-    attr_reader :spree_variant, :variant_api
+    attr_reader :spree_variant, :variant_api, :logger
 
     def default_variant_api
       ShopifyAPI::Variant
