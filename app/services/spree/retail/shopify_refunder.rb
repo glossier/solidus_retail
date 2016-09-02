@@ -1,13 +1,14 @@
 module Spree
   module Retail
     class ShopifyRefunder
-      def initialize(credited_money, transaction_id, options, transaction_interface = nil, refunder_interface = nil)
+      def initialize(credited_money, transaction_id, options, transaction_interface = nil, refunder_interface = nil, can_issue_refund_policy_klass = nil)
         @refund_reason = options[:reason]
         @order_id = options[:order_id]
         @credited_money = BigDecimal.new(credited_money)
         @transaction_interface = transaction_interface || default_transaction_interface
         @refunder_interface = refunder_interface || default_refunder_interface
         @transaction = @transaction_interface.find(transaction_id, params: { order_id: order_id })
+        @can_issue_refund_policy_klass = can_issue_refund_policy_klass || Spree::Retail::Shopify::CanIssueRefundPolicy
       end
 
       def perform
@@ -16,12 +17,17 @@ module Spree
 
       private
 
-      attr_accessor :credited_money, :refund_reason, :transaction, :order_id,
-                     :transaction_interface, :refunder_interface
+      attr_accessor :can_issue_refund_policy_klass, :credited_money,
+        :refund_reason, :transaction, :order_id, :transaction_interface,
+        :refunder_interface
 
       def can_issue_refund?
-        CanIssueRefundPolicy.new(transaction: transaction,
-                                 amount_to_credit: credited_money).allowed?
+        can_issue_refund_policy.allowed?
+      end
+
+      def can_issue_refund_policy
+        can_issue_refund_policy_klass.new(transaction: transaction,
+                                          amount_to_credit: credited_money)
       end
 
       def perform_refund_in_shopify
@@ -48,43 +54,6 @@ module Spree
 
       def default_transaction_interface
         ShopifyAPI::Transaction
-      end
-
-      class CanIssueRefundPolicy
-        def initialize(transaction:, amount_to_credit:)
-          @amount_to_credit, @transaction = amount_to_credit, transaction
-        end
-
-        def allowed?
-          raise Spree::Retail::Shopify::TransactionNotFoundError if transaction_not_found?
-          raise Spree::Retail::Shopify::CreditedAmountBiggerThanTransaction if transaction_too_big?
-
-          true
-        end
-
-        private
-
-        attr_reader :amount_to_credit, :transaction
-
-        def transaction_not_found?
-          transaction.nil?
-        end
-
-        def transaction_too_big?
-          !(full_refund? || partial_refund?)
-        end
-
-        def full_refund?
-          amount_to_credit == amount_to_cents(transaction.amount)
-        end
-
-        def partial_refund?
-          amount_to_credit < amount_to_cents(transaction.amount)
-        end
-
-        def amount_to_cents(amount)
-          BigDecimal.new(amount) * 100
-        end
       end
     end
   end
