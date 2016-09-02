@@ -1,6 +1,6 @@
 module Shopify
   class VariantConverter
-    def initialize(spree_variant, shopify_variant, weight_unit = nil)
+    def initialize(spree_variant:, shopify_variant:, weight_unit: nil)
       @spree_variant = spree_variant
       @shopify_variant = shopify_variant
       @weight_unit = weight_unit || default_weight_unit
