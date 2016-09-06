@@ -1,8 +1,13 @@
+require 'shopify_api'
+
 module SolidusRetail
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree
     engine_name 'solidus_retail'
+
+    require 'dotenv-rails'
+    Dotenv.load
 
     # use rspec for tests
     config.generators do |g|
