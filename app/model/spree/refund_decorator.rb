@@ -1,9 +1,6 @@
 module Spree
   module RefundDecorator
-    def pos_order_id
-      # NOTE(cab): Should we use delegates here?
-      payment.order.pos_order_id
-    end
+    delegate :pos_order_id, to: :payment
   end
 end
 
