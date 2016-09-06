@@ -47,11 +47,11 @@ module ActiveMerchant #:nodoc:
       end
 
       def default_voider
-        Spree::Retail::ShopifyVoider
+        Spree::Retail::Shopify::Voider
       end
 
       def default_refunder
-        Spree::Retail::ShopifyRefunder
+        Spree::Retail::Shopify::Refunder
       end
 
       def return_response(result)

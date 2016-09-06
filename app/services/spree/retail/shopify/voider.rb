@@ -1,6 +1,6 @@
-module Spree
-  module Retail
-    class ShopifyVoider
+module Spree::Retail
+  module Shopify
+    class Voider
       def initialize(transaction_id, order_id, transaction_interface = nil, refunder_class = nil)
         @order_id = order_id
         @refunder_class = refunder_class || default_refunder_class

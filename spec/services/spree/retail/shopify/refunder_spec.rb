@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-module Spree::Retail
-  RSpec.describe ShopifyRefunder do
+module Spree::Retail::Shopify
+  RSpec.describe Refunder do
     # Parameters
     let(:credited_money_in_cents) { 100 }
     let(:credited_money_in_dollars) { 1.0 }

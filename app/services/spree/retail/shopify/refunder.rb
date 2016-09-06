@@ -1,6 +1,6 @@
-module Spree
-  module Retail
-    class ShopifyRefunder
+module Spree::Retail
+  module Shopify
+    class Refunder
       def initialize(credited_money:, transaction_id:, transaction_interface: nil, refunder_interface: nil, can_issue_refund_policy_klass: nil, **options)
         @refund_reason = options[:reason]
         @order_id = options[:order_id]
