@@ -30,7 +30,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def refund(money, transaction_id, options = {})
-        refunder = refunder_class.new(money, transaction_id, options)
+        refunder = refunder_class.new(credited_money: money, transaction_id: transaction_id, **options)
         return_response(refunder.perform)
       end
 
