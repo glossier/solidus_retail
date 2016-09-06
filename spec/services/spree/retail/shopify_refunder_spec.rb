@@ -4,6 +4,7 @@ module Spree::Retail
   RSpec.describe ShopifyRefunder do
     # Parameters
     let(:credited_money_in_cents) { 100 }
+    let(:credited_money_in_dollars) { 1.0 }
     let(:order_id) { transaction_id }
     let(:refund_reason) { 'Actual reason' }
     let(:transaction_amount) { 1 }
@@ -40,7 +41,14 @@ module Spree::Retail
         end
 
         it 'performs a refund in shopify' do
-          expect(refunder_interface).to receive(:create)
+          expect(refunder_interface).to receive(:create) do |args|
+            expect(args[:order_id]).to eq order_id
+            expect(args[:note]).to eq refund_reason
+
+            expect(args[:transactions]).to include hash_including \
+              parent_id: transaction_id,
+              amount: credited_money_in_dollars
+          end
 
           refunder.perform
         end
