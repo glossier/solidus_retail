@@ -1,6 +1,6 @@
 module Shopify
   class ProductImageConverter
-    def initialize(spree_variant:, image_api:)
+    def initialize(spree_variant:, image_api: nil)
       @spree_variant = spree_variant
       @image_api = image_api || default_image_api
     end
@@ -8,7 +8,7 @@ module Shopify
     def perform
       shopify_image = image_api.new
       shopify_image.variant_ids = [spree_variant.pos_variant_id]
-      shopify_image.attachment = Spree::Retail::ImageToBase64Converter.new(variant_image)
+      shopify_image.attachment = Spree::Retail::ImageToBase64Converter.new(variant_image).perform
 
       shopify_image
     end

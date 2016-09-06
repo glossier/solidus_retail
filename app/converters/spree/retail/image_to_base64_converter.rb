@@ -23,12 +23,12 @@ module Spree
       end
 
       def copy_image_locally!(image)
-        local_destination_path = local_destination_path_for(image.attachment)
+        local_destination_path = local_destination_path_for(image)
         image.attachment.copy_to_local_file(style, local_destination_path)
       end
 
-      def local_destination_path_for(attachment)
-        Rails.root.join('tmp', attachment.instance.attachment_file_name)
+      def local_destination_path_for(image)
+        Rails.root.join('tmp', image.attachment.instance.attachment_file_name)
       end
 
       def default_style
@@ -37,3 +37,4 @@ module Spree
     end
   end
 end
+

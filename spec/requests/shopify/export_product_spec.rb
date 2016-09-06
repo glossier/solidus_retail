@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'Export a Spree Product to Shopify' do
   include_context 'ignore_export_to_shopify'
+  include_context 'shopify_exporter_helpers'
+  include_context 'shopify_helpers'
 
   let(:spree_product) { create(:product) }
   subject { find_shopify_product(spree_product) }
@@ -24,12 +26,16 @@ describe 'Export a Spree Product to Shopify' do
       old_product_id = spree_product.pos_product_id
       cleanup_shopify_product!(subject)
       export_product!(spree_product)
+      cleanup_shopify_product!(spree_product)
 
       spree_product.reload
       new_product_id = spree_product.pos_product_id
 
-      expect(find_shopify_product(spree_product)).to be_truthy
+      shopify_product = find_shopify_product(spree_product)
+      expect(shopify_product).to be_truthy
       expect(new_product_id).not_to eql(old_product_id)
+
+      cleanup_shopify_product!(shopify_product)
     end
   end
 
@@ -47,29 +53,14 @@ describe 'Export a Spree Product to Shopify' do
 
       spree_product.name = 'new_name'
       spree_product.save
-      spree_product.reload
       export_product!(spree_product)
 
-      expect(find_shopify_product(spree_product).title).to eql('new_name')
+      shopify_product = find_shopify_product(spree_product)
+      expect(shopify_product.title).to eql('new_name')
     end
 
     after do
       cleanup_shopify_product!(subject)
     end
-  end
-
-  private
-
-  def export_product!(spree_product)
-    exporter = Shopify::ProductExporter.new(spree_product_id: spree_product.id)
-    exporter.perform
-  end
-
-  def find_shopify_product(spree_product)
-    ShopifyAPI::Product.find(spree_product.pos_product_id)
-  end
-
-  def cleanup_shopify_product!(product)
-    product.destroy
   end
 end

@@ -14,7 +14,7 @@ module Shopify
       if shopify_product.save
         save_pos_product_id(spree_product, shopify_product)
         save_pos_variant_ids(spree_product, shopify_product.variants)
-        save_shopify_product_images(shopify_product, spree_product.variants)
+        save_shopify_product_images(shopify_product, associated_variants)
         logger.info("#{shopify_product.handle} imported")
       else
         logger.error("#{shopify_product.handle} not imported, reason: #{shopify_product.errors.full_messages}")
@@ -46,7 +46,7 @@ module Shopify
       return [] if spree_variants.empty?
 
       shopify_product.images = shopify_images_for(spree_variants)
-      shopify_product.save if shopify_product.images.present?
+      shopify_product.save if shopify_product.images.any?
     end
 
     def shopify_images_for(spree_variants)
@@ -56,10 +56,14 @@ module Shopify
         next if variant.images.empty?
         variant.reload
 
-        images << ProductImageConverter.new(variant).perform
+        images << ProductImageConverter.new(spree_variant: variant).perform
       end
 
       images
+    end
+
+    def associated_variants
+      spree_product.variants_including_master
     end
 
     def default_logger
