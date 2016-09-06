@@ -2,199 +2,51 @@ require 'spec_helper'
 
 module Shopify
   RSpec.describe ProductConverter do
-    include_context 'ignore_export_to_shopify'
+    let(:spree_product) { build_spree_product }
 
-    let(:shopify_product) { ShopifyAPI::Product.new }
-    let(:spree_master_variant) { create(:variant, pos_variant_id: '321') }
-    let(:spree_product) { stub(:produc, post_# }
+    describe '.initialize' do
+      subject { described_class.new(spree_product) }
 
-    before do
-      allow(spree_product).to receive(:master).and_return(spree_master_variant)
-    end
-
-    context '.initialize' do
-      subject { described_class.new(spree_product: spree_product, shopify_product: shopify_product) }
-
-      it "successfully does it's things" do
-        expect(subject).to be_truthy
+      it "successfully does it's thing" do
+        expect(subject).to be_a described_class
       end
     end
 
-    context '.perform' do
-      let(:variant_converter_instance) { double('variant_converter_instance', perform: true) }
-      let(:variant_converter) { double('variant_convert', new: variant_converter_instance) }
+    describe '.to_hash' do
+      subject { described_class.new(spree_product).to_hash }
 
-      subject { described_class.new(spree_product: spree_product, shopify_product: shopify_product, variant_converter: variant_converter) }
+      it { expect(subject[:title]).to eql('name') }
+      it { expect(subject[:body_html]).to eql('description') }
+      it { expect(subject[:created_at]).to eql(build_date_time) }
+      it { expect(subject[:updated_at]).to eql(build_date_time) }
+      it { expect(subject[:published_at]).to eql(build_date_time) }
+      it { expect(subject[:vendor]).to eql('vendor') }
+      it { expect(subject[:handle]).to eql('slug') }
+    end
 
-      it 'returns a product shopify object' do
-        result = subject.perform
-        expected_result = ShopifyAPI::Product
+    private
 
-        expect(result).to be_an(expected_result)
-      end
+    def build_spree_product(name: 'name', description: 'description',
+                            vendor: 'vendor', slug: 'slug',
+                            created_at: build_date_time,
+                            updated_at: build_date_time,
+                            available_on: build_date_time)
 
-      context 'with a product without variant' do
-        let(:product_converter) { described_class.new(arguments) }
+      product = double(:spree_product)
 
-        context 'fills all the required fields' do
-          let(:arguments) { { spree_product: spree_product, shopify_product: shopify_product } }
-          subject { product_converter.perform }
+      allow(product).to receive(:name).and_return(name)
+      allow(product).to receive(:description).and_return(description)
+      allow(product).to receive(:created_at).and_return(created_at)
+      allow(product).to receive(:updated_at).and_return(updated_at)
+      allow(product).to receive(:available_on).and_return(available_on)
+      allow(product).to receive(:vendor).and_return(vendor)
+      allow(product).to receive(:slug).and_return(slug)
 
-          it { expect(subject.title).to eql(spree_product.name) }
-          it { expect(subject.body_html).to be_truthy }
-          it { expect(subject.created_at).to eql(spree_product.created_at) }
-          it { expect(subject.updated_at).to eql(spree_product.updated_at) }
-          it { expect(subject.published_at).to eql(spree_product.available_on) }
-          it { expect(subject.handle).to eql(spree_product.slug) }
+      product
+    end
 
-          context 'without specifying a vendor' do
-            it { expect(subject.vendor).to eql('Default Vendor') }
-          end
-
-          context 'with a specified vendor' do
-            let(:arguments) { { spree_product: spree_product, shopify_product: shopify_product, vendor: 'Glossier' } }
-            subject { product_converter.perform }
-
-            it { expect(subject.vendor).to eql('Glossier') }
-          end
-        end
-
-        describe 'for master variant' do
-          let(:shopify_variant) { double('shopify_variant') }
-          let(:variant_converter_instance) { double('variant_converter_instance', perform: true) }
-          let(:variant_converter) { double('variant_converter', new: variant_converter_instance ) }
-          let(:variant_interface) { double('variant_interface', find: shopify_variant) }
-          let(:arguments) do
-            { spree_product: spree_product, shopify_product: shopify_product,
-              variant_converter: variant_converter,
-              variant_interface: variant_interface }
-          end
-
-          subject { product_converter }
-
-          it 'calls the variant factory' do
-            expect(variant_converter_instance).to receive(:perform).once
-            subject.perform
-          end
-
-          it 'assigns the variant to the shopify instance' do
-            shopify_product = subject.perform
-            result = shopify_product.variants.count
-            expect(result).to eql(1)
-          end
-        end
-      end
-
-      context 'with a product with variants' do
-        let!(:spree_variant) { create(:variant, product: spree_product, pos_variant_id: '123') }
-        let(:spree_product) { create(:product) }
-
-        let(:shopify_variant) { double('shopify_variant') }
-        let(:variant_converter_instance) { double('variant_converter_instance', perform: true) }
-        let(:variant_converter) { double('variant_converter', new: variant_converter_instance ) }
-        let(:variant_interface) { double('variant_interface', find: shopify_variant, new: shopify_variant) }
-        let(:arguments) do
-          { spree_product: spree_product, shopify_product: shopify_product,
-            variant_converter: variant_converter,
-            variant_interface: variant_interface }
-        end
-
-        subject { described_class.new(arguments) }
-
-        it 'calls the variant factory' do
-          expect(variant_converter_instance).to receive(:perform).twice
-          subject.perform
-        end
-
-        it 'assigns the variant to the shopify instance' do
-          shopify_product = subject.perform
-          result = shopify_product.variants.count
-          # NOTE: This would include the master variant as well
-          expect(result).to eql(2)
-        end
-
-        context 'when shopify variant is not found' do
-          let(:exception) { ActiveResource::ResourceNotFound.new(exception_error) }
-          let(:exception_error) { double('err', code: '404') }
-          let(:variant_interface) { double('variant_interface', new: true, find: exception) }
-
-          subject { described_class.new(arguments) }
-
-          before do
-            allow(variant_interface).to receive(:find).and_raise(exception)
-          end
-
-          it 'generates a new shopify variant' do
-            expect(variant_interface).to receive(:new).twice
-            subject.perform
-          end
-        end
-      end
-
-      context 'with any types of products' do
-        let(:arguments) { { spree_product: spree_product, shopify_product: shopify_product } }
-
-        context 'that has' do
-          context 'a single paragraph description' do
-            let(:product_description) { "In the land between bare skin ..." }
-            let(:spree_product) { create(:product, description: product_description) }
-            subject { described_class.new(arguments) }
-
-            it 'surrounds the product description with a paragraph tag' do
-              product = subject.perform
-              result = product.body_html
-
-              expected_result = "<p>In the land between bare skin ...</p>"
-              expect(result).to eql(expected_result)
-            end
-          end
-
-          context 'with multiple paragraphs description' do
-            let(:product_description) do
-              "In the land between bare skin ...
-Comes in five super sheer"
-            end
-            let(:spree_product) { create(:product, description: product_description) }
-            subject { described_class.new(arguments) }
-
-            it 'surrounds the product description with multiple paragraph tag' do
-              product = subject.perform
-              result = product.body_html
-
-              expected_result = "<p>In the land between bare skin ...<br>\nComes in five super sheer</p>"
-              expect(result).to eql(expected_result)
-            end
-          end
-        end
-      end
-
-      describe 'logging' do
-        let(:logger_instance) { double('logger') }
-
-        context 'when shopify variant is not found' do
-          let(:exception) { ActiveResource::ResourceNotFound.new(exception_error) }
-          let(:exception_error) { double('err', code: '404') }
-          let(:variant_interface) { double('variant_interface', new: true) }
-
-          let(:arguments) do
-            { spree_product: spree_product, shopify_product: shopify_product,
-              variant_converter: variant_converter,
-              variant_interface: variant_interface,
-              logger: logger_instance }
-          end
-
-          subject { described_class.new(arguments) }
-
-          before do
-            allow(variant_interface).to receive(:find).and_raise(exception)
-          end
-
-          it 'logs an error' do
-            expect(logger_instance).to receive(:error).once
-            subject.perform
-          end
-        end
-      end
+    def build_date_time(year: 1991, month: 3, day: 24)
+      DateTime.new(year, month, day)
     end
   end
 end

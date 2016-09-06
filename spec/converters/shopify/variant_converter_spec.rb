@@ -2,68 +2,88 @@ require 'spec_helper'
 
 module Shopify
   RSpec.describe VariantConverter do
-    include_context 'ignore_export_to_shopify'
+    let(:spree_variant) { build_spree_variant }
 
-    let(:shopify_variant) { ShopifyAPI::Variant.new }
-    let(:spree_variant) { create(:variant) }
+    describe '.initialize' do
+      subject { described_class.new(spree_variant) }
 
-    let(:arguments) { { spree_variant: spree_variant, shopify_variant: shopify_variant } }
-    subject { described_class.new(arguments) }
-
-    context '.initialize' do
-      it 'successfully does it\'s things' do
-        expect(subject).to be_truthy
+      it "successfully does it's thing" do
+        expect(subject).to be_a described_class
       end
     end
 
-    context '.perform' do
-      it 'returns a variant shopify object' do
-        result = subject.perform
-        expected_result = ShopifyAPI::Variant
+    describe '.to_hash' do
+      subject { described_class.new(spree_variant).to_hash }
 
-        expect(result).to be_an(expected_result)
+      it { expect(subject[:weight]).to eql('weight') }
+      it { expect(subject[:weight_unit]).to eql('weight_unit') }
+      it { expect(subject[:price]).to eql('price') }
+      it { expect(subject[:sku]).to eql('sku') }
+      it { expect(subject[:updated_at]).to eql(build_date_time) }
+
+      it 'has the unique constraint value' do
+        expect(subject[:option1]).to eql('sku')
       end
 
-      context 'fills all the required fields' do
-        let(:variant_converter) { described_class.new(arguments) }
-        subject { variant_converter.perform }
+      describe 'when it has option_values' do
+        let(:option_value_1) { build_spree_option_value(name: 'name1') }
+        let(:option_value_2) { build_spree_option_value(name: 'name2') }
+        let(:option_values) { [option_value_1, option_value_2] }
+        let(:spree_variant_with_options) { build_spree_variant(option_values: option_values) }
+        subject { described_class.new(spree_variant_with_options).to_hash }
 
-        it { expect(subject.weight).to eql(spree_variant.weight) }
-        it { expect(subject.price).to eql(spree_variant.price) }
-        it { expect(subject.sku).to eql(spree_variant.sku) }
-        it { expect(subject.updated_at).to eql(spree_variant.updated_at) }
-        it { expect(subject.option1).to eql(spree_variant.sku) }
-
-        context 'without specifying the weight unit' do
-          it { expect(subject.weight_unit).to eql('oz') }
-        end
-
-        context 'with a specified weight unit' do
-          let(:arguments) { { spree_variant: spree_variant, shopify_variant: shopify_variant, weight_unit: 'kg' } }
-          subject { variant_converter.perform }
-
-          it { expect(subject.weight_unit).to eql('kg') }
-        end
-
-        it 'uses the sku as the unique option1' do
-          expect(subject.option1).to eql(spree_variant.sku)
-        end
+        it { expect(subject[:option2]).to eql('name1') }
+        it { expect(subject[:option3]).to eql('name2') }
       end
+    end
 
-      context 'with multiple option values' do
-        let(:spree_variant) { create(:variant, option_values: option_values) }
-        let!(:option_values) { [create(:option_value), create(:option_value), create(:option_value)] }
+    private
 
-        let(:variant_converter) { described_class.new(arguments) }
-        subject { variant_converter.perform }
+    def build_spree_variant(weight: 'weight', weight_unit: 'weight_unit',
+                            price: 'price', sku: 'sku',
+                            updated_at: build_date_time, option_values: [])
 
-        it 'fills all the shopify options values field' do
-          option_values = spree_variant.option_values.all
-          expect(subject.option2).to eql(option_values[0].name)
-          expect(subject.option3).to eql(option_values[1].name)
-          expect(subject.option4).to eql(option_values[2].name)
-        end
-      end
+      variant = double(:spree_variant)
+
+      allow(variant).to receive(:weight).and_return(weight)
+      allow(variant).to receive(:weight_unit).and_return(weight_unit)
+      allow(variant).to receive(:price).and_return(price)
+      allow(variant).to receive(:sku).and_return(sku)
+      allow(variant).to receive(:updated_at).and_return(updated_at)
+      allow(variant).to receive(:option_values).and_return(option_values)
+
+      variant
+    end
+
+    def build_spree_option_value(name: 'name', value: 'value')
+      option = double(:spree_option)
+
+      allow(option).to receive(:name).and_return(name)
+      allow(option).to receive(:value).and_return(value)
+
+      option
+    end
+
+    def build_date_time(year: 1991, month: 3, day: 24)
+      DateTime.new(year, month, day)
     end
   end
 end
+
+# describe 'with multiple option values' do
+#   let(:spree_variant) { create(:variant, option_values: option_values) }
+#   let!(:option_values) { [create(:option_value), create(:option_value), create(:option_value)] }
+#
+#   let(:variant_converter) { described_class.new(arguments) }
+#   subject { variant_converter.perform }
+#
+#   it 'fills all the shopify options values field' do
+#     option_values = spree_variant.option_values.all
+#     expect(subject.option2).to eql(option_values[0].name)
+#     expect(subject.option3).to eql(option_values[1].name)
+#     expect(subject.option4).to eql(option_values[2].name)
+#   end
+# end
+#     end
+#   end
+# end

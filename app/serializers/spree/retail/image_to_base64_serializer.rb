@@ -1,12 +1,13 @@
 module Spree
   module Retail
-    class ImageToBase64Converter
+    class ImageToBase64Serializer
       def initialize(image, style: nil)
         @image = image
         @style = style || default_style
       end
 
-      def perform
+      # NOTE: I feel it's should be named encoding instead of serialize
+      def serialize
         return nil unless image.attachment.exists?
 
         copy_image_locally!(image)
