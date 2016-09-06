@@ -2,24 +2,26 @@ require 'spec_helper'
 
 module Spree::Retail
   RSpec.describe ShopifyRefunder do
-    let(:transaction_id) { '0xDEADBEEF' }
-    let(:options) { { reason: 'Actual reason', order_id: transaction_id } }
-    let(:transaction_amount) { 1 }
+    # Parameters
     let(:credited_money_in_cents) { 100 }
-    let(:transaction_instance) { double('transaction_instance', amount: transaction_amount, id: transaction_id) }
-    let(:transaction_interface) { double('transaction_interface', find: transaction_instance) }
+    let(:order_id) { transaction_id }
+    let(:refund_reason) { 'Actual reason' }
+    let(:transaction_amount) { 1 }
+    let(:transaction_id) { '0xDEADBEEF' }
 
+    # Injected dependencies
     let(:can_issue_refund_policy_klass) { double(:can_issue_refund_policy_klass, new: can_issue_refund_policy) }
     let(:can_issue_refund_policy) { double(:can_issue_refund_policy) }
-
-    let(:pos_refund) { double('refund') }
-    let(:refunder_interface) { double('refunder_interface', create: pos_refund) }
+    let(:refunder_interface) { double(:refunder_interface, create: pos_refund) }
+    let(:pos_refund) { double(:pos_refund) }
+    let(:transaction_instance) { double(:transaction_instance, amount: transaction_amount, id: transaction_id) }
+    let(:transaction_interface) { double(:transaction_interface, find: transaction_instance) }
 
     subject(:refunder) do
       described_class.new(credited_money: credited_money_in_cents,
                           transaction_id: transaction_id,
-                          reason: options[:reason],
-                          order_id: options[:order_id],
+                          reason: refund_reason,
+                          order_id: order_id,
                           transaction_interface: transaction_interface,
                           refunder_interface: refunder_interface,
                           can_issue_refund_policy_klass: can_issue_refund_policy_klass)
