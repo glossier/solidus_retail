@@ -16,12 +16,13 @@ module Spree::Retail
     let(:refunder_interface) { double('refunder_interface', create: pos_refund) }
 
     subject(:refunder) do
-      described_class.new(credited_money_in_cents,
-                          transaction_id,
-                          options,
-                          transaction_interface,
-                          refunder_interface,
-                          can_issue_refund_policy_klass)
+      described_class.new(credited_money: credited_money_in_cents,
+                          transaction_id: transaction_id,
+                          reason: options[:reason],
+                          order_id: options[:order_id],
+                          transaction_interface: transaction_interface,
+                          refunder_interface: refunder_interface,
+                          can_issue_refund_policy_klass: can_issue_refund_policy_klass)
     end
 
     context '.initialize' do
