@@ -1,35 +1,34 @@
 module Shopify
   class VariantConverter
-    def initialize(spree_variant:, shopify_variant:)
+    def initialize(spree_variant)
       @spree_variant = spree_variant
-      @shopify_variant = shopify_variant
     end
 
-    def perform
-      shopify_variant.weight = spree_variant.weight
-      shopify_variant.weight_unit = spree_variant.weight_unit
-      shopify_variant.price = spree_variant.price
-      shopify_variant.sku = spree_variant.sku
-      shopify_variant.updated_at = spree_variant.updated_at
-      generate_options!
-
-      shopify_variant
+    def to_hash
+      {
+        weight: spree_variant.weight,
+        weight_unit: spree_variant.weight_unit,
+        price: spree_variant.price,
+        sku: spree_variant.sku,
+        updated_at: spree_variant.updated_at
+      }.merge(options).merge(variant_uniqueness_constraint)
     end
 
     private
 
-    attr_accessor :spree_variant, :shopify_variant
+    attr_reader :spree_variant
 
-    def generate_options!
-      assign_variant_uniqueness_constraint(spree_variant.sku)
-
+    def options
+      options = {}
       spree_variant.option_values.each_with_index do |option, index|
-        shopify_variant.send("option#{index + 2}=", option.name)
+        options[:"option#{index + 2}"] = option.name
       end
+
+      options
     end
 
-    def assign_variant_uniqueness_constraint(value)
-      shopify_variant.option1 = value
+    def variant_uniqueness_constraint
+      { option1: spree_variant.sku }
     end
   end
 end
