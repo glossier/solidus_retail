@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-module Spree::Retail
-  RSpec.describe ShopifyVoider do
+module Spree::Retail::Shopify
+  RSpec.describe Voider do
     let(:transaction_id) { '0xDEADBEEF' }
     let(:order_id) { 'order_id' }
     let(:transaction_amount) { 1 }
