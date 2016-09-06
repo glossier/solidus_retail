@@ -39,7 +39,6 @@ module Shopify
           allow(shopify_product).to receive(:id).and_return('123321')
           allow(shopify_product).to receive(:save).and_return(true)
           allow(shopify_product).to receive(:persisted?).and_return(true)
-          allow(shopify_product).to receive(:variants).and_return([])
         end
 
         it 'returns true if was successfull' do
@@ -55,34 +54,6 @@ module Shopify
           spree_product.reload
           expected_result = '123321'
           expect(result).to eql(expected_result)
-        end
-
-        context 'has variant images' do
-          let!(:variant_image) { create(:image) }
-          let!(:spree_variant) { create(:variant, images: [variant_image], product: spree_product) }
-          let(:shopify_image) { ShopifyAPI::Image.new }
-
-          it 'assigns the images to the shopify product' do
-            shopify_product = subject.perform
-            expect(shopify_product.images).not_to be_empty
-          end
-
-          it 'saves the shopify product with images' do
-            expect(shopify_product).to receive(:save).twice
-            subject.perform
-          end
-        end
-
-        context 'has no variant images' do
-          it 'does not assign the variant images' do
-            shopify_product = subject.perform
-            expect(shopify_product.images).to be_empty
-          end
-
-          it 'doesn\'t saves the shopify product' do
-            expect(shopify_product).to receive(:save).once
-            subject.perform
-          end
         end
 
         context 'when shopify product is not found' do
@@ -128,7 +99,6 @@ module Shopify
             allow(shopify_product).to receive(:id).and_return('123321')
             allow(shopify_product).to receive(:save).and_return(true)
             allow(shopify_product).to receive(:persisted?).and_return(true)
-            allow(shopify_product).to receive(:variants).and_return([])
           end
 
           it 'logs an info' do
