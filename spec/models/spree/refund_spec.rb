@@ -2,12 +2,12 @@ require 'spec_helper'
 
 module Spree
   RSpec.describe Refund do
-    let(:refund) { create(:refund) }
+    let(:order) { build_stubbed(:order, pos_order_id: '8675309') }
+    let(:payment) { build_stubbed(:payment, order: order) }
+    let(:refund) { build_stubbed(:refund, payment: payment) }
 
-    describe 'field' do
-      it 'responds to pos_order_id' do
-        expect(refund).to respond_to(:pos_order_id)
-      end
+    it 'knows its retail order ID' do
+      expect(refund.pos_order_id).to eq '8675309'
     end
   end
 end
