@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'active_resource/base_decorator'
 
 describe 'Export a Spree Product to Shopify' do
   include_context 'ignore_export_to_shopify'
@@ -11,6 +12,7 @@ describe 'Export a Spree Product to Shopify' do
   # TODO: Make this work with VCR instead of allowing net connect
   before do
     WebMock.allow_net_connect!
+    require 'pry'; binding.pry
     export_product!(spree_product)
     spree_product.reload
   end
