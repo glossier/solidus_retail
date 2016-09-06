@@ -1,21 +1,21 @@
 module Shopify
   class ProductConverter
-    def initialize(spree_product)
-      @spree_product = spree_product
+    def initialize(product:)
+      @product = product
     end
 
     def to_hash
-      { title: spree_product.name,
-        body_html: spree_product.description,
-        created_at: spree_product.created_at,
-        updated_at: spree_product.updated_at,
-        published_at: spree_product.available_on,
-        vendor: spree_product.vendor,
-        handle: spree_product.slug }
+      { title: product.name,
+        body_html: product.description,
+        created_at: product.created_at,
+        updated_at: product.updated_at,
+        published_at: product.available_on,
+        vendor: product.vendor,
+        handle: product.slug }
     end
 
     private
 
-    attr_reader :spree_product
+    attr_reader :product
   end
 end

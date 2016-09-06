@@ -12,7 +12,6 @@ describe 'Export a Spree Product to Shopify' do
   # TODO: Make this work with VCR instead of allowing net connect
   before do
     WebMock.allow_net_connect!
-    require 'pry'; binding.pry
     export_product!(spree_product)
     spree_product.reload
   end
