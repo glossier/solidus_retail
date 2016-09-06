@@ -85,4 +85,13 @@ RSpec.configure do |config|
 
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = 'random'
+
+  config.around(:each) do |example|
+    begin
+      previously = ShopifyAPI::Base.site
+      example.run
+    ensure
+      ShopifyAPI::Base.site = previously
+    end
+  end
 end
