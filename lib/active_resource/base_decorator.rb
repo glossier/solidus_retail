@@ -1,11 +1,18 @@
 module ActiveResource
   module BaseDecorator
-    def find_by(*arguments)
-      where(*arguments).take
+    module ClassMethods
+      def find_by(*arguments)
+        values = where(*arguments)
+        values.any? ? values.first : nil
+      end
+
+      def find_or_initialize_by(arguments, &block)
+        find_by(arguments) || new(arguments.except(:id), &block)
+      end
     end
 
-    def find_or_initialize_by(attributes, &block)
-      find_by(attributes) || new(attributes, &block)
+    def self.prepended(base)
+      base.extend ClassMethods
     end
   end
 end

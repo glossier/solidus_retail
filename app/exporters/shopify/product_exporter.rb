@@ -1,18 +1,19 @@
 module Shopify
   class ProductExporter
-    include PresenterHelper
+    include Spree::Retail::PresenterHelper
 
     def initialize(spree_product_id:, product_klass: Spree::Product,
-                   product_api: ShopifyAPI::Product)
+                   product_api: ShopifyAPI::Product,
+                   product_converter: Shopify::ProductConverter)
 
       @spree_product = product_klass.find(spree_product_id)
-      @product_klass = product_klass
+      @product_converter = product_converter
       @product_api = product_api
     end
 
     def perform
       shopify_product = find_shopify_product_for(spree_product)
-      shopify_product.update(product_attributes)
+      shopify_product.update_attributes(product_attributes)
       save_pos_product_id(spree_product, shopify_product)
 
       shopify_product
@@ -20,14 +21,14 @@ module Shopify
 
     private
 
-    attr_accessor :spree_product, :product_klass, :product_api
+    attr_accessor :spree_product, :product_api, :product_converter
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
     end
 
     def presented_product
-      present(spree_product, Product)
+      present(spree_product, :product)
     end
 
     def save_pos_product_id(product, shopify_product)
