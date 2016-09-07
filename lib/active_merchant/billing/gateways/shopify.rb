@@ -16,7 +16,7 @@ module ActiveMerchant #:nodoc:
         @shop_name = options[:shop_name]
 
         @refunder_class = options[:refunder] || default_refunder
-        @transaction_repository = options[:transaction_repository] || ShopifyAPI::Transaction
+        @transaction_repository = options[:transaction_repository] || default_transaction_repository
 
         init_shopify_api!
 
@@ -24,7 +24,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def void(transaction_id, options = {})
-        transaction = @transaction_repository.find(transaction_id, params: options.slice(:order_id))
+        transaction = transaction_repository.find(transaction_id, params: options.slice(:order_id))
 
         return_response refunder_class.new(credited_money: transaction.amount,
                                            transaction_id: transaction.id,
@@ -38,7 +38,7 @@ module ActiveMerchant #:nodoc:
 
       private
 
-      attr_reader :api_key, :password, :shop_name, :voider_class, :refunder_class
+      attr_reader :api_key, :password, :shop_name, :refunder_class, :transaction_repository
 
       def init_shopify_api!
         ShopifyAPI::Base.site = shop_url
@@ -50,6 +50,10 @@ module ActiveMerchant #:nodoc:
 
       def default_refunder
         Spree::Retail::Shopify::Refunder
+      end
+
+      def default_transaction_repository
+        ShopifyAPI::Transaction
       end
 
       def return_response(result)
