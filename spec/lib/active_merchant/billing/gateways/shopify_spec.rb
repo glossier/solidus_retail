@@ -80,14 +80,10 @@ module ActiveMerchant::Billing
         void!
       end
 
-      it 'returns an ActiveMerchant response' do
-        result = void!
-        expect(result).to be_a(ActiveMerchant::Billing::Response)
-      end
-
       context 'when refund was successful' do
         it 'returns an ActiveMerchant successful response' do
           result = void!
+
           expect(result).to be_success
         end
       end
