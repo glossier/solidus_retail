@@ -1,10 +1,9 @@
+require 'solidus_core'
 require 'shopify_api'
 
 module Spree
   module Retail
     class Engine < Rails::Engine
-      require 'solidus_core'
-
       isolate_namespace Spree
       engine_name 'solidus_retail'
 
