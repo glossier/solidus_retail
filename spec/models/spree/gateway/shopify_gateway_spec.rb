@@ -18,9 +18,19 @@ module Spree
       allow(provider_class).to receive(:new).and_return(provider_instance)
     end
 
+    describe "#payment_profiles_supported?" do
+      it { is_expected.to_not be_payment_profiles_supported }
+    end
+
     context '.void' do
       it 'calls the provider void method once' do
-        expect(provider_instance).to receive(:void).once
+        payment = double(:payment, pos_order_id: pos_order_id)
+        payments = double(:payment, find_by: payment)
+
+        allow(subject).to receive(:payments).and_return(payments)
+
+        expect(provider_instance).to receive(:void).with('0xDEADBEEF', order_id: '0xBAADF00D')
+
         void!
       end
 

@@ -55,25 +55,35 @@ module ActiveMerchant::Billing
     end
 
     describe '#void' do
-      let(:refund_amount) { 100 }
-      let(:voider_instance) { double('voider_instance', perform: pos_refund) }
-      let(:voider) { double('voider', new: voider_instance) }
+      let(:order_id) { "0xCAFED00D" }
+      let(:refunder_factory) { double(:refunder_factory, new: refunder) }
+      let(:refunder) { double(:refunder, perform: pos_refund) }
 
-      subject { described_class.new(api_key: api_key, password: password, shop_name: shop_name, voider: voider) }
+      let(:transaction_repository) { double(:transaction_repository, find: transaction) }
 
-      it 'performs a refund' do
-        expect(voider_instance).to receive(:perform).once
-        void!
+      let(:gateway) do
+        described_class.new(api_key: api_key, password: password, shop_name: shop_name, refunder: refunder_factory, transaction_repository: transaction_repository)
       end
 
-      it 'returns an ActiveMerchant response' do
-        result = void!
-        expect(result).to be_a(ActiveMerchant::Billing::Response)
+      subject(:void!) do
+        gateway.void(transaction_id, { order_id: order_id })
+      end
+
+      let(:transaction) { double(:transaction, id: 1234, amount: 100) }
+
+      it 'refunds the transaction' do
+        expect(refunder_factory).to receive(:new).with(credited_money: 100,
+                                                       transaction_id: 1234,
+                                                       order_id: "0xCAFED00D")
+        expect(refunder).to receive(:perform)
+
+        void!
       end
 
       context 'when refund was successful' do
         it 'returns an ActiveMerchant successful response' do
           result = void!
+
           expect(result).to be_success
         end
       end
@@ -82,20 +92,11 @@ module ActiveMerchant::Billing
         let(:pos_refund) { double('refund', errors: refund_errors) }
         let(:refund_errors) { double('errors', messages: ['I am ERROR']) }
 
-        before do
-          allow(voider_instance).to receive(:perform).and_return(pos_refund)
-        end
-
         it 'returns an ActiveMerchant unsuccessful response' do
           result = void!
+
           expect(result).not_to be_success
         end
-      end
-
-      private
-
-      def void!
-        subject.void(transaction_id, { order_id: transaction_id })
       end
     end
   end
