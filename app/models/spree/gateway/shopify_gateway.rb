@@ -20,8 +20,9 @@ module Spree
       provider.refund(money, transaction_id, options)
     end
 
-    def void(transaction_id, gateway_options)
-      pos_order_id = gateway_options[:originator].pos_order_id
+    def void(transaction_id, _)
+      pos_order_id = payments.find_by(response_code: transaction_id).pos_order_id
+
       provider.void(transaction_id, order_id: pos_order_id)
     end
 
