@@ -11,7 +11,7 @@ module Shopify
     end
 
     def render(content)
-      @converter.render(content).strip
+      converter.render(content).strip
     end
 
     private
