@@ -2,47 +2,43 @@ require 'spec_helper'
 require 'active_resource/base_decorator'
 
 describe 'Export a Spree Product to Shopify' do
-  include_context 'ignore_export_to_shopify'
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 
-  let(:spree_product) { create(:product) }
+  let(:spree_product) { create(:product, name: 'Product Name') }
   subject { find_shopify_product(spree_product) }
 
-  # TODO: Make this work with VCR instead of allowing net connect
-  before do
-    WebMock.allow_net_connect!
+  it 'creates a new product' do
     export_product!(spree_product)
-    spree_product.reload
-  end
-
-  after do
-    WebMock.disable_net_connect!
+    expect(subject).to be_truthy
+    cleanup_shopify_product!(subject)
   end
 
   describe 'when the product existed on Shopify but was deleted' do
     let!(:existing_product) { export_product!(spree_product) }
 
-    it 'creates a new product' do
-      old_product_id = spree_product.pos_product_id
-      cleanup_shopify_product!(subject)
-      export_product!(spree_product)
-      cleanup_shopify_product!(spree_product)
-
-      spree_product.reload
-      new_product_id = spree_product.pos_product_id
-
+    before do
       shopify_product = find_shopify_product(spree_product)
-      expect(shopify_product).to be_truthy
-      expect(new_product_id).not_to eql(old_product_id)
-
       cleanup_shopify_product!(shopify_product)
+    end
+
+    it 'creates a new product' do
+      export_product!(spree_product)
+      expect(subject).to be_truthy
+    end
+
+    after do
+      cleanup_shopify_product!(subject)
     end
   end
 
   describe 'when the product already exists on Shopify' do
+    let!(:existing_product) { export_product!(spree_product) }
+
     it 'does not create a new product' do
       products_count = ShopifyAPI::Product.all.count
+      expect(products_count).to be > 0
+
       export_product!(spree_product)
 
       result = ShopifyAPI::Product.all.count
@@ -52,8 +48,7 @@ describe 'Export a Spree Product to Shopify' do
     it 'updates the existing product' do
       expect(subject.title).to eql(spree_product.name)
 
-      spree_product.name = 'new_name'
-      spree_product.save
+      spree_product.update(name: 'new_name')
       export_product!(spree_product)
 
       shopify_product = find_shopify_product(spree_product)

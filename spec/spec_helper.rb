@@ -34,6 +34,7 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/solidus_retail/factories.rb
 require 'solidus_retail/factories'
+require 'active_resource/base_decorator'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
@@ -93,13 +94,12 @@ RSpec.configure do |config|
 
   # Make sure that only requests specs are VCRed
   config.around(:each) do |example|
-    # if example.metadata[:type] == :request
-    #   name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
-    #   VCR.use_cassette(name, {}, &example)
-    # else
-    #   VCR.turned_off(&example)
-    # end
-    VCR.turned_off(&example)
+    if example.metadata[:type] == :request
+      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
+      VCR.use_cassette(name, {}, &example)
+    else
+      VCR.turned_off(&example)
+    end
   end
 
   config.fail_fast = ENV['FAIL_FAST'] || false
