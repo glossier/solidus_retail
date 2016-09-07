@@ -15,7 +15,6 @@ module ActiveMerchant #:nodoc:
         @password = options[:password]
         @shop_name = options[:shop_name]
 
-        @voider_class = options[:voider] || default_voider
         @refunder_class = options[:refunder] || default_refunder
         @transaction_repository = options[:transaction_repository] || ShopifyAPI::Transaction
 
@@ -47,10 +46,6 @@ module ActiveMerchant #:nodoc:
 
       def shop_url
         "https://#{api_key}:#{password}@#{shop_name}"
-      end
-
-      def default_voider
-        Spree::Retail::Shopify::Voider
       end
 
       def default_refunder
