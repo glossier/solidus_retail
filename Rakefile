@@ -21,11 +21,6 @@ task :first_run do
     Rake::Task[:test_app].invoke
     Dir.chdir('../../')
   end
-
-  puts ENV["TRAVIS_PULL_REQUEST"]
-  puts ENV["TRAVIS_COMMIT"]
-  puts ENV["TRAVIS_COMMIT_RANGE"]
-  puts ENV["TRAVIS_BRANCH"]
 end
 
 desc 'Generates a dummy app for testing'
