@@ -24,24 +24,30 @@ module ActiveMerchant #:nodoc:
       end
 
       def void(transaction_id, options = {})
-        transaction = transaction_repository.find(transaction_id,
-                                                  params: options.slice(:order_id))
+        transaction = find_transaction(transaction_id, options[:order_id])
 
-        return_response refunder_class.new(credited_money: transaction.amount,
-                                           transaction: transaction).perform
+        return_response create_refund(transaction.amount, transaction)
       end
 
       def refund(money, transaction_id, options = {})
-        transaction = transaction_repository.find(transaction_id,
-                                                  params: options.slice(:order_id))
+        transaction = find_transaction(transaction_id, options[:order_id])
 
-        return_response refunder_class.new(credited_money: money,
-                                           transaction: transaction).perform
+        return_response create_refund(money, transaction)
       end
 
       private
 
       attr_reader :api_key, :password, :shop_name, :refunder_class, :transaction_repository
+
+      def create_refund(money, transaction)
+        refunder_class.new(credited_money: money,
+                           transaction: transaction).perform
+      end
+
+      def find_transaction(transaction_id, order_id)
+        transaction_repository.find(transaction_id,
+                                    params: { order_id: order_id })
+      end
 
       def init_shopify_api!
         ShopifyAPI::Base.site = shop_url

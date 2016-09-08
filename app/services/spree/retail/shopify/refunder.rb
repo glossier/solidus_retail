@@ -10,7 +10,7 @@ module Spree::Retail
         @order_id = transaction.prefix_options[:order_id]
 
         @refunder_interface = refunder_interface || default_refunder_interface
-        @can_issue_refund_policy_klass = can_issue_refund_policy_klass || Spree::Retail::Shopify::CanIssueRefundPolicy
+        @can_issue_refund_policy_klass = can_issue_refund_policy_klass || default_can_issue_refund_policy_klass
       end
 
       def perform
@@ -54,8 +54,8 @@ module Spree::Retail
         ShopifyAPI::Refund
       end
 
-      def default_transaction_interface
-        ShopifyAPI::Transaction
+      def default_can_issue_refund_policy_klass
+        Spree::Retail::Shopify::CanIssueRefundPolicy
       end
     end
   end
