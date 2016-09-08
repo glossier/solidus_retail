@@ -39,6 +39,7 @@ module Shopify
     end
 
     def surround_by_p_tags(content)
+      return '' if content.nil?
       [content.lines.map { |line| "<p>#{line.strip}</p>" }].join
     end
 
