@@ -43,3 +43,9 @@ Copyright (c) 2016 [name of extension creator], released under the New BSD Licen
 
 [1]: https://travis-ci.org/glossier/solidus_retail.svg?branch=master
 [2]: https://travis-ci.org/glossier/solidus_retail
+
+
+Tasks
+-------
+In order for the Stock amount per variant to be set on Shopify, you must set up
+the task `shopify:export_stock_count` to be run at a certain interval.
