@@ -5,9 +5,7 @@ module Spree::Retail
         @credited_money = BigDecimal.new(credited_money)
         @transaction = transaction
         @refund_reason = options[:reason]
-
-        # FIXME: HOOOOOOORJ This is abominable
-        @order_id = transaction.prefix_options[:order_id]
+        @order_id = transaction.order_id
 
         @refunder_interface = refunder_interface || default_refunder_interface
         @can_issue_refund_policy_klass = can_issue_refund_policy_klass || default_can_issue_refund_policy_klass
