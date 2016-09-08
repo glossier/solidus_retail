@@ -13,12 +13,9 @@ module Shopify
 
     def perform
       shopify_product = find_shopify_product_for(spree_product)
-      shopify_product.update_attributes(product_attributes)
-      save_pos_product_id(spree_product, shopify_product)
-
       export_master_variant(spree_product)
 
-      shopify_product
+      save_product_on_shopify_for(spree_product, shopify_product)
     end
 
     private
@@ -27,6 +24,13 @@ module Shopify
 
     def export_master_variant(spree_product)
       VariantExporter.new(spree_variant_id: spree_product.master.id).perform
+    end
+
+    def save_product_on_shopify_for(spree_product, shopify_product)
+      shopify_product.update_attributes(product_attributes)
+      save_pos_product_id(spree_product, shopify_product)
+
+      shopify_product
     end
 
     def find_shopify_product_for(spree_product)
