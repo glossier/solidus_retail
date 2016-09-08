@@ -22,13 +22,13 @@ describe 'Export a Spree Product to Shopify' do
       cleanup_shopify_product!(shopify_product)
     end
 
+    after do
+      cleanup_shopify_product!(subject)
+    end
+
     it 'creates a new product' do
       export_product!(spree_product)
       expect(subject).to be_truthy
-    end
-
-    after do
-      cleanup_shopify_product!(subject)
     end
   end
 
@@ -41,8 +41,7 @@ describe 'Export a Spree Product to Shopify' do
 
       export_product!(spree_product)
 
-      result = ShopifyAPI::Product.all.count
-      expect(result).to be(products_count)
+      expect(ShopifyAPI::Product.all.count).to be(products_count)
     end
 
     it 'updates the existing product' do
