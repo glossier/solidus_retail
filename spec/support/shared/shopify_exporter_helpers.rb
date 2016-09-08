@@ -4,4 +4,9 @@ RSpec.shared_context 'shopify_exporter_helpers' do
     exporter.perform
     spree_product.reload
   end
+
+ def export_variant!(spree_variant)
+    exporter = Shopify::VariantExporter.new(spree_variant_id: spree_variant.id)
+    exporter.perform
+  end
 end

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'active_resource/base_decorator'
 
 describe 'Export a Spree Product to Shopify' do
   include_context 'shopify_exporter_helpers'
@@ -11,7 +10,7 @@ describe 'Export a Spree Product to Shopify' do
   it 'creates a new product' do
     export_product!(spree_product)
     expect(subject).to be_truthy
-    cleanup_shopify_product!(subject)
+    # cleanup_shopify_product!(subject)
   end
 
   describe 'when the product existed on Shopify but was deleted' do

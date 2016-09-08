@@ -16,12 +16,18 @@ module Shopify
       shopify_product.update_attributes(product_attributes)
       save_pos_product_id(spree_product, shopify_product)
 
+      export_master_variant(spree_product)
+
       shopify_product
     end
 
     private
 
     attr_accessor :spree_product, :product_api, :product_converter
+
+    def export_master_variant(spree_product)
+      VariantExporter.new(spree_variant_id: spree_product.master.id).perform
+    end
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
