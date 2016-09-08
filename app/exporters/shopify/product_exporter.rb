@@ -13,7 +13,6 @@ module Shopify
 
     def perform
       shopify_product = find_shopify_product_for(spree_product)
-      export_master_variant(spree_product)
 
       save_product_on_shopify_for(spree_product, shopify_product)
     end
@@ -21,10 +20,6 @@ module Shopify
     private
 
     attr_accessor :spree_product, :product_api, :product_converter
-
-    def export_master_variant(spree_product)
-      VariantExporter.new(spree_variant_id: spree_product.master.id).perform
-    end
 
     def save_product_on_shopify_for(spree_product, shopify_product)
       shopify_product.update_attributes(product_attributes)

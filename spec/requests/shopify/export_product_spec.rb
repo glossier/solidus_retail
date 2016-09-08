@@ -5,29 +5,27 @@ describe 'Export a Spree Product to Shopify' do
   include_context 'shopify_helpers'
 
   let(:spree_product) { create(:product, name: 'Product Name') }
-  subject { find_shopify_product(spree_product) }
 
   it 'creates a new product' do
     export_product!(spree_product)
     expect(subject).to be_truthy
-    # cleanup_shopify_product!(subject)
+  end
+
+  after do
+    cleanup_shopify_product_from_spree!(spree_product)
   end
 
   describe 'when the product existed on Shopify but was deleted' do
     let!(:existing_product) { export_product!(spree_product) }
 
     before do
-      shopify_product = find_shopify_product(spree_product)
-      cleanup_shopify_product!(shopify_product)
-    end
-
-    after do
-      cleanup_shopify_product!(subject)
+      cleanup_shopify_product!(existing_product)
     end
 
     it 'creates a new product' do
-      export_product!(spree_product)
-      expect(subject).to be_truthy
+      shopify_product = export_product!(spree_product)
+
+      expect(shopify_product.persisted?).to be_truthy
     end
   end
 
@@ -35,26 +33,21 @@ describe 'Export a Spree Product to Shopify' do
     let!(:existing_product) { export_product!(spree_product) }
 
     it 'does not create a new product' do
-      products_count = ShopifyAPI::Product.all.count
-      expect(products_count).to be > 0
+      first_products_count = ShopifyAPI::Product.all.count
+      expect(first_products_count).to be > 0
 
       export_product!(spree_product)
 
-      expect(ShopifyAPI::Product.all.count).to be(products_count)
+      second_products_count = ShopifyAPI::Product.all.count
+      expect(first_products_count).to be(second_products_count)
     end
 
     it 'updates the existing product' do
-      expect(subject.title).to eql(spree_product.name)
-
       spree_product.update(name: 'new_name')
-      export_product!(spree_product)
+      shopify_product = export_product!(spree_product)
 
-      shopify_product = find_shopify_product(spree_product)
+      expect(shopify_product.persisted?).to be_truthy
       expect(shopify_product.title).to eql('new_name')
-    end
-
-    after do
-      cleanup_shopify_product!(subject)
     end
   end
 end

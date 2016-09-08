@@ -53,23 +53,6 @@ module Shopify
       it 'uses the sku has the unique constraint value' do
         expect(subject[:option1]).to eql('boy-brow')
       end
-
-      describe 'when it has option_values' do
-        let(:option_value_1) { build_spree_option_value(name: 'name1') }
-        let(:option_value_2) { build_spree_option_value(name: 'name2') }
-        let(:option_values) { [option_value_1, option_value_2] }
-        let(:spree_variant_with_options) { build_spree_variant(option_values: option_values) }
-
-        subject { described_class.new(variant: spree_variant_with_options).to_hash }
-
-        it 'sets the first option value to the second option' do
-          expect(subject[:option2]).to eql('name1')
-        end
-
-        it 'sets the second option value to the third option' do
-          expect(subject[:option3]).to eql('name2')
-        end
-      end
     end
   end
 end

@@ -6,65 +6,65 @@ describe 'Export a Spree Variant to Shopify' do
 
   let(:spree_product) { create(:product, name: 'Product Name') }
   let(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
-  subject { find_shopify_variant(spree_variant) }
 
   before do
     export_product!(spree_product)
   end
 
   after do
+    # This will auto-destroy the variants, due to the shopify associations.
     cleanup_shopify_product_from_spree!(spree_product)
   end
 
   it 'creates a new variant' do
-    export_variant!(spree_variant)
-    expect(subject).to be_truthy
-    cleanup_shopify_variant!(subject)
+    shopify_variant = export_variant!(spree_variant)
+
+    expect(shopify_variant.persisted?).to be_truthy
   end
 
-  # describe 'when the product existed on Shopify but was deleted' do
-  #   let!(:existing_product) { export_product!(spree_product) }
-  #
-  #   before do
-  #     shopify_product = find_shopify_product(spree_product)
-  #     cleanup_shopify_product!(shopify_product)
-  #   end
-  #
-  #   it 'creates a new product' do
-  #     export_product!(spree_product)
-  #     expect(subject).to be_truthy
-  #   end
-  #
-  #   after do
-  #     cleanup_shopify_product!(subject)
-  #   end
-  # end
-  #
-  # describe 'when the product already exists on Shopify' do
-  #   let!(:existing_product) { export_product!(spree_product) }
-  #
-  #   it 'does not create a new product' do
-  #     products_count = ShopifyAPI::Product.all.count
-  #     expect(products_count).to be > 0
-  #
-  #     export_product!(spree_product)
-  #
-  #     result = ShopifyAPI::Product.all.count
-  #     expect(result).to be(products_count)
-  #   end
-  #
-  #   it 'updates the existing product' do
-  #     expect(subject.title).to eql(spree_product.name)
-  #
-  #     spree_product.update(name: 'new_name')
-  #     export_product!(spree_product)
-  #
-  #     shopify_product = find_shopify_product(spree_product)
-  #     expect(shopify_product.title).to eql('new_name')
-  #   end
-  #
-  #   after do
-  #     cleanup_shopify_product!(subject)
-  #   end
-  # end
+  it 'assigns the variant to the product' do
+    export_variant!(spree_variant)
+    shopify_product = find_shopify_product(spree_product)
+
+    # First variant is the master variant
+    associated_variant = shopify_product.variants.second
+    expect(associated_variant.sku).to eql(spree_variant.sku)
+  end
+
+  describe 'when the variant existed on Shopify but was deleted' do
+    let!(:existing_variant) { export_variant!(spree_variant) }
+
+    before do
+      cleanup_shopify_variant!(existing_variant)
+    end
+
+    it 'creates a new variant' do
+      shopify_variant = export_variant!(spree_variant)
+      expect(shopify_variant.persisted?).to be_truthy
+    end
+  end
+
+  describe 'when the variant already exists on Shopify' do
+    let!(:existing_variant) { export_variant!(spree_variant) }
+
+    it 'does not create a new variant' do
+      shopify_product = find_shopify_product(spree_product)
+      first_associated_variant_count = shopify_product.variants.count
+      expect(first_associated_variant_count).to be > 0
+
+      export_variant!(spree_variant)
+
+      shopify_product = find_shopify_product(spree_product)
+      second_associated_variant_count = shopify_product.variants.count
+      expect(first_associated_variant_count).to be(second_associated_variant_count)
+    end
+
+    it 'updates the existing variant' do
+      spree_variant.update(sku: 'new_sku')
+      shopify_variant = export_variant!(spree_variant)
+
+      expect(shopify_variant.persisted?).to be_truthy
+      expect(shopify_variant.sku).to eql('new_sku')
+    end
+  end
 end
