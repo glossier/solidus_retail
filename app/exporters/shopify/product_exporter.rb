@@ -13,15 +13,20 @@ module Shopify
 
     def perform
       shopify_product = find_shopify_product_for(spree_product)
-      shopify_product.update_attributes(product_attributes)
-      save_pos_product_id(spree_product, shopify_product)
 
-      shopify_product
+      save_product_on_shopify_for(spree_product, shopify_product)
     end
 
     private
 
     attr_accessor :spree_product, :product_api, :product_converter
+
+    def save_product_on_shopify_for(spree_product, shopify_product)
+      shopify_product.update_attributes(product_attributes)
+      save_pos_product_id(spree_product, shopify_product)
+
+      shopify_product
+    end
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
