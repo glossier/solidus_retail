@@ -40,8 +40,7 @@ module ActiveMerchant::Billing
 
       it 'performs a refund' do
         expect(refunder_factory).to receive(:new).with(credited_money: 200,
-                                                       transaction_id: '0xDEADBEEF',
-                                                       order_id: '0xCAFED00D')
+                                                       transaction: transaction)
         expect(refunder).to receive(:perform).once
 
         refund!
@@ -76,8 +75,7 @@ module ActiveMerchant::Billing
 
       it 'refunds the transaction' do
         expect(refunder_factory).to receive(:new).with(credited_money: 100,
-                                                       transaction_id: '0xDEADBEEF',
-                                                       order_id: '0xCAFED00D')
+                                                       transaction: transaction)
         expect(refunder).to receive(:perform)
 
         void!

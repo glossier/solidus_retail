@@ -24,16 +24,19 @@ module ActiveMerchant #:nodoc:
       end
 
       def void(transaction_id, options = {})
-        transaction = transaction_repository.find(transaction_id, params: options.slice(:order_id))
+        transaction = transaction_repository.find(transaction_id,
+                                                  params: options.slice(:order_id))
 
         return_response refunder_class.new(credited_money: transaction.amount,
-                                           transaction_id: transaction.id,
-                                           **options.slice(:order_id)).perform
+                                           transaction: transaction).perform
       end
 
       def refund(money, transaction_id, options = {})
-        refunder = refunder_class.new(credited_money: money, transaction_id: transaction_id, **options)
-        return_response(refunder.perform)
+        transaction = transaction_repository.find(transaction_id,
+                                                  params: options.slice(:order_id))
+
+        return_response refunder_class.new(credited_money: money,
+                                           transaction: transaction).perform
       end
 
       private

@@ -5,10 +5,11 @@ module Spree::Retail::Shopify
     # Parameters
     let(:credited_money_in_cents) { 100 }
     let(:credited_money_in_dollars) { 1.0 }
-    let(:order_id) { transaction_id }
+    let(:order_id) { '0xCAFED00D' }
     let(:refund_reason) { 'Actual reason' }
     let(:transaction_amount) { 1 }
     let(:transaction_id) { '0xDEADBEEF' }
+    let(:transaction_prefix_options) { double(:transaction_prefix_options) }
 
     # Injected dependencies
     let(:can_issue_refund_policy_klass) { double(:can_issue_refund_policy_klass, new: can_issue_refund_policy) }
@@ -16,16 +17,20 @@ module Spree::Retail::Shopify
     let(:refunder_interface) { double(:refunder_interface, create: pos_refund) }
     let(:pos_refund) { double(:pos_refund) }
     let(:transaction_instance) { double(:transaction_instance, amount: transaction_amount, id: transaction_id) }
-    let(:transaction_interface) { double(:transaction_interface, find: transaction_instance) }
+    # let(:transaction_interface) { double(:transaction_interface, find: transaction_instance) }
 
     subject(:refunder) do
       described_class.new(credited_money: credited_money_in_cents,
-                          transaction_id: transaction_id,
+                          transaction: transaction_instance,
                           reason: refund_reason,
-                          order_id: order_id,
-                          transaction_interface: transaction_interface,
                           refunder_interface: refunder_interface,
                           can_issue_refund_policy_klass: can_issue_refund_policy_klass)
+    end
+
+    before do
+      # FIXME: HOOOOOOORJ
+      allow(transaction_instance).to receive(:prefix_options).and_return(transaction_prefix_options)
+      allow(transaction_prefix_options).to receive(:[]).with(:order_id).and_return(order_id)
     end
 
     context '.initialize' do

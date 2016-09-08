@@ -1,13 +1,15 @@
 module Spree::Retail
   module Shopify
     class Refunder
-      def initialize(credited_money:, transaction_id:, transaction_interface: nil, refunder_interface: nil, can_issue_refund_policy_klass: nil, **options)
-        @refund_reason = options[:reason]
-        @order_id = options[:order_id]
+      def initialize(credited_money:, transaction:, refunder_interface: nil, can_issue_refund_policy_klass: nil, **options)
         @credited_money = BigDecimal.new(credited_money)
-        @transaction_interface = transaction_interface || default_transaction_interface
+        @transaction = transaction
+        @refund_reason = options[:reason]
+
+        # FIXME: HOOOOOOORJ This is abominable
+        @order_id = transaction.prefix_options[:order_id]
+
         @refunder_interface = refunder_interface || default_refunder_interface
-        @transaction = @transaction_interface.find(transaction_id, params: { order_id: order_id })
         @can_issue_refund_policy_klass = can_issue_refund_policy_klass || Spree::Retail::Shopify::CanIssueRefundPolicy
       end
 
