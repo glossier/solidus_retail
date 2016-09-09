@@ -12,7 +12,7 @@ module Shopify
 
       # The first variant is considered the "master" one, in our perspective.
       # Shopify doesn't care about the order
-      attributes.merge!(variant: [variant_attributes])
+      attributes.merge!(variants: [variant_attributes])
     end
 
     attr_accessor :attributes

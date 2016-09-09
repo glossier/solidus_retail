@@ -1,13 +1,9 @@
 module Shopify
-  class VariantExporter
-    include Spree::Retail::PresenterHelper
-
+  class VariantUpdater
     def initialize(spree_variant_id:, variant_klass: Spree::Variant,
-                   variant_api: ShopifyAPI::Variant,
-                   variant_converter: Shopify::VariantConverter)
+                   variant_api: ShopifyAPI::Variant)
 
       @spree_variant = variant_klass.find(spree_variant_id)
-      @variant_converter = variant_converter
       @variant_api = variant_api
     end
 
@@ -21,23 +17,20 @@ module Shopify
 
     private
 
-    attr_accessor :spree_variant, :variant_api, :variant_converter
+    attr_accessor :spree_variant, :variant_api
 
     def find_shopify_variant_for(spree_variant)
       variant_api.find_or_initialize_by(id: spree_variant.pos_variant_id)
     end
 
-    def presented_variant
-      present(spree_variant, :variant)
-    end
-
+    # FIXME: refactor this
     def save_pos_variant_id(variant, shopify_variant)
       variant.pos_variant_id = shopify_variant.id
       variant.save
     end
 
     def variant_attributes
-      variant_converter.new(variant: presented_variant).to_hash
+      Shopify::VariantAttributes.new(spree_variant).attributes
     end
   end
 end
