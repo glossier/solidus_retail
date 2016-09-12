@@ -13,3 +13,6 @@ nbproject
 pkg
 *.swp
 spec/dummy
+.env
+.phantom-version
+.node-version
