@@ -12,7 +12,6 @@ describe 'Export a Spree Variant to Shopify' do
   end
 
   after do
-    # This will auto-destroy the variants, due to the shopify associations.
     cleanup_shopify_product_from_spree!(spree_product)
   end
 
