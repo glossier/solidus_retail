@@ -5,9 +5,9 @@ http_interactions:
     uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products.json
     body:
       encoding: UTF-8
-      string: '{"product":{"title":"Product #4 - 923","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","created_at":"2016-09-13T19:25:59.695Z","updated_at":"2016-09-13T19:25:59.719Z","published_at":"2015-09-13T19:25:59.682Z","vendor":"Default
-        Vendor","handle":"product-4-923","options":[{"name":"foo-size-1"},{"name":"foo-size-2"},{"name":"foo-size-3"}],"variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-7/SKU-1/SKU-3/SKU-5","updated_at":"2016-09-13T19:25:59.711Z","option1":"S","option2":"S","option3":"S"}]}}'
+      string: '{"product":{"title":"Product #16 - 2521","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c/p\u003e","created_at":"2016-09-13T23:09:38.022Z","updated_at":"2016-09-13T23:09:38.065Z","published_at":"2015-09-13T23:09:38.010Z","vendor":"Default
+        Vendor","handle":"product-16-2521","options":[{"name":"foo-size-10"},{"name":"foo-size-11"},{"name":"foo-size-12"}],"variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKUS-M/SKUS-1/SKUS-2/SKUS-3","updated_at":"2016-09-13T23:09:38.062Z","option1":"S","option2":"S","option3":"S"}]}}'
     headers:
       Content-Type:
       - application/json
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 13 Sep 2016 19:26:01 GMT
+      - Tue, 13 Sep 2016 23:09:38 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -49,11 +49,11 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8435489091
+      - https://glossier-pop-staging.myshopify.com/admin/products/8437488707
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/91d135c1-6831-438a-9703-d3fceb1deb9d?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/a62d37b1-303b-4297-8840-2ba2578617a3?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 91d135c1-6831-438a-9703-d3fceb1deb9d
+      - a62d37b1-303b-4297-8840-2ba2578617a3
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -67,14 +67,14 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"product":{"id":8435489091,"title":"Product #4 - 923","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-13T15:26:00-04:00","handle":"product-4-923","updated_at":"2016-09-13T15:26:01-04:00","published_at":"2015-09-13T15:25:59-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28096698115,"product_id":8435489091,"title":"S
-        \/ S \/ S","price":"19.99","sku":"SKU-7\/SKU-1\/SKU-3\/SKU-5","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-13T15:26:00-04:00","updated_at":"2016-09-13T15:26:00-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10133051907,"product_id":8435489091,"name":"foo-size-1","position":1,"values":["S"]},{"id":10133052035,"product_id":8435489091,"name":"foo-size-2","position":2,"values":["S"]},{"id":10133052099,"product_id":8435489091,"name":"foo-size-3","position":3,"values":["S"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8437488707,"title":"Product #16 - 2521","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-13T19:09:38-04:00","handle":"product-16-2521","updated_at":"2016-09-13T19:09:38-04:00","published_at":"2015-09-13T19:09:38-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28108196547,"product_id":8437488707,"title":"S
+        \/ S \/ S","price":"19.99","sku":"SKUS-M\/SKUS-1\/SKUS-2\/SKUS-3","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-13T19:09:38-04:00","updated_at":"2016-09-13T19:09:38-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10135412931,"product_id":8437488707,"name":"foo-size-10","position":1,"values":["S"]},{"id":10135412995,"product_id":8437488707,"name":"foo-size-11","position":2,"values":["S"]},{"id":10135413059,"product_id":8437488707,"name":"foo-size-12","position":3,"values":["S"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Tue, 13 Sep 2016 19:26:01 GMT
+  recorded_at: Tue, 13 Sep 2016 23:09:38 GMT
 - request:
     method: get
-    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8435489091.json
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8437488707.json
     body:
       encoding: US-ASCII
       string: ''
@@ -93,7 +93,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 13 Sep 2016 19:28:20 GMT
+      - Tue, 13 Sep 2016 23:09:38 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -119,9 +119,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/54615073-bbc4-41b1-87c8-e819b98d62cd?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/bd62b0c1-ce02-4499-b236-e7ea42fffeba?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 54615073-bbc4-41b1-87c8-e819b98d62cd
+      - bd62b0c1-ce02-4499-b236-e7ea42fffeba
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -135,14 +135,14 @@ http_interactions:
       - nosniff
     body:
       encoding: ASCII-8BIT
-      string: '{"product":{"id":8435489091,"title":"Product #4 - 923","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-13T15:26:00-04:00","handle":"product-4-923","updated_at":"2016-09-13T15:26:01-04:00","published_at":"2015-09-13T15:25:59-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28096698115,"product_id":8435489091,"title":"S
-        \/ S \/ S","price":"19.99","sku":"SKU-7\/SKU-1\/SKU-3\/SKU-5","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-13T15:26:00-04:00","updated_at":"2016-09-13T15:26:00-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10133051907,"product_id":8435489091,"name":"foo-size-1","position":1,"values":["S"]},{"id":10133052035,"product_id":8435489091,"name":"foo-size-2","position":2,"values":["S"]},{"id":10133052099,"product_id":8435489091,"name":"foo-size-3","position":3,"values":["S"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8437488707,"title":"Product #16 - 2521","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-13T19:09:38-04:00","handle":"product-16-2521","updated_at":"2016-09-13T19:09:38-04:00","published_at":"2015-09-13T19:09:38-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28108196547,"product_id":8437488707,"title":"S
+        \/ S \/ S","price":"19.99","sku":"SKUS-M\/SKUS-1\/SKUS-2\/SKUS-3","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-13T19:09:38-04:00","updated_at":"2016-09-13T19:09:38-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10135412931,"product_id":8437488707,"name":"foo-size-10","position":1,"values":["S"]},{"id":10135412995,"product_id":8437488707,"name":"foo-size-11","position":2,"values":["S"]},{"id":10135413059,"product_id":8437488707,"name":"foo-size-12","position":3,"values":["S"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Tue, 13 Sep 2016 19:28:21 GMT
+  recorded_at: Tue, 13 Sep 2016 23:09:38 GMT
 - request:
     method: delete
-    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8435489091.json
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/8437488707.json
     body:
       encoding: US-ASCII
       string: ''
@@ -161,7 +161,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 13 Sep 2016 19:28:21 GMT
+      - Tue, 13 Sep 2016 23:09:39 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -177,9 +177,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 1/40
+      - 2/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 1/40
+      - 2/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -189,9 +189,9 @@ http_interactions:
       Location:
       - https://glossier-pop-staging.myshopify.com/admin/products
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/b5cc9fd1-00db-4bab-b419-860d8e585cd8?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/3af0f8ef-e704-4425-b89a-c2d92bb297e9?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - b5cc9fd1-00db-4bab-b419-860d8e585cd8
+      - 3af0f8ef-e704-4425-b89a-c2d92bb297e9
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -207,5 +207,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "{}"
     http_version: 
-  recorded_at: Tue, 13 Sep 2016 19:28:21 GMT
+  recorded_at: Tue, 13 Sep 2016 23:09:39 GMT
 recorded_with: VCR 2.9.3

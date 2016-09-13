@@ -1,8 +1,8 @@
 module Shopify
   class PartConverter
-    def initialize(part:, permutations:)
+    def initialize(part:, permutation:)
       @part = part
-      @permutations = permutations
+      @permutation = permutation
     end
 
     def to_hash
@@ -17,15 +17,15 @@ module Shopify
 
     private
 
+    attr_reader :part, :permutation
+
     def option_values
       container = []
-      permutations.each_with_index do |permutation, index|
-        container << { "option#{index + 1}" => permutation[:option_value_text] }
+      permutation.each_with_index do |permutation, index|
+        container << { :"option#{index + 1}" => permutation[:option_value_text] }
       end
 
       container.reduce({}, :merge)
     end
-
-    attr_reader :part, :permutations
   end
 end

@@ -2,21 +2,21 @@ module Shopify
   class PartAttributes
     include Spree::Retail::PresenterHelper
 
-    def initialize(part:, permutations:, part_converter: Shopify::PartConverter)
+    def initialize(part:, permutation:, part_converter: Shopify::PartConverter)
       @part = part
       @converter = part_converter
-      @permutations = permutations
+      @permutation = permutation
     end
 
     def attributes
-      converter.new(part: presented_part, permutations: permutations).to_hash
+      converter.new(part: presented_part, permutation: permutation).to_hash
     end
 
-    attr_reader :part, :permutations, :converter
+    attr_reader :part, :permutation, :converter
 
     def presented_part
       presented = present(part, :part)
-      presented.permutations = permutations
+      presented.permutation = permutation
       presented
     end
   end

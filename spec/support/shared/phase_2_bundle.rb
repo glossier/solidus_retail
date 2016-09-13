@@ -1,20 +1,21 @@
 RSpec.shared_context 'phase_2_bundle' do
   include_context 'spree_builders'
 
-  let(:phase_2_bundle) { build_spree_product(name: 'Phase 2', parts: [phase_2_part_1, phase_2_part_2, phase_2_part_3]) }
+  let(:phase_2_master_variant) { build_spree_variant(sku: 'PHASE2') }
+  let(:phase_2_bundle) { build_spree_product(name: 'Phase 2', master: phase_2_master_variant, parts: [phase_2_part_1, phase_2_part_2, phase_2_part_3]) }
   let(:phase_2_part_1) { build_spree_variant(sku: 'boybrow', product: phase_2_part_1_product) }
   let(:phase_2_part_2) { build_spree_variant(sku: 'GenG', product: phase_2_part_2_product) }
   let(:phase_2_part_3) { build_spree_variant(sku: 'GSC', product: phase_2_part_3_product) }
 
-  let(:phase_2_part_1_product) { build_spree_product(name: 'Boy Brow', variants: [phase_2_part_1_variant_1, phase_2_part_1_variant_2]) }
+  let(:phase_2_part_1_product) { build_spree_product(name: 'Boy Brow', master: phase_2_master_variant, variants: [phase_2_part_1_variant_1, phase_2_part_1_variant_2]) }
   let(:phase_2_part_1_variant_1) { build_spree_variant(sku: 'GBB100-SET', option_values: [phase_2_part_1_option_value_1]) }
   let(:phase_2_part_1_variant_2) { build_spree_variant(sku: 'GBB200-SET', option_values: [phase_2_part_1_option_value_2]) }
 
-  let(:phase_2_part_2_product) { build_spree_product(name: 'Generation G', variants: [phase_2_part_2_variant_1, phase_2_part_2_variant_2]) }
+  let(:phase_2_part_2_product) { build_spree_product(name: 'Generation G', master: phase_2_master_variant, variants: [phase_2_part_2_variant_1, phase_2_part_2_variant_2]) }
   let(:phase_2_part_2_variant_1) { build_spree_variant(sku: 'GML100-SET', option_values: [phase_2_part_2_option_value_1]) }
   let(:phase_2_part_2_variant_2) { build_spree_variant(sku: 'GML200-SET', option_values: [phase_2_part_2_option_value_2]) }
 
-  let(:phase_2_part_3_product) { build_spree_product(name: 'Stretch Concealer', variants: [phase_2_part_3_variant_1, phase_2_part_3_variant_2]) }
+  let(:phase_2_part_3_product) { build_spree_product(name: 'Stretch Concealer', master: phase_2_master_variant, variants: [phase_2_part_3_variant_1, phase_2_part_3_variant_2]) }
   let(:phase_2_part_3_variant_1) { build_spree_variant(sku: 'GSC100-SET', option_values: [phase_2_part_3_option_value_1]) }
   let(:phase_2_part_3_variant_2) { build_spree_variant(sku: 'GSC200-SET', option_values: [phase_2_part_3_option_value_2]) }
 

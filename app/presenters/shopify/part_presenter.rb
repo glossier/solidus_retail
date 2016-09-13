@@ -1,21 +1,21 @@
 module Shopify
   class PartPresenter < Delegator
+    attr_accessor :permutation
+
     def weight_unit
       'oz'
     end
 
     def sku
-      return model.sku if permutations.empty?
-      generate_part_sku_from(permutations)
+      return model.sku if permutation.nil?
+      generate_part_sku_from(permutation)
     end
-
-    attr_accessor :permutations
 
     private
 
-    def generate_part_sku_from(permutations)
+    def generate_part_sku_from(permutation)
       bundle_sku = bundle.sku
-      permutation_skus = permutations.map { |p| p[:sku] }.join(sku_separator)
+      permutation_skus = permutation.map { |p| p[:sku] }.join(sku_separator)
       "#{bundle_sku}#{sku_separator}#{permutation_skus}"
     end
 
