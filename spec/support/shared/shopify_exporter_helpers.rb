@@ -6,6 +6,13 @@ RSpec.shared_context 'shopify_exporter_helpers' do
     shopify_product
   end
 
+  def export_bundle!(spree_product)
+    exporter = Shopify::BundledProductExporter.new(spree_product: spree_product)
+    shopify_product = exporter.save_product_on_shopify
+
+    shopify_product
+  end
+
   def update_product!(spree_product)
     updater = Shopify::ProductUpdater.new(spree_product_id: spree_product.id)
     shopify_product = updater.save_product_on_shopify

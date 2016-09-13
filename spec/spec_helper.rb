@@ -34,6 +34,7 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/solidus_retail/factories.rb
 require 'solidus_retail/factories'
+# require 'spree_product_assembly/factories'
 require 'active_resource/base_decorator'
 
 VCR.configure do |c|

@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://1b7f63bf248831c7ae2beacf9bc30bbb:b1c915515d08e2037930a844f7436610@glossier-pop-staging.myshopify.com/admin/products/.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.0 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 12 Sep 2016 17:57:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/64fa812d-0c2c-4f8f-b30f-58cf59bc080e?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 64fa812d-0c2c-4f8f-b30f-58cf59bc080e
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"errors":"Not Found"}'
+    http_version: 
+  recorded_at: Mon, 12 Sep 2016 17:57:17 GMT
+recorded_with: VCR 2.9.3
