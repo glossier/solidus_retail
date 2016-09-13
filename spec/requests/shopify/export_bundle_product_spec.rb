@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'Export a bundled Spree product with its assembly on Shopify' do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
+  include_context 'phase_2_bundle'
 
   let(:bundle) { create(:product) }
   let!(:parts) { (1..3).map { create(:variant) } }

@@ -4,7 +4,6 @@ module Spree
       include Spree::Retail::PresenterHelper
 
       class << self
-
         def all_option_values_per_part(part)
           container = []
 
@@ -28,6 +27,10 @@ module Spree
         def all_option_values_permutation(bundle)
           initial_array, *rest_of_arrays = all_option_values_per_bundle(bundle)
           initial_array.product(*rest_of_arrays)
+        end
+
+        def all_option_types_for(bundle)
+          all_option_values_per_bundle(bundle).map{ |p| p.first[:option_type_text] }
         end
 
         private
