@@ -11,10 +11,15 @@ module Spree
     let(:provider_class) { ActiveMerchant::Billing::ShopifyGateway }
     let(:provider_instance) { double('provider', refund: true, void: true) }
 
+    subject(:gateway) do
+      described_class.create!(name: "Shopify")
+    end
+
     before do
-      subject.preferences = { api_key: ENV['SHOPIFY_API_KEY'],
+      gateway.preferences = { api_key: ENV['SHOPIFY_API_KEY'],
                               password: ENV['SHOPIFY_PASSWORD'],
                               shop_name: ENV['SHOPIFY_SHOP_NAME'] }
+
       allow(provider_class).to receive(:new).and_return(provider_instance)
     end
 
@@ -23,21 +28,33 @@ module Spree
     end
 
     context '.void' do
+      let(:payments) { double(:payments, find_by: payment) }
+      let(:payment) { double(:payment, pos_order_id: pos_order_id) }
+
+      before do
+        allow(gateway).to receive(:payments).and_return(payments)
+      end
+
       it 'calls the provider void method once' do
-        payment = double(:payment, pos_order_id: pos_order_id)
-        payments = double(:payment, find_by: payment)
-
-        allow(subject).to receive(:payments).and_return(payments)
-
         expect(provider_instance).to receive(:void).with('0xDEADBEEF', order_id: '0xBAADF00D')
 
         void!
       end
 
+      context "without a matching payment" do
+        let(:payment) { nil }
+
+        it 'raises an exception' do
+          cause = -> { void! }
+
+          expect(&cause).to raise_error(Gateway::ShopifyGateway::PaymentNotFoundError)
+        end
+      end
+
       private
 
       def void!
-        subject.void(transaction_id, gateway_options)
+        gateway.void(transaction_id, gateway_options)
       end
     end
 
@@ -49,7 +66,7 @@ module Spree
       private
 
       def cancel!
-        subject.cancel(transaction_id)
+        gateway.cancel(transaction_id)
       end
     end
 
@@ -68,7 +85,7 @@ module Spree
       private
 
       def refund!
-        subject.credit(amount_in_cents, transaction_id, originator: refund)
+        gateway.credit(amount_in_cents, transaction_id, originator: refund)
       end
     end
   end
