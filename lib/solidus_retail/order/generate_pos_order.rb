@@ -1,7 +1,7 @@
 module SolidusRetail
-  module Orders
+  module Order
     class GeneratePosOrder
-      GENERIC_EMAIL = Spree::Store.mail_from_address || ''
+      GENERIC_EMAIL = ::Spree::Store.default.mail_from_address || ''
 
       def initialize(order)
         @order = order
