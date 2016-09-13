@@ -15,8 +15,8 @@ module ActiveMerchant #:nodoc:
         @password = options[:password]
         @shop_name = options[:shop_name]
 
-        @voider_class = options[:voider] || default_voider
         @refunder_class = options[:refunder] || default_refunder
+        @transaction_repository = options[:transaction_repository] || default_transaction_repository
 
         init_shopify_api!
 
@@ -24,19 +24,30 @@ module ActiveMerchant #:nodoc:
       end
 
       def void(transaction_id, options = {})
-        order_id = options[:order_id]
-        voider = voider_class.new(transaction_id, order_id)
-        return_response(voider.perform)
+        transaction = find_transaction(transaction_id, options[:order_id])
+
+        return_response create_refund(transaction.amount, transaction)
       end
 
       def refund(money, transaction_id, options = {})
-        refunder = refunder_class.new(credited_money: money, transaction_id: transaction_id, **options)
-        return_response(refunder.perform)
+        transaction = find_transaction(transaction_id, options[:order_id])
+
+        return_response create_refund(money, transaction)
       end
 
       private
 
-      attr_reader :api_key, :password, :shop_name, :voider_class, :refunder_class
+      attr_reader :api_key, :password, :shop_name, :refunder_class, :transaction_repository
+
+      def create_refund(money, transaction)
+        refunder_class.new(credited_money: money,
+                           transaction: transaction).perform
+      end
+
+      def find_transaction(transaction_id, order_id)
+        transaction_repository.find(transaction_id,
+                                    params: { order_id: order_id })
+      end
 
       def init_shopify_api!
         ShopifyAPI::Base.site = shop_url
@@ -46,12 +57,12 @@ module ActiveMerchant #:nodoc:
         "https://#{api_key}:#{password}@#{shop_name}"
       end
 
-      def default_voider
-        Spree::Retail::Shopify::Voider
-      end
-
       def default_refunder
         Spree::Retail::Shopify::Refunder
+      end
+
+      def default_transaction_repository
+        ShopifyAPI::Transaction
       end
 
       def return_response(result)

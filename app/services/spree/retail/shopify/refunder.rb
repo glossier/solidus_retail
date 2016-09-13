@@ -1,14 +1,14 @@
 module Spree::Retail
   module Shopify
     class Refunder
-      def initialize(credited_money:, transaction_id:, transaction_interface: nil, refunder_interface: nil, can_issue_refund_policy_klass: nil, **options)
-        @refund_reason = options[:reason]
-        @order_id = options[:order_id]
+      def initialize(credited_money:, transaction:, refunder_interface: nil, can_issue_refund_policy_klass: nil, **options)
         @credited_money = BigDecimal.new(credited_money)
-        @transaction_interface = transaction_interface || default_transaction_interface
+        @transaction = transaction
+        @refund_reason = options[:reason]
+        @order_id = transaction.order_id
+
         @refunder_interface = refunder_interface || default_refunder_interface
-        @transaction = @transaction_interface.find(transaction_id, params: { order_id: order_id })
-        @can_issue_refund_policy_klass = can_issue_refund_policy_klass || Spree::Retail::Shopify::CanIssueRefundPolicy
+        @can_issue_refund_policy_klass = can_issue_refund_policy_klass || default_can_issue_refund_policy_klass
       end
 
       def perform
@@ -52,8 +52,8 @@ module Spree::Retail
         ShopifyAPI::Refund
       end
 
-      def default_transaction_interface
-        ShopifyAPI::Transaction
+      def default_can_issue_refund_policy_klass
+        Spree::Retail::Shopify::CanIssueRefundPolicy
       end
     end
   end

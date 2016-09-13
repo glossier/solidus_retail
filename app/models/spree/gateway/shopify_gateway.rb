@@ -2,6 +2,8 @@ require 'active_merchant/billing/gateways/shopify'
 
 module Spree
   class Gateway::ShopifyGateway < Gateway
+    class PaymentNotFoundError < ActiveRecord::RecordNotFound; end
+
     preference :api_key, :string
     preference :password, :string
     preference :shop_name, :string
@@ -20,9 +22,13 @@ module Spree
       provider.refund(money, transaction_id, options)
     end
 
-    def void(transaction_id, gateway_options)
-      pos_order_id = gateway_options[:originator].pos_order_id
-      provider.void(transaction_id, order_id: pos_order_id)
+    def void(transaction_id, _)
+      unless payment = find_payment_for_transaction_id(transaction_id)
+        raise PaymentNotFoundError,
+          "A payment matching the transaction ID ##{transaction_id} could not be found."
+      end
+
+      provider.void(transaction_id, order_id: payment.pos_order_id)
     end
 
     def cancel(_transaction_id)
@@ -43,6 +49,12 @@ module Spree
 
     def create_profile(_payment)
       raise NotImplementedError
+    end
+
+    private
+
+    def find_payment_for_transaction_id(id)
+      payments.find_by(response_code: id)
     end
   end
 end
