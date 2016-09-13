@@ -36,12 +36,6 @@ require 'spree/testing_support/url_helpers'
 require 'solidus_retail/factories'
 require 'active_resource/base_decorator'
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/cassettes'
-  c.hook_into :webmock
-  c.configure_rspec_metadata!
-end
-
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
