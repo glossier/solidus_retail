@@ -12,17 +12,17 @@ module Spree::Retail::Shopify
     let(:transaction_prefix_options) { double(:transaction_prefix_options) }
 
     # Injected dependencies
-    let(:can_issue_refund_policy_klass) { double(:can_issue_refund_policy_klass, new: can_issue_refund_policy) }
-    let(:can_issue_refund_policy) { double(:can_issue_refund_policy) }
-    let(:refunder_interface) { double(:refunder_interface) }
+    let(:refund_policy_klass) { double(:refund_policy_klass, new: refund_policy) }
+    let(:refund_policy) { double(:refund_policy) }
+    let(:refund_factory) { double(:refund_factory) }
     let(:transaction_instance) { double(:transaction_instance, amount: transaction_amount, id: transaction_id, order_id: order_id) }
 
     subject(:refunder) do
       described_class.new(credited_money: credited_money_in_cents,
                           transaction: transaction_instance,
                           reason: refund_reason,
-                          refunder_interface: refunder_interface,
-                          can_issue_refund_policy_klass: can_issue_refund_policy_klass)
+                          refund_factory: refund_factory,
+                          refund_policy_klass: refund_policy_klass)
     end
 
     context '.initialize' do
@@ -34,11 +34,11 @@ module Spree::Retail::Shopify
     context '.perform' do
       context "when the refund can be issued" do
         before do
-          allow(can_issue_refund_policy).to receive(:allowed?).and_return(true)
+          allow(refund_policy).to receive(:allowed?).and_return(true)
         end
 
         it 'performs a refund in shopify' do
-          expect(refunder_interface).to receive(:create) do |args|
+          expect(refund_factory).to receive(:create) do |args|
             expect(args[:order_id]).to eq order_id
             expect(args[:note]).to eq refund_reason
 
@@ -57,7 +57,7 @@ module Spree::Retail::Shopify
         let(:mock_error) { MockError.new }
 
         before do
-          allow(can_issue_refund_policy).to receive(:allowed?).and_raise(mock_error)
+          allow(refund_policy).to receive(:allowed?).and_raise(mock_error)
         end
 
         it 'raises an error' do

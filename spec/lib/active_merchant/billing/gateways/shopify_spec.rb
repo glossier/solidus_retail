@@ -55,7 +55,7 @@ module ActiveMerchant::Billing
       end
 
       context 'when refund was not successful' do
-        let(:pos_refund_errors) { double('errors', messages: ['I am ERROR']) }
+        let(:pos_refund_errors) { double('errors', empty?: false, messages: ['I am ERROR']) }
 
         it 'returns an ActiveMerchant unsuccessful response' do
           result = refund!
@@ -90,7 +90,7 @@ module ActiveMerchant::Billing
       end
 
       context 'when refund was not successful' do
-        let(:pos_refund_errors) { double(:errors, messages: ['I am ERROR']) }
+        let(:pos_refund_errors) { double(:errors, empty?: false, messages: ['I am ERROR']) }
 
         it 'returns an ActiveMerchant unsuccessful response' do
           result = void!

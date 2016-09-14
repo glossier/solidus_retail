@@ -24,7 +24,9 @@ module Spree
     end
 
     describe "#payment_profiles_supported?" do
-      it { is_expected.to_not be_payment_profiles_supported }
+      it "does not support payment profiles" do
+        expect(gateway).to_not be_payment_profiles_supported
+      end
     end
 
     context '.void' do

@@ -3,7 +3,7 @@ require 'shopify_api'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class ShopifyGateway < Gateway
-      self.homepage_url = 'https://shopify.ca/'
+      self.homepage_url = 'https://shopify.com/'
       self.display_name = 'Shopify'
 
       def initialize(options = {})
@@ -26,13 +26,13 @@ module ActiveMerchant #:nodoc:
       def void(transaction_id, options = {})
         transaction = find_transaction(transaction_id, options[:order_id])
 
-        return_response create_refund(transaction.amount, transaction)
+        build_billing_response create_refund(transaction.amount, transaction)
       end
 
       def refund(money, transaction_id, options = {})
         transaction = find_transaction(transaction_id, options[:order_id])
 
-        return_response create_refund(money, transaction)
+        build_billing_response create_refund(money, transaction)
       end
 
       private
@@ -65,13 +65,11 @@ module ActiveMerchant #:nodoc:
         ShopifyAPI::Transaction
       end
 
-      def return_response(result)
-        success = result.errors == []
-        if success || result.errors.messages.empty?
-          ActiveMerchant::Billing::Response.new(true, nil)
-        else
-          ActiveMerchant::Billing::Response.new(success, result.errors.messages)
-        end
+      def build_billing_response(result)
+        success  = result.errors.empty?
+        messages = success ? nil : result.errors.messages
+
+        ActiveMerchant::Billing::Response.new(success, messages)
       end
     end
   end

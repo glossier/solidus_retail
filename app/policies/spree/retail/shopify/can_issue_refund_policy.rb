@@ -5,7 +5,8 @@ module Spree
     module Shopify
       class CanIssueRefundPolicy
         def initialize(transaction:, amount_to_credit:)
-          @amount_to_credit, @transaction = amount_to_credit, transaction
+          @amount_to_credit = amount_to_credit
+          @transaction = transaction
         end
 
         def allowed?
