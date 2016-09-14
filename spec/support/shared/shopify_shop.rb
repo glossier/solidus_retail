@@ -7,14 +7,4 @@ RSpec.shared_context 'shopify_shop' do
     gateway.set_preference(:shop_name, ENV.fetch('SHOPIFY_SHOP_NAME'))
     gateway
   end
-
-  def mock_request(endpoint, extension)
-    file = endpoint.split('/')[0]
-    url = "https://this-is-my-test-shop.myshopify.com/admin/#{endpoint}.#{extension}"
-    json = File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}")
-    stub_request(:get, url)
-      .with(headers: { 'Content-Type' => "text/#{extension}",
-                       'Content-Length' => 1 })
-      .to_return(status: 200, body: json.read)
-  end
 end
