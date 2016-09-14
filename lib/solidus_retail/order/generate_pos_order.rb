@@ -8,7 +8,7 @@ module SolidusRetail
       end
 
       def process
-        if !Rails.env.development? && Spree::Order.complete.where('pos_order_number = ?', @order.name.to_s).count > 0
+        if deployed_environment? && Spree::Order.complete.where('pos_order_number = ?', @order.name.to_s).count > 0
           puts "skipping #{@order.order_number} - already imported"
           return
         end
@@ -51,6 +51,7 @@ module SolidusRetail
             line_item = Spree::LineItem.new(quantity: item.quantity)
             line_item.variant = Spree::Variant.find_by(sku: item.sku)
             line_item.price = item.price
+            line_item.currency = pos_order.currency
 
             order.line_items << line_item
             line_item.order = order
@@ -143,6 +144,10 @@ module SolidusRetail
 
       def has_customer?
         @order.respond_to? :customer
+      end
+
+      def deployed_environment?
+        !Rails.env.development? && !Rails.env.test?
       end
     end
   end
