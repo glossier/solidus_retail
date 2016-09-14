@@ -9,12 +9,12 @@ RSpec.shared_context 'shopify_shop' do
   end
 
   def mock_request(endpoint, extension)
-    url = "https://this-is-my-test-shop.myshopify.com/admin/#{endpoint}#{extension}"
-    example = File.open("#{File.dirname(__FILE__)}/../data/#{endpoint}.#{extension}")
-    body = JSON.parse(example.read)
+    file = endpoint.split('/')[0]
+    url = "https://this-is-my-test-shop.myshopify.com/admin/#{endpoint}.#{extension}"
+    json = File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}")
     stub_request(:get, url)
-      .with(body: body,
-            headers: { 'Content-Type' => "text/#{extension}",
+      .with(headers: { 'Content-Type' => "text/#{extension}",
                        'Content-Length' => 1 })
+      .to_return(status: 200, body: json.read)
   end
 end
