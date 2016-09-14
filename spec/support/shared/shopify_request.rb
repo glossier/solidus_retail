@@ -19,7 +19,7 @@ RSpec.shared_context 'shopify_request' do
 
   def mock_request(endpoint, extension)
     file = endpoint.split('/')[0]
-    url = "#{ShopifyAPI::Base.site}/#{endpoint}.#{extension}"
+    url = "#{ShopifyAPI::Base.site}#{endpoint}.#{extension}"
     json = File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}")
     stub_request(:get, url)
       .with(headers: { 'Accept' => "application/#{extension}",
