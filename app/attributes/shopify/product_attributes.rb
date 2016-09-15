@@ -24,10 +24,6 @@ module Shopify
       attributes.merge(attributes_for_images)
     end
 
-    def attributes_with_variants_and_images
-      attributes_with_variants.merge(attributes_with_images)
-    end
-
     private
 
     attr_reader :spree_product, :converter,
