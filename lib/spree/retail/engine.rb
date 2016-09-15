@@ -7,6 +7,9 @@ module Spree
       isolate_namespace Spree
       engine_name 'solidus_retail'
 
+      require 'dotenv-rails'
+      Dotenv.load
+
       # use rspec for tests
       config.generators do |g|
         g.test_framework :rspec
