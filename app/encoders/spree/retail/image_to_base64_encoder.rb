@@ -7,7 +7,7 @@ module Spree
       end
 
       def encode
-        return nil unless image.attachment.exists?
+        return nil if image.nil? || image.attachment.nil?
 
         copy_image_locally!(image)
         encode_image(local_destination_path_for(image))
