@@ -16,3 +16,4 @@ spec/dummy
 .env
 .phantom-version
 .node-version
+.envrc
