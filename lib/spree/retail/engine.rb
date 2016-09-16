@@ -13,7 +13,7 @@ module Spree
       end
 
       def self.activate
-        Dir.glob(root.join('app/**/*_decorator*.rb')) do |c|
+        Dir.glob(root.join('{app,lib}/**/*_decorator*.rb')) do |c|
           Rails.configuration.cache_classes ? require(c) : load(c)
         end
       end

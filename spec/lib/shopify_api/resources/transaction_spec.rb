@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'shopify_api/resources/transaction_decorator'
 
 module ShopifyAPI
   RSpec.describe Transaction do
