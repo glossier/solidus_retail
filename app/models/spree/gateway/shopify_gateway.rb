@@ -44,11 +44,15 @@ module Spree
     end
 
     def capture(_money, _response_code, _gateway_options)
-      raise NotImplementedError
+      ActiveMerchant::Billing::Response.new(true, "", {}, {})
     end
 
     def create_profile(_payment)
       raise NotImplementedError
+    end
+
+    def source_required?
+      false
     end
 
     private
