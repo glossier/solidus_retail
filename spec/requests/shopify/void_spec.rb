@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'A voided payment in Solidus' do
+describe 'A voided payment in Solidus', :vcr do
   include_context 'shopify_shop'
   let(:refund_reason) { create(:refund_reason) }
 
