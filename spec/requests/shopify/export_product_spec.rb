@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'active_resource/base_decorator'
 
-describe 'Export a Spree Product to Shopify' do
+describe 'Export a Spree Product to Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 
