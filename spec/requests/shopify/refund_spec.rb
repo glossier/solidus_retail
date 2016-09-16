@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Refund a Shopify order on Glossier' do
+describe 'Refund a Shopify order on Glossier', :vcr do
   include_context 'shopify_shop'
   let(:refund_reason) { create(:refund_reason) }
 
