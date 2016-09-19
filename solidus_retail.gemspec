@@ -17,15 +17,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'shopify_api', '~> 4.0'
   s.add_dependency 'redcarpet'
-
   s.add_dependency 'solidus_core', ['< 1.4', '>= 1.3.0.alpha']
   s.add_dependency 'solidus_gateway', '< 1.4'
 
   s.add_development_dependency 'capybara', '~> 2.7'
   s.add_development_dependency 'dotenv-rails'
+  s.add_development_dependency 'poltergeist', '~> 1.10'
   s.add_development_dependency 'database_cleaner', '~> 1.5'
   s.add_development_dependency 'factory_girl', '~> 4.7'
-  s.add_development_dependency 'poltergeist', '~> 1.10'
   s.add_development_dependency 'rspec-rails', '~> 3.5'
   s.add_development_dependency 'rubocop', '~> 0.38'
   s.add_development_dependency 'rubocop-rspec', '~> 1.6'

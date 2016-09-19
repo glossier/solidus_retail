@@ -2,6 +2,7 @@ module ActiveResource
   module BaseDecorator
     module ClassMethods
       def find_by(*arguments)
+        return nil if arguments.detect { |a| a[:id].nil? }
         values = where(*arguments)
         values.any? ? values.first : nil
       end
