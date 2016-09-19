@@ -23,4 +23,8 @@ RSpec.shared_context 'shopify_helpers' do
   def cleanup_shopify_variant!(shopify_variant)
     shopify_variant.destroy
   end
+
+  def cleanup_shopify_product!(product)
+    product.destroy
+  end
 end
