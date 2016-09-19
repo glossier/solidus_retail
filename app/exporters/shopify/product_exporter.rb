@@ -1,12 +1,9 @@
 module Shopify
   class ProductExporter
-    def initialize(spree_product:,
-                   product_api: ShopifyAPI::Product,
-                   product_attributes: Shopify::ProductAttributes)
-
+    def initialize(spree_product:, product_api: ShopifyAPI::Product, attributor: Shopify::ProductAttributes)
       @spree_product = spree_product
       @product_api = product_api
-      @product_attributes = product_attributes
+      @attributor = attributor
     end
 
     def save_product_on_shopify
@@ -20,8 +17,7 @@ module Shopify
 
     private
 
-    attr_accessor :spree_product, :product_api,
-                  :product_attributes
+    attr_accessor :spree_product, :product_api, :attributor
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
@@ -33,7 +29,7 @@ module Shopify
     end
 
     def product_attributes_with_variants
-      Shopify::ProductAttributes.new(spree_product).attributes_with_variants
+      attributor.new(spree_product).attributes_with_variants
     end
   end
 end

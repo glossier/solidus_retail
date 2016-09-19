@@ -1,10 +1,9 @@
 module Shopify
   class VariantUpdater
-    def initialize(spree_variant_id:, variant_klass: Spree::Variant,
-                   variant_api: ShopifyAPI::Variant)
-
+    def initialize(spree_variant_id:, variant_klass: Spree::Variant, variant_api: ShopifyAPI::Variant, attributor: Shopify::VariantAttributes)
       @spree_variant = variant_klass.find(spree_variant_id)
       @variant_api = variant_api
+      @attributor = attributor
     end
 
     def perform
@@ -17,14 +16,14 @@ module Shopify
 
     private
 
-    attr_accessor :spree_variant, :variant_api
+    attr_accessor :spree_variant, :variant_api, :attributor
 
     def find_shopify_variant_for(spree_variant)
       variant_api.find_or_initialize_by(id: spree_variant.pos_variant_id)
     end
 
     def variant_attributes
-      Shopify::VariantAttributes.new(spree_variant).attributes
+      attributor.new(spree_variant).attributes
     end
   end
 end
