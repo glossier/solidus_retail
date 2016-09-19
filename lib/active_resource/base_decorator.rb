@@ -1,14 +1,15 @@
 module ActiveResource
   module BaseDecorator
     module ClassMethods
-      def find_by(*arguments)
-        return nil if arguments.detect { |a| a[:id].nil? }
-        values = where(*arguments)
-        values.any? ? values.first : nil
+      def find_by_id(id, options = {})
+        find(id, options)
+      rescue ActiveResource::ResourceNotFound
+        return nil
       end
 
-      def find_or_initialize_by(arguments, &block)
-        find_by(arguments) || new(arguments.except(:id), &block)
+      def find_or_initialize_by_id(id, options = {})
+        attributes = options.key?(:params) ? options[:params] : options
+        find_by_id(id, options) || new(attributes)
       end
     end
 

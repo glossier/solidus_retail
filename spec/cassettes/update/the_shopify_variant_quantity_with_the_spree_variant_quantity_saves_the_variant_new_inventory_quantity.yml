@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:09 GMT
+      - Mon, 19 Sep 2016 22:04:16 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -39,9 +39,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 9/40
+      - 1/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 9/40
+      - 1/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -49,9 +49,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/2bb1d9c7-4a06-4f58-b284-3002646211a6?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/28a21210-bf9a-4e7b-a4ba-2eaed982eff6?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
       X-Request-Id:
-      - 2bb1d9c7-4a06-4f58-b284-3002646211a6
+      - 28a21210-bf9a-4e7b-a4ba-2eaed982eff6
       X-Dc:
       - ash
       X-Download-Options:
@@ -64,15 +64,15 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"errors":"Not Found"}'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:09 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:16 GMT
 - request:
     method: post
     uri: https://glossier-pop-staging.myshopify.com/admin/products.json
     body:
       encoding: UTF-8
       string: '{"product":{"title":"Product Name","body_html":"\u003cp\u003eAs seen
-        on TV!\u003c/p\u003e","created_at":"2016-09-19T22:03:09.687Z","updated_at":"2016-09-19T22:03:09.778Z","published_at":"2015-09-19T22:03:09.652Z","vendor":"Default
-        Vendor","handle":"product-name","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-5","inventory_management":"shopify","updated_at":"2016-09-19T22:03:09.707Z","option1":"SKU-5"},{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"susan","inventory_management":"shopify","updated_at":"2016-09-19T22:03:09.770Z","option1":"susan"}]}}'
+        on TV!\u003c/p\u003e","created_at":"2016-09-19T22:04:15.776Z","updated_at":"2016-09-19T22:04:15.926Z","published_at":"2015-09-19T22:04:15.064Z","vendor":"Default
+        Vendor","handle":"product-name","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-1","inventory_management":"shopify","updated_at":"2016-09-19T22:04:15.823Z","option1":"SKU-1"},{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"susan","inventory_management":"shopify","updated_at":"2016-09-19T22:04:15.915Z","option1":"susan"}]}}'
     headers:
       Authorization:
       - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
@@ -92,7 +92,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:10 GMT
+      - Mon, 19 Sep 2016 22:04:16 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -106,9 +106,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 10/40
+      - 2/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 10/40
+      - 2/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -116,11 +116,11 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8519113923
+      - https://glossier-pop-staging.myshopify.com/admin/products/8519135811
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/d5413be5-1365-4c12-b6a6-af1288a7dad0?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/51a1e03d-aefb-44f7-b58d-02553425a30a?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - d5413be5-1365-4c12-b6a6-af1288a7dad0
+      - 51a1e03d-aefb-44f7-b58d-02553425a30a
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -134,13 +134,13 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"product":{"id":8519113923,"title":"Product Name","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-19T18:03:10-04:00","handle":"product-name-1","updated_at":"2016-09-19T18:03:10-04:00","published_at":"2015-09-19T18:03:09-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28426470211,"product_id":8519113923,"title":"SKU-5","price":"19.99","sku":"SKU-5","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-5","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:10-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true},{"id":28426470275,"product_id":8519113923,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:10-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10231018371,"product_id":8519113923,"name":"Title","position":1,"values":["SKU-5","susan"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8519135811,"title":"Product Name","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-19T18:04:16-04:00","handle":"product-name-1","updated_at":"2016-09-19T18:04:16-04:00","published_at":"2015-09-19T18:04:15-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28426517507,"product_id":8519135811,"title":"SKU-1","price":"19.99","sku":"SKU-1","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-1","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:16-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true},{"id":28426517571,"product_id":8519135811,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:16-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10231040771,"product_id":8519135811,"name":"Title","position":1,"values":["SKU-1","susan"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:10 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:16 GMT
 - request:
     method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519113923/variants/28426470275.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519135811/variants/28426517571.json
     body:
       encoding: US-ASCII
       string: ''
@@ -161,7 +161,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:11 GMT
+      - Mon, 19 Sep 2016 22:04:17 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -177,9 +177,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 2/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 2/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -187,9 +187,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/f569fac5-293c-4f50-b494-bfccbd4971c6?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproduct_variants&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/03dd78e8-e3ee-4cf9-bd60-5a26bb244b94?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproduct_variants&source%5Bsection%5D=admin
       X-Request-Id:
-      - f569fac5-293c-4f50-b494-bfccbd4971c6
+      - 03dd78e8-e3ee-4cf9-bd60-5a26bb244b94
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -203,15 +203,15 @@ http_interactions:
       - nosniff
     body:
       encoding: ASCII-8BIT
-      string: '{"variant":{"id":28426470275,"product_id":8519113923,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:10-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
+      string: '{"variant":{"id":28426517571,"product_id":8519135811,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:16-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:11 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:17 GMT
 - request:
     method: put
-    uri: https://glossier-pop-staging.myshopify.com/admin/variants/28426470275.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519135811/variants/28426517571.json
     body:
       encoding: UTF-8
-      string: '{"variant":{"id":28426470275,"title":"susan","price":"19.99","sku":"new_sku","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"new_sku","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T22:03:10.745Z","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":"0.0","weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
+      string: '{"variant":{"id":28426517571,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:16-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":10,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
     headers:
       Authorization:
       - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
@@ -231,7 +231,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:12 GMT
+      - Mon, 19 Sep 2016 22:04:17 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -247,9 +247,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 3/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 3/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -257,11 +257,11 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8519113923/variants/28426470275
+      - https://glossier-pop-staging.myshopify.com/admin/products/8519135811/variants/28426517571
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/3dbc48fc-7edc-4171-9056-e0b35bc71973?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproduct_variants&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/c0a4b2a6-5c96-4605-937f-69ffa7a5c8f9?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproduct_variants&source%5Bsection%5D=admin
       X-Request-Id:
-      - 3dbc48fc-7edc-4171-9056-e0b35bc71973
+      - c0a4b2a6-5c96-4605-937f-69ffa7a5c8f9
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -275,12 +275,12 @@ http_interactions:
       - nosniff
     body:
       encoding: ASCII-8BIT
-      string: '{"variant":{"id":28426470275,"product_id":8519113923,"title":"new_sku","price":"19.99","sku":"new_sku","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"new_sku","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:12-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}}'
+      string: '{"variant":{"id":28426517571,"product_id":8519135811,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:17-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":10,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":10,"requires_shipping":true}}'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:12 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:17 GMT
 - request:
     method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519113923.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519135811.json
     body:
       encoding: US-ASCII
       string: ''
@@ -301,7 +301,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:12 GMT
+      - Mon, 19 Sep 2016 22:04:17 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -317,9 +317,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 3/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 8/40
+      - 3/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -327,9 +327,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/ebb5f4f2-b3de-4056-aed2-ff84c2dc6e50?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/e3223803-f41b-4561-8574-34e3393754b8?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - ebb5f4f2-b3de-4056-aed2-ff84c2dc6e50
+      - e3223803-f41b-4561-8574-34e3393754b8
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -343,13 +343,13 @@ http_interactions:
       - nosniff
     body:
       encoding: ASCII-8BIT
-      string: '{"product":{"id":8519113923,"title":"Product Name","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-19T18:03:10-04:00","handle":"product-name-1","updated_at":"2016-09-19T18:03:12-04:00","published_at":"2015-09-19T18:03:09-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28426470211,"product_id":8519113923,"title":"SKU-5","price":"19.99","sku":"SKU-5","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-5","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:10-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true},{"id":28426470275,"product_id":8519113923,"title":"new_sku","price":"19.99","sku":"new_sku","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"new_sku","option2":null,"option3":null,"created_at":"2016-09-19T18:03:10-04:00","updated_at":"2016-09-19T18:03:12-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10231018371,"product_id":8519113923,"name":"Title","position":1,"values":["SKU-5","new_sku"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8519135811,"title":"Product Name","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-19T18:04:16-04:00","handle":"product-name-1","updated_at":"2016-09-19T18:04:17-04:00","published_at":"2015-09-19T18:04:15-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28426517507,"product_id":8519135811,"title":"SKU-1","price":"19.99","sku":"SKU-1","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-1","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:16-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true},{"id":28426517571,"product_id":8519135811,"title":"susan","price":"19.99","sku":"susan","position":2,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"susan","option2":null,"option3":null,"created_at":"2016-09-19T18:04:16-04:00","updated_at":"2016-09-19T18:04:17-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":10,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":10,"requires_shipping":true}],"options":[{"id":10231040771,"product_id":8519135811,"name":"Title","position":1,"values":["SKU-1","susan"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:12 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:17 GMT
 - request:
     method: delete
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519113923.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8519135811.json
     body:
       encoding: US-ASCII
       string: ''
@@ -370,7 +370,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 19 Sep 2016 22:03:12 GMT
+      - Mon, 19 Sep 2016 22:04:17 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -386,9 +386,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 9/40
+      - 4/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 9/40
+      - 4/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -398,9 +398,9 @@ http_interactions:
       Location:
       - https://glossier-pop-staging.myshopify.com/admin/products
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/7c3a8100-9ac1-4959-b281-c8a23daa0917?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/50ac23b5-8ef9-4b4a-80fe-7bd9c3d5f8ff?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 7c3a8100-9ac1-4959-b281-c8a23daa0917
+      - 50ac23b5-8ef9-4b4a-80fe-7bd9c3d5f8ff
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -416,5 +416,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "{}"
     http_version: 
-  recorded_at: Mon, 19 Sep 2016 22:03:12 GMT
+  recorded_at: Mon, 19 Sep 2016 22:04:17 GMT
 recorded_with: VCR 3.0.3

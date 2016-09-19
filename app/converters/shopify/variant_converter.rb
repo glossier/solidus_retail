@@ -11,6 +11,7 @@ module Shopify
         weight_unit: variant.weight_unit,
         price: variant.price,
         sku: variant.sku,
+        inventory_management: 'shopify',
         updated_at: variant.updated_at
       }.merge(variant_uniqueness_constraint).merge(variant_product_id)
     end

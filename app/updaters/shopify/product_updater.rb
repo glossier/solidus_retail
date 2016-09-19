@@ -27,7 +27,7 @@ module Shopify
     attr_accessor :spree_product, :product_api, :product_exporter
 
     def find_shopify_product_for(spree_product)
-      product_api.find_or_initialize_by(id: spree_product.pos_product_id)
+      product_api.find_or_initialize_by_id(spree_product.pos_product_id)
     end
 
     # FIXME: refactor this
