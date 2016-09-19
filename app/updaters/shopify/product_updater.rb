@@ -14,7 +14,7 @@ module Shopify
 
       if shopify_product.persisted?
         shopify_product.update_attributes(product_attributes)
-        save_pos_product_id(spree_product, shopify_product)
+        Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
       else
         shopify_product = product_exporter.new(spree_product: spree_product).save_product_on_shopify
       end
@@ -28,12 +28,6 @@ module Shopify
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
-    end
-
-    # FIXME: refactor this
-    def save_pos_product_id(product, shopify_product)
-      product.pos_product_id = shopify_product.id
-      product.save
     end
 
     def product_attributes

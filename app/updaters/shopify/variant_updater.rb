@@ -10,7 +10,7 @@ module Shopify
     def perform
       shopify_variant = find_shopify_variant_for(spree_variant)
       shopify_variant.update_attributes(variant_attributes)
-      save_pos_variant_id(spree_variant, shopify_variant)
+      Shopify::AssociationSaver.save_pos_variant_id(spree_variant, shopify_variant)
 
       shopify_variant
     end
@@ -21,12 +21,6 @@ module Shopify
 
     def find_shopify_variant_for(spree_variant)
       variant_api.find_or_initialize_by(id: spree_variant.pos_variant_id)
-    end
-
-    # FIXME: refactor this
-    def save_pos_variant_id(variant, shopify_variant)
-      variant.pos_variant_id = shopify_variant.id
-      variant.save
     end
 
     def variant_attributes
