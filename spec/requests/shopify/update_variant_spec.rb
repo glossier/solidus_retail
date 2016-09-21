@@ -12,8 +12,6 @@ describe 'Update a Spree Variant to Shopify' do
   end
 
   after do
-    # This will auto-destroy the variants, due to how the
-    # Shopify associations work.
     cleanup_shopify_product_from_spree!(spree_product)
   end
 

@@ -9,6 +9,7 @@ RSpec.shared_context 'shopify_helpers' do
     ShopifyAPI::Variant.find(spree_variant.pos_variant_id)
   end
 
+  # This will auto-destroy the variants, due to the shopify associations.
   def cleanup_shopify_product_from_spree!(spree_product)
     spree_product.reload
     find_shopify_product(spree_product).destroy
@@ -25,5 +26,9 @@ RSpec.shared_context 'shopify_helpers' do
 
   def cleanup_shopify_variant!(shopify_variant)
     shopify_variant.destroy
+  end
+
+  def cleanup_shopify_product!(product)
+    product.destroy
   end
 end
