@@ -9,7 +9,12 @@ module Shopify
 
     def perform
       shopify_variant = find_shopify_variant_for(spree_variant)
-      shopify_variant.update_attributes(variant_attributes)
+      if shopify_variant.persisted?
+        shopify_variant.update_attributes(variant_attributes)
+      else
+        shopify_variant.attributes = variant_attributes
+        shopify_variant.save
+      end
       save_pos_variant_id(spree_variant, shopify_variant)
 
       shopify_variant
@@ -20,7 +25,7 @@ module Shopify
     attr_accessor :spree_variant, :variant_api
 
     def find_shopify_variant_for(spree_variant)
-      variant_api.find_or_initialize_by(id: spree_variant.pos_variant_id)
+      variant_api.find_or_initialize_by_id(spree_variant.pos_variant_id, params: { product_id: spree_variant.product.pos_product_id })
     end
 
     # FIXME: refactor this

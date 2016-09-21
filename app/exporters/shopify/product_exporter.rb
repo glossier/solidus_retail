@@ -39,7 +39,7 @@ module Shopify
     end
 
     def find_shopify_product_for(spree_product)
-      product_api.find_or_initialize_by(id: spree_product.pos_product_id)
+      product_api.find_or_initialize_by_id(spree_product.pos_product_id)
     end
 
     def save_associations_for(spree_product, shopify_product)
