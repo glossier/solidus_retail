@@ -1,5 +1,4 @@
 RSpec.shared_context 'spree_builders' do
-  # TODO: This starts already to be out of hand. Think about fixing this
   def build_spree_product(id: 1, name: 'name', description: 'description',
                           master: build_spree_variant,
                           title: 'title',

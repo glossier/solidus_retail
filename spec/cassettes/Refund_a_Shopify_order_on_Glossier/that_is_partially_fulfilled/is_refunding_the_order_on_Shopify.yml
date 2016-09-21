@@ -1,0 +1,511 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders.json
+    body:
+      encoding: UTF-8
+      string: '{"order":{"email":"cab@godynamo.com","test":true,"fulfillment_status":"fulfilled","line_items":[{"variant_id":"447654529","quantity":1,"name":"test","price":100,"title":"title"}],"customer":{"first_name":"Paul","last_name":"Norman","email":"paul.norman@example.com"},"billing_address":{"first_name":"John","last_name":"Smith","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","province":"Ontario","country":"Canada","zip":"K2P
+        1L4"},"shipping_address":{"first_name":"John","last_name":"Smith","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","province":"Ontario","country":"Canada","zip":"K2P
+        1L4"},"transactions":[{"kind":"capture","status":"success","amount":100}],"financial_status":"paid"}}'
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - https://glossier-pop-staging.myshopify.com/admin/orders/3782639235
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/240883ad-5599-47db-aa3d-b0e5c92d0eb3?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Forders&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 240883ad-5599-47db-aa3d-b0e5c92d0eb3
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"order":{"id":3782639235,"email":"cab@godynamo.com","closed_at":null,"created_at":"2016-09-21T14:32:01-04:00","updated_at":"2016-09-21T14:32:01-04:00","number":384,"note":null,"token":"4e0a6430ffe0da754403020539b0ef31","gateway":"","test":false,"total_price":"100.00","subtotal_price":"100.00","total_weight":0,"total_tax":"0.00","taxes_included":false,"currency":"CAD","financial_status":"paid","confirmed":true,"total_discounts":"0.00","total_line_items_price":"100.00","cart_token":null,"buyer_accepts_marketing":false,"name":"#1384","referring_site":null,"landing_site":null,"cancelled_at":null,"cancel_reason":null,"total_price_usd":"75.86","checkout_token":null,"reference":null,"user_id":null,"location_id":null,"source_identifier":null,"source_url":null,"processed_at":"2016-09-21T14:32:01-04:00","device_id":null,"browser_ip":null,"landing_site_ref":null,"order_number":1384,"discount_codes":[],"note_attributes":[],"payment_gateway_names":[""],"processing_method":"","checkout_id":null,"source_name":"1413328","fulfillment_status":"fulfilled","tax_lines":[],"tags":"","contact_email":"cab@godynamo.com","order_status_url":null,"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}],"shipping_lines":[],"billing_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":null,"longitude":null,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"shipping_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":null,"longitude":null,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"fulfillments":[{"id":3093449219,"order_id":3782639235,"status":"success","created_at":"2016-09-21T14:32:01-04:00","service":"manual","updated_at":"2016-09-21T14:32:01-04:00","tracking_company":null,"shipment_status":null,"tracking_number":null,"tracking_numbers":[],"tracking_url":null,"tracking_urls":[],"receipt":{},"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}]}],"refunds":[],"customer":{"id":3934271555,"email":"paul.norman@example.com","accepts_marketing":false,"created_at":"2016-08-10T15:41:49-04:00","updated_at":"2016-09-21T14:32:01-04:00","first_name":"John","last_name":"Smith","orders_count":4,"state":"disabled","total_spent":"400.00","last_order_id":3782639235,"note":null,"verified_email":true,"multipass_identifier":null,"tax_exempt":false,"tags":"","last_order_name":"#1384","default_address":{"id":4150214851,"first_name":"John","last_name":"Smith","company":null,"address1":"123
+        Fake Street","address2":null,"city":"Fakecity","province":"Ontario","country":"Canada","zip":"K2P
+        1L4","phone":"555-555-5555","name":"John Smith","province_code":"ON","country_code":"CA","country_name":"Canada","default":true}}}}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:02 GMT
+- request:
+    method: get
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/df932857-1742-4f36-a355-c49206a3ea6f?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Forders&source%5Bsection%5D=admin
+      X-Request-Id:
+      - df932857-1742-4f36-a355-c49206a3ea6f
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"order":{"id":3782639235,"email":"cab@godynamo.com","closed_at":null,"created_at":"2016-09-21T14:32:01-04:00","updated_at":"2016-09-21T14:32:02-04:00","number":384,"note":null,"token":"4e0a6430ffe0da754403020539b0ef31","gateway":"","test":false,"total_price":"100.00","subtotal_price":"100.00","total_weight":0,"total_tax":"0.00","taxes_included":false,"currency":"CAD","financial_status":"paid","confirmed":true,"total_discounts":"0.00","total_line_items_price":"100.00","cart_token":null,"buyer_accepts_marketing":false,"name":"#1384","referring_site":null,"landing_site":null,"cancelled_at":null,"cancel_reason":null,"total_price_usd":"75.86","checkout_token":null,"reference":null,"user_id":null,"location_id":null,"source_identifier":null,"source_url":null,"processed_at":"2016-09-21T14:32:01-04:00","device_id":null,"browser_ip":null,"landing_site_ref":null,"order_number":1384,"discount_codes":[],"note_attributes":[],"payment_gateway_names":[""],"processing_method":"","checkout_id":null,"source_name":"1413328","fulfillment_status":"fulfilled","tax_lines":[],"tags":"","contact_email":"cab@godynamo.com","order_status_url":null,"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}],"shipping_lines":[],"billing_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":45.4203521,"longitude":-75.69314750000001,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"shipping_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":45.4203521,"longitude":-75.69314750000001,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"fulfillments":[{"id":3093449219,"order_id":3782639235,"status":"success","created_at":"2016-09-21T14:32:01-04:00","service":"manual","updated_at":"2016-09-21T14:32:01-04:00","tracking_company":null,"shipment_status":null,"tracking_number":null,"tracking_numbers":[],"tracking_url":null,"tracking_urls":[],"receipt":{},"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}]}],"refunds":[],"customer":{"id":3934271555,"email":"paul.norman@example.com","accepts_marketing":false,"created_at":"2016-08-10T15:41:49-04:00","updated_at":"2016-09-21T14:32:01-04:00","first_name":"John","last_name":"Smith","orders_count":4,"state":"disabled","total_spent":"400.00","last_order_id":3782639235,"note":null,"verified_email":true,"multipass_identifier":null,"tax_exempt":false,"tags":"","last_order_name":"#1384","default_address":{"id":4150214851,"first_name":"John","last_name":"Smith","company":null,"address1":"123
+        Fake Street","address2":null,"city":"Fakecity","province":"Ontario","country":"Canada","zip":"K2P
+        1L4","phone":"555-555-5555","name":"John Smith","province_code":"ON","country_code":"CA","country_name":"Canada","default":true}}}}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:03 GMT
+- request:
+    method: get
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235/transactions.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/f8e24757-21e5-400b-b19e-9afb3f74344e?source%5Baction%5D=index&source%5Bcontroller%5D=admin%2Ftransactions&source%5Bsection%5D=admin
+      X-Request-Id:
+      - f8e24757-21e5-400b-b19e-9afb3f74344e
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"transactions":[{"id":4129230019,"order_id":3782639235,"amount":"100.00","kind":"capture","gateway":"","status":"success","message":null,"created_at":"2016-09-21T14:32:01-04:00","test":false,"authorization":null,"currency":"CAD","location_id":null,"user_id":null,"parent_id":null,"device_id":null,"receipt":{},"error_code":null,"source_name":"1413328"}]}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:03 GMT
+- request:
+    method: get
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235/transactions/4129230019.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/eec57496-a0d8-4dbf-b941-5f415ea67b58?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Ftransactions&source%5Bsection%5D=admin
+      X-Request-Id:
+      - eec57496-a0d8-4dbf-b941-5f415ea67b58
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"transaction":{"id":4129230019,"order_id":3782639235,"amount":"100.00","kind":"capture","gateway":"","status":"success","message":null,"created_at":"2016-09-21T14:32:01-04:00","test":false,"authorization":null,"currency":"CAD","location_id":null,"user_id":null,"parent_id":null,"device_id":null,"receipt":{},"error_code":null,"source_name":"1413328"}}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:03 GMT
+- request:
+    method: post
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235/refunds.json
+    body:
+      encoding: UTF-8
+      string: '{"refund":{"shipping":{"amount":0},"note":null,"notify":false,"restock":false,"transactions":[{"parent_id":4129230019,"amount":"100.0","gateway":"shopify-payments","kind":"refund"}]}}'
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - https://glossier-pop-staging.myshopify.com/admin/orders/3782639235/refunds/141859843
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/9d934fb3-3c97-448e-8b86-77492d47912e?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Frefunds&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 9d934fb3-3c97-448e-8b86-77492d47912e
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"refund":{"id":141859843,"order_id":3782639235,"created_at":"2016-09-21T14:32:03-04:00","note":null,"restock":false,"user_id":0,"refund_line_items":[],"transactions":[{"id":4129230531,"order_id":3782639235,"amount":"100.00","kind":"refund","gateway":"","status":"success","message":"Refunded
+        100.00 from manual gateway","created_at":"2016-09-21T14:32:03-04:00","test":false,"authorization":null,"currency":"CAD","location_id":null,"user_id":null,"parent_id":4129230019,"device_id":null,"receipt":{},"error_code":null,"source_name":"1413328"}],"order_adjustments":[{"id":102954691,"order_id":3782639235,"refund_id":141859843,"amount":"-100.00","tax_amount":"0.00","kind":"refund_discrepancy","reason":"Refund
+        discrepancy"}]}}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:04 GMT
+- request:
+    method: get
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 2/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/b1607826-5e41-4e29-b150-2c839e76a215?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Forders&source%5Bsection%5D=admin
+      X-Request-Id:
+      - b1607826-5e41-4e29-b150-2c839e76a215
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"order":{"id":3782639235,"email":"cab@godynamo.com","closed_at":null,"created_at":"2016-09-21T14:32:01-04:00","updated_at":"2016-09-21T14:32:03-04:00","number":384,"note":null,"token":"4e0a6430ffe0da754403020539b0ef31","gateway":"","test":false,"total_price":"100.00","subtotal_price":"100.00","total_weight":0,"total_tax":"0.00","taxes_included":false,"currency":"CAD","financial_status":"refunded","confirmed":true,"total_discounts":"0.00","total_line_items_price":"100.00","cart_token":null,"buyer_accepts_marketing":false,"name":"#1384","referring_site":null,"landing_site":null,"cancelled_at":null,"cancel_reason":null,"total_price_usd":"75.86","checkout_token":null,"reference":null,"user_id":null,"location_id":null,"source_identifier":null,"source_url":null,"processed_at":"2016-09-21T14:32:01-04:00","device_id":null,"browser_ip":null,"landing_site_ref":null,"order_number":1384,"discount_codes":[],"note_attributes":[],"payment_gateway_names":[""],"processing_method":"","checkout_id":null,"source_name":"1413328","fulfillment_status":"fulfilled","tax_lines":[],"tags":"","contact_email":"cab@godynamo.com","order_status_url":null,"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}],"shipping_lines":[],"billing_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":45.4203521,"longitude":-75.69314750000001,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"shipping_address":{"first_name":"John","address1":"123
+        Fake Street","phone":"555-555-5555","city":"Fakecity","zip":"K2P 1L4","province":"Ontario","country":"Canada","last_name":"Smith","address2":null,"company":null,"latitude":45.4203521,"longitude":-75.69314750000001,"name":"John
+        Smith","country_code":"CA","province_code":"ON"},"fulfillments":[{"id":3093449219,"order_id":3782639235,"status":"success","created_at":"2016-09-21T14:32:01-04:00","service":"manual","updated_at":"2016-09-21T14:32:01-04:00","tracking_company":null,"shipment_status":null,"tracking_number":null,"tracking_numbers":[],"tracking_url":null,"tracking_urls":[],"receipt":{},"line_items":[{"id":6982701955,"variant_id":null,"title":"title","quantity":1,"price":"100.00","grams":0,"sku":null,"variant_title":null,"vendor":null,"fulfillment_service":"manual","product_id":null,"requires_shipping":true,"taxable":true,"gift_card":false,"name":"title","variant_inventory_management":null,"properties":[],"product_exists":false,"fulfillable_quantity":0,"total_discount":"0.00","fulfillment_status":"fulfilled","tax_lines":[]}]}],"refunds":[{"id":141859843,"order_id":3782639235,"created_at":"2016-09-21T14:32:03-04:00","note":null,"restock":false,"user_id":0,"refund_line_items":[],"transactions":[{"id":4129230531,"order_id":3782639235,"amount":"100.00","kind":"refund","gateway":"","status":"success","message":"Refunded
+        100.00 from manual gateway","created_at":"2016-09-21T14:32:03-04:00","test":false,"authorization":null,"currency":"CAD","location_id":null,"user_id":null,"parent_id":4129230019,"device_id":null,"receipt":{},"error_code":null,"source_name":"1413328"}],"order_adjustments":[{"id":102954691,"order_id":3782639235,"refund_id":141859843,"amount":"-100.00","tax_amount":"0.00","kind":"refund_discrepancy","reason":"Refund
+        discrepancy"}]}],"customer":{"id":3934271555,"email":"paul.norman@example.com","accepts_marketing":false,"created_at":"2016-08-10T15:41:49-04:00","updated_at":"2016-09-21T14:32:04-04:00","first_name":"John","last_name":"Smith","orders_count":4,"state":"disabled","total_spent":"300.00","last_order_id":3782639235,"note":null,"verified_email":true,"multipass_identifier":null,"tax_exempt":false,"tags":"","last_order_name":"#1384","default_address":{"id":4150214851,"first_name":"John","last_name":"Smith","company":null,"address1":"123
+        Fake Street","address2":null,"city":"Fakecity","province":"Ontario","country":"Canada","zip":"K2P
+        1L4","phone":"555-555-5555","name":"John Smith","province_code":"ON","country_code":"CA","country_name":"Canada","default":true}}}}'
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:04 GMT
+- request:
+    method: delete
+    uri: https://glossier-pop-staging.myshopify.com/admin/orders/3782639235.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Accept:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Sep 2016 18:32:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 3/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 3/40
+      X-Stats-Userid:
+      - '0'
+      X-Stats-Apiclientid:
+      - '1413328'
+      X-Stats-Apipermissionid:
+      - '23658502'
+      Location:
+      - "/admin/orders"
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/5a8110d8-98a7-4adf-ae18-587769c66828?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Forders&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 5a8110d8-98a7-4adf-ae18-587769c66828
+      P3p:
+      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: "{}"
+    http_version: 
+  recorded_at: Wed, 21 Sep 2016 18:32:04 GMT
+recorded_with: VCR 3.0.3

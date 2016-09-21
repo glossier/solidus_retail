@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Export a Spree product with its variants on Shopify' do
+describe 'Export a Spree product with its variants on Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 

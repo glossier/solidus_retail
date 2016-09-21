@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Export a bundled Spree product with its assembly on Shopify' do
+describe 'Export a bundled Spree product with its assembly on Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
   include_context 'phase_2_bundle'
