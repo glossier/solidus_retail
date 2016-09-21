@@ -8,6 +8,7 @@ module Spree
           container = []
 
           part.product.variants.each do |variant|
+            next if variant.option_values.empty?
             container << option_value_per_variant(variant)
           end
 
@@ -18,7 +19,8 @@ module Spree
           option_values = []
 
           bundle.parts.each do |part|
-            option_values << all_option_values_per_part(part)
+            values = all_option_values_per_part(part)
+            option_values << values if values.any?
           end
 
           option_values
@@ -26,6 +28,8 @@ module Spree
 
         def all_option_values_permutation(bundle)
           initial_array, *rest_of_arrays = all_option_values_per_bundle(bundle)
+          return [] if initial_array.nil?
+
           initial_array.product(*rest_of_arrays)
         end
 
