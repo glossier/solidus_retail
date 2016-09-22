@@ -2,14 +2,16 @@ module Shopify
   class VariantAttributes
     include Spree::Retail::PresenterHelper
 
-    def initialize(spree_variant, variant_converter: Shopify::VariantConverter)
+    def initialize(spree_variant, converter: Shopify::VariantConverter)
       @spree_variant = spree_variant
-      @converter = variant_converter
+      @converter = converter
     end
 
     def attributes
       converter.new(variant: presented_variant, aggregated: true).to_hash
     end
+
+    private
 
     attr_reader :spree_variant, :converter
 

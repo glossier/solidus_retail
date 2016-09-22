@@ -9,6 +9,7 @@ RSpec.shared_context 'shopify_exporter_helpers' do
   def export_bundle!(spree_product)
     exporter = Shopify::BundledProductExporter.new(spree_product: spree_product)
     shopify_product = exporter.save_product_on_shopify
+    spree_product.reload
 
     shopify_product
   end
