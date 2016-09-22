@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe 'Export a Spree Variant to Shopify' do
+describe 'Update a Spree Variant to Shopify' do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 
   let(:spree_product) { create(:product, name: 'Product Name') }
-  let(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
+  let!(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
 
   before do
-    export_product!(spree_product)
+    export_product_and_variants!(spree_product)
   end
 
   after do
@@ -16,13 +16,13 @@ describe 'Export a Spree Variant to Shopify' do
   end
 
   it 'creates a new variant' do
-    shopify_variant = export_variant!(spree_variant)
+    shopify_variant = update_variant!(spree_variant)
 
     expect(shopify_variant.persisted?).to be_truthy
   end
 
   it 'assigns the variant to the product' do
-    export_variant!(spree_variant)
+    update_variant!(spree_variant)
     shopify_product = find_shopify_product(spree_product)
 
     # First variant is the master variant
@@ -31,27 +31,27 @@ describe 'Export a Spree Variant to Shopify' do
   end
 
   describe 'when the variant existed on Shopify but was deleted' do
-    let!(:existing_variant) { export_variant!(spree_variant) }
+    let!(:old_pos_variant_id) { spree_variant.pos_variant_id }
 
     before do
-      cleanup_shopify_variant!(existing_variant)
+      cleanup_shopify_variant_from_spree!(spree_variant)
     end
 
     it 'creates a new variant' do
-      shopify_variant = export_variant!(spree_variant)
+      shopify_variant = update_variant!(spree_variant)
+
       expect(shopify_variant.persisted?).to be_truthy
+      expect(shopify_variant.id).not_to eql(old_pos_variant_id)
     end
   end
 
   describe 'when the variant already exists on Shopify' do
-    let!(:existing_variant) { export_variant!(spree_variant) }
-
     it 'does not create a new variant' do
       shopify_product = find_shopify_product(spree_product)
       first_associated_variant_count = shopify_product.variants.count
       expect(first_associated_variant_count).to be > 0
 
-      export_variant!(spree_variant)
+      update_variant!(spree_variant)
 
       shopify_product = find_shopify_product(spree_product)
       second_associated_variant_count = shopify_product.variants.count
@@ -60,7 +60,7 @@ describe 'Export a Spree Variant to Shopify' do
 
     it 'updates the existing variant' do
       spree_variant.update(sku: 'new_sku')
-      shopify_variant = export_variant!(spree_variant)
+      shopify_variant = update_variant!(spree_variant)
 
       expect(shopify_variant.persisted?).to be_truthy
       expect(shopify_variant.sku).to eql('new_sku')
