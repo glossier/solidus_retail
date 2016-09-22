@@ -44,11 +44,11 @@ module Shopify
     end
 
     def product_attributes_with_variants
-      Shopify::ProductAttributes.new(spree_product).attributes_with_variants
+      attributor.new(spree_product).attributes_with_variants
     end
 
     def product_attributes_with_images
-      Shopify::ProductAttributes.new(spree_product).attributes_with_images
+      attributor.new(spree_product).attributes_with_images
     end
   end
 end
