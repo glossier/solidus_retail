@@ -6,7 +6,7 @@ module Shopify
       @attributor = attributor
     end
 
-    def save_product_on_shopify
+    def perform
       save_product_with_variants
       save_product_images
     end

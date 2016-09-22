@@ -9,7 +9,7 @@ module Shopify
       @bundle_attributes = bundle_attributes
     end
 
-    def save_product_on_shopify
+    def perform
       shopify_product = find_shopify_product_for(spree_product)
 
       shopify_product.update_attributes(product_attributes_with_parts)
