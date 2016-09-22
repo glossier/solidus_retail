@@ -14,14 +14,9 @@ module Shopify
     def save_product_on_shopify
       shopify_product = find_shopify_product_for(spree_product)
 
-      if shopify_product.persisted?
-        shopify_product.update_attributes(product_attributes)
-        Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
-      else
-        shopify_product = exporter.new(spree_product: spree_product).save_product_on_shopify
-      end
+      return export_product unless shopify_product.persisted?
 
-      shopify_product
+      update_product
     end
 
     private
@@ -30,6 +25,17 @@ module Shopify
 
     def find_shopify_product_for(spree_product)
       product_api.find_or_initialize_by(id: spree_product.pos_product_id)
+    end
+
+    def update_product
+      shopify_product.update_attributes(product_attributes)
+      Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
+
+      shopify_product
+    end
+
+    def export_product
+      exporter.new(spree_product: spree_product).save_product_on_shopify
     end
 
     def product_attributes
