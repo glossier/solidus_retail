@@ -6,12 +6,12 @@ describe ActiveResource::Base do
 
     subject { DummyClass }
 
-    it 'responds to find_by' do
-      expect(subject).to respond_to(:find_by)
+    it 'responds to find_by_id' do
+      expect(subject).to respond_to(:find_by_id)
     end
 
-    it 'responds to find_or_initialize_by' do
-      expect(subject).to respond_to(:find_or_initialize_by)
+    it 'responds to find_or_initialize_by_id' do
+      expect(subject).to respond_to(:find_or_initialize_by_id)
     end
   end
 end

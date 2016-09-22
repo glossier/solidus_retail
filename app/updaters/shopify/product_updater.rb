@@ -16,7 +16,7 @@ module Shopify
 
       return export_product unless shopify_product.persisted?
 
-      update_product
+      update_shopify_product(shopify_product)
     end
 
     private
@@ -24,10 +24,10 @@ module Shopify
     attr_accessor :spree_product, :product_api, :exporter, :attributor
 
     def find_shopify_product_for(spree_product)
-      product_api.find_or_initialize_by(id: spree_product.pos_product_id)
+      product_api.find_or_initialize_by_id(spree_product.pos_product_id)
     end
 
-    def update_product
+    def update_shopify_product(shopify_product)
       shopify_product.update_attributes(product_attributes)
       Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
 

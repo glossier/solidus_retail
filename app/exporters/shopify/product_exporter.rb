@@ -7,6 +7,15 @@ module Shopify
     end
 
     def save_product_on_shopify
+      save_product_with_variants
+      save_product_images
+    end
+
+    private
+
+    attr_accessor :spree_product, :product_api, :attributor
+
+    def save_product_with_variants
       shopify_product = find_shopify_product_for(spree_product)
 
       shopify_product.update_attributes(product_attributes_with_variants)
@@ -15,12 +24,18 @@ module Shopify
       shopify_product
     end
 
-    private
+    def save_product_images
+      shopify_product = find_shopify_product_for(spree_product)
+      # NOTE: There are no ways to pin-point an image, so let's flush them all
+      # and re-upload them
+      shopify_product.images = nil
+      shopify_product.update_attributes(product_attributes_with_images)
 
-    attr_accessor :spree_product, :product_api, :attributor
+      shopify_product
+    end
 
     def find_shopify_product_for(spree_product)
-      product_api.find_or_initialize_by(id: spree_product.pos_product_id)
+      product_api.find_or_initialize_by_id(spree_product.pos_product_id)
     end
 
     def save_associations_for(spree_product, shopify_product)
@@ -30,6 +45,10 @@ module Shopify
 
     def product_attributes_with_variants
       attributor.new(spree_product).attributes_with_variants
+    end
+
+    def product_attributes_with_images
+      attributor.new(spree_product).attributes_with_images
     end
   end
 end

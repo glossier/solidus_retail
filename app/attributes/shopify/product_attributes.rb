@@ -2,10 +2,14 @@ module Shopify
   class ProductAttributes
     include Spree::Retail::PresenterHelper
 
-    def initialize(spree_product, converter: Shopify::ProductConverter, variant_attributor: Shopify::VariantAttributes)
+    def initialize(spree_product, product_converter: Shopify::ProductConverter,
+                   image_attributor: Shopify::ImageAttributes,
+                   variant_attributor: Shopify::VariantAttributes)
+
       @spree_product = spree_product
-      @converter = converter
+      @converter = product_converter
       @variant_attributor = variant_attributor
+      @image_attributor = image_attributor
     end
 
     def attributes
@@ -13,12 +17,17 @@ module Shopify
     end
 
     def attributes_with_variants
-      attributes.merge!(attributes_for_variants)
+      attributes.merge(attributes_for_variants)
+    end
+
+    def attributes_with_images
+      attributes.merge(attributes_for_images)
     end
 
     private
 
-    attr_reader :spree_product, :converter, :variant_attributor
+    attr_reader :spree_product, :converter,
+      :variant_attributor, :image_attributor
 
     def presented_product
       present(spree_product, :product)
@@ -29,6 +38,16 @@ module Shopify
 
       variant_scope.each do |variant|
         attributes[:variants] << variant_attributor.new(variant).attributes
+      end
+
+      attributes
+    end
+
+    def attributes_for_images
+      attributes = { images: [] }
+
+      variant_scope.each do |variant|
+        attributes[:images] << image_attributor.new(variant).attributes
       end
 
       attributes
