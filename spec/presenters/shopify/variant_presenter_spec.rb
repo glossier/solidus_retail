@@ -3,7 +3,6 @@ require 'spec_helper'
 module Shopify
   RSpec.describe VariantPresenter do
     include Spree::Retail::PresenterHelper
-    include_context 'spree_builders'
 
     describe '.weight_unit' do
       class DummyClass < ActiveResource::Base; end
