@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Update the Shopify Variant quantity with the Spree Variant quantity' do
+describe 'Update the Shopify Variant quantity with the Spree Variant quantity', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 

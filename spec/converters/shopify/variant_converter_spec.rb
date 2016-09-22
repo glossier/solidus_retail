@@ -9,7 +9,7 @@ module Shopify
     describe '.initialize' do
       subject { described_class.new(variant: spree_variant) }
 
-      it "successfully does it's thing" do
+      it 'returns an instance of a VariantConverter' do
         expect(subject).to be_a described_class
       end
     end

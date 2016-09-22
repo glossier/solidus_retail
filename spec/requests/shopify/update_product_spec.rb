@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Update a Spree Product to Shopify' do
+describe 'Update a Spree Product to Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 

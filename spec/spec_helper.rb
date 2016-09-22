@@ -7,6 +7,15 @@ SimpleCov.start do
   add_group 'Mailers', 'app/mailers'
   add_group 'Models', 'app/models'
   add_group 'Views', 'app/views'
+  add_group 'Delegators', 'app/delegators'
+  add_group 'Policies', 'app/policies'
+  add_group 'Renderers', 'app/renderers'
+  add_group 'Converters', 'app/converters'
+  add_group 'Exporters', 'app/exporters'
+  add_group 'Jobs', 'app/jobs'
+  add_group 'Permuters', 'app/permuters'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Services', 'app/services'
   add_group 'Libraries', 'lib'
 end
 
@@ -24,6 +33,7 @@ require 'vcr'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), 'shared/**/*.rb')].each { |f| require f }
 
 # Requires factories and other useful helpers defined in spree_core.
 require 'spree/testing_support/authorization_helpers'
@@ -33,14 +43,8 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/solidus_retail/factories.rb
-require 'solidus_retail/factories'
+require 'spree/retail/factories'
 require 'active_resource/base_decorator'
-
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/cassettes'
-  c.hook_into :webmock
-  c.configure_rspec_metadata!
-end
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -103,4 +107,13 @@ RSpec.configure do |config|
 
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = 'random'
+
+  config.around(:each) do |example|
+    begin
+      previously = ShopifyAPI::Base.site
+      example.run
+    ensure
+      ShopifyAPI::Base.site = previously
+    end
+  end
 end

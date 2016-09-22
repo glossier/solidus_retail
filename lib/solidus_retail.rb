@@ -1,2 +1,1 @@
-require 'solidus_core'
-require 'solidus_retail/engine'
+require 'spree/retail/engine'
