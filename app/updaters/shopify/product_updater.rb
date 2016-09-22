@@ -11,7 +11,7 @@ module Shopify
       @attributor = attributor
     end
 
-    def save_product_on_shopify
+    def perform
       shopify_product = find_shopify_product_for(spree_product)
 
       return export_product unless shopify_product.persisted?
@@ -35,7 +35,7 @@ module Shopify
     end
 
     def export_product
-      exporter.new(spree_product: spree_product).save_product_on_shopify
+      exporter.new(spree_product: spree_product).perform
     end
 
     def product_attributes

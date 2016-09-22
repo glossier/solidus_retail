@@ -5,6 +5,12 @@ module Shopify
     end
 
     def to_hash
+      hash = base_product_hash
+
+      hash
+    end
+
+    def base_product_hash
       { title: product.name,
         body_html: product.description,
         created_at: product.created_at,

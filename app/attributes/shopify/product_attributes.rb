@@ -26,8 +26,7 @@ module Shopify
 
     private
 
-    attr_reader :spree_product, :converter,
-      :variant_attributor, :image_attributor
+    attr_reader :spree_product, :converter, :variant_attributor, :image_attributor
 
     def presented_product
       present(spree_product, :product)
