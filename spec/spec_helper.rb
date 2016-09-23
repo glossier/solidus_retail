@@ -1,5 +1,6 @@
 # Run Coverage report
 require 'simplecov'
+require 'webmock/rspec'
 SimpleCov.start do
   add_filter 'spec/dummy'
   add_group 'Controllers', 'app/controllers'
