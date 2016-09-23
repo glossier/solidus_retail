@@ -11,16 +11,14 @@ module Shopify
       end
 
       def save_pos_variant_id(spree_variant, shopify_variant)
-        spree_variant.pos_variant_id = shopify_variant.id
-        spree_variant.send(:update_without_callbacks)
+        spree_variant.update_columns(pos_variant_id: shopify_variant.id)
 
         spree_variant.reload
         spree_variant
       end
 
       def save_pos_product_id(spree_product, shopify_product)
-        spree_product.pos_product_id = shopify_product.id
-        spree_product.send(:update_without_callbacks)
+        spree_product.update_columns(pos_product_id: shopify_product.id)
 
         spree_product.reload
         spree_product

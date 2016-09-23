@@ -9,6 +9,15 @@ module Spree
     end
 
     describe 'when creating' do
+      describe 'if the disable_shopify_sync is set to true' do
+        subject { build(:product, disable_shopify_sync: true) }
+
+        it 'does not call the create_shopify_product method' do
+          expect(subject).not_to receive(:create_shopify_product)
+          subject.save
+        end
+      end
+
       describe 'a regular product' do
         subject { build(:product) }
 
@@ -20,6 +29,15 @@ module Spree
     end
 
     describe 'when destroying' do
+      describe 'if the disable_shopify_sync is set to true' do
+        subject { create(:product, disable_shopify_sync: true) }
+
+        it 'does not call the destroy_shopify_product method' do
+          expect(subject).not_to receive(:destroy_shopify_product)
+          subject.destroy
+        end
+      end
+
       describe 'a regular product' do
         describe 'without a retail product ID' do
           subject { create(:product) }

@@ -5,7 +5,7 @@ describe 'Export a bundled Spree product with its assembly on Shopify', :vcr do
   include_context 'shopify_helpers'
   include_context 'phase_2_bundle'
 
-  let(:bundle) { create(:product) }
+  let(:bundle) { create(:product, disable_shopify_sync: true) }
   let!(:parts) { (1..3).map { |i| create(:variant, sku: "SKUS-#{i}") } }
   let!(:bundle_parts) { bundle.parts << parts }
 
