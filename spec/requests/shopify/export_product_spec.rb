@@ -5,7 +5,7 @@ describe 'Export a Spree product with its variants on Shopify', :vcr do
   include_context 'shopify_helpers'
 
   let!(:spree_variant) { create(:variant, sku: 'slave-sku', product: spree_product) }
-  let(:spree_product) { create(:product, name: 'Product Name') }
+  let(:spree_product) { create(:product, name: 'Product Name', disable_shopify_sync: true) }
 
   before do
     spree_product.master.update(sku: 'master-sku')

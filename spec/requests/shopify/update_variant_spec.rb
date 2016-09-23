@@ -4,7 +4,7 @@ describe 'Update a Spree Variant to Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 
-  let(:spree_product) { create(:product, name: 'Product Name') }
+  let(:spree_product) { create(:product, name: 'Product Name', disable_shopify_sync: true) }
   let!(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
 
   before do

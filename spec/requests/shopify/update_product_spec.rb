@@ -4,7 +4,7 @@ describe 'Update a Spree Product to Shopify', :vcr do
   include_context 'shopify_exporter_helpers'
   include_context 'shopify_helpers'
 
-  let(:spree_product) { create(:product, name: 'Product Name') }
+  let(:spree_product) { create(:product, name: 'Product Name', disable_shopify_sync: true) }
 
   after do
     cleanup_shopify_product_from_spree!(spree_product)
