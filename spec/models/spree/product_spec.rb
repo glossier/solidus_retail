@@ -3,9 +3,11 @@ require 'spec_helper'
 module Spree
   RSpec.describe Product do
     let(:product_exporter_instance) { double('exporter_instance', perform: true) }
+    let(:variant_updater_instance) { double('updater_instance', perform: true) }
 
     before do
       allow(Shopify::ProductExporter).to receive(:new).and_return(product_exporter_instance)
+      allow(Shopify::VariantUpdater).to receive(:new).and_return(variant_updater_instance)
     end
 
     describe 'when creating' do

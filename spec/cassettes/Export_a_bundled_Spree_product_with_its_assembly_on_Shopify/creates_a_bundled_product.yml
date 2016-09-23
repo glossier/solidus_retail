@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 23 Sep 2016 18:14:38 GMT
+      - Fri, 23 Sep 2016 20:24:09 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -39,9 +39,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 32/40
+      - 2/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 32/40
+      - 2/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -49,9 +49,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/3a46d51b-f599-4efc-98ce-b6807e6c0b40?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/410f34e7-8e24-4296-899b-055983ef422a?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
       X-Request-Id:
-      - 3a46d51b-f599-4efc-98ce-b6807e6c0b40
+      - 410f34e7-8e24-4296-899b-055983ef422a
       X-Dc:
       - ash
       X-Download-Options:
@@ -64,15 +64,15 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"errors":"Not Found"}'
     http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:38 GMT
+  recorded_at: Fri, 23 Sep 2016 20:24:09 GMT
 - request:
     method: post
     uri: https://glossier-pop-staging.myshopify.com/admin/products.json
     body:
       encoding: UTF-8
-      string: '{"product":{"title":"Product #18 - 4484","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","created_at":"2016-09-23T18:14:38.627Z","updated_at":"2016-09-23T18:14:38.660Z","published_at":"2015-09-23T18:14:38.589Z","vendor":"Default
-        Vendor","handle":"product-18-4484","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-29","inventory_management":"shopify","updated_at":"2016-09-23T18:14:38.647Z","option1":"SKU-29"}]}}'
+      string: '{"product":{"title":"Product #4 - 2301","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c/p\u003e","created_at":"2016-09-23T20:24:09.271Z","updated_at":"2016-09-23T20:24:09.296Z","published_at":"2015-09-23T20:24:09.246Z","vendor":"Default
+        Vendor","handle":"product-4-2301","options":[],"variants":[]}}'
     headers:
       Authorization:
       - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
@@ -92,7 +92,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 23 Sep 2016 18:14:39 GMT
+      - Fri, 23 Sep 2016 20:24:09 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -106,9 +106,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
+      - 3/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
+      - 3/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -116,11 +116,11 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590654403
+      - https://glossier-pop-staging.myshopify.com/admin/products/8592445507
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/4bcb937d-66d6-40f1-b40f-1e40400a9ef8?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/811a2f7b-1b32-47f9-bcc8-d574660ce7cc?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 4bcb937d-66d6-40f1-b40f-1e40400a9ef8
+      - 811a2f7b-1b32-47f9-bcc8-d574660ce7cc
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -134,13 +134,16 @@ http_interactions:
       - nosniff
     body:
       encoding: UTF-8
-      string: '{"product":{"id":8590654403,"title":"Product #18 - 4484","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:38-04:00","handle":"product-18-4484","updated_at":"2016-09-23T14:14:39-04:00","published_at":"2015-09-23T14:14:38-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631143683,"product_id":8590654403,"title":"SKU-29","price":"19.99","sku":"SKU-29","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-29","option2":null,"option3":null,"created_at":"2016-09-23T14:14:39-04:00","updated_at":"2016-09-23T14:14:39-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314156931,"product_id":8590654403,"name":"Title","position":1,"values":["SKU-29"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8592445507,"title":"Product #4 - 2301","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T16:24:09-04:00","handle":"product-4-2301","updated_at":"2016-09-23T16:24:09-04:00","published_at":"2015-09-23T16:24:09-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28635725635,"product_id":8592445507,"title":"Default
+        Title","price":"0.00","sku":"","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Default
+        Title","option2":null,"option3":null,"created_at":"2016-09-23T16:24:09-04:00","updated_at":"2016-09-23T16:24:09-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"kg","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10316544835,"product_id":8592445507,"name":"Title","position":1,"values":["Default
+        Title"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:39 GMT
+  recorded_at: Fri, 23 Sep 2016 20:24:10 GMT
 - request:
     method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590654403.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8592445507.json
     body:
       encoding: US-ASCII
       string: ''
@@ -161,7 +164,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 23 Sep 2016 18:14:39 GMT
+      - Fri, 23 Sep 2016 20:24:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -177,9 +180,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
+      - 3/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
+      - 3/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -187,9 +190,9 @@ http_interactions:
       X-Stats-Apipermissionid:
       - '23658502'
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/5f4bace5-5eb0-4353-ad2c-9bf22d1b08c1?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/de6e8964-2b1a-499a-a802-8a26350312be?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 5f4bace5-5eb0-4353-ad2c-9bf22d1b08c1
+      - de6e8964-2b1a-499a-a802-8a26350312be
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -203,858 +206,16 @@ http_interactions:
       - nosniff
     body:
       encoding: ASCII-8BIT
-      string: '{"product":{"id":8590654403,"title":"Product #18 - 4484","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:38-04:00","handle":"product-18-4484","updated_at":"2016-09-23T14:14:39-04:00","published_at":"2015-09-23T14:14:38-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631143683,"product_id":8590654403,"title":"SKU-29","price":"19.99","sku":"SKU-29","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-29","option2":null,"option3":null,"created_at":"2016-09-23T14:14:39-04:00","updated_at":"2016-09-23T14:14:39-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314156931,"product_id":8590654403,"name":"Title","position":1,"values":["SKU-29"]}],"images":[],"image":null}}'
+      string: '{"product":{"id":8592445507,"title":"Product #4 - 2301","body_html":"\u003cp\u003eAs
+        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T16:24:09-04:00","handle":"product-4-2301","updated_at":"2016-09-23T16:24:09-04:00","published_at":"2015-09-23T16:24:09-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28635725635,"product_id":8592445507,"title":"Default
+        Title","price":"0.00","sku":"","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"Default
+        Title","option2":null,"option3":null,"created_at":"2016-09-23T16:24:09-04:00","updated_at":"2016-09-23T16:24:09-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"kg","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10316544835,"product_id":8592445507,"name":"Title","position":1,"values":["Default
+        Title"]}],"images":[],"image":null}}'
     http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:39 GMT
-- request:
-    method: put
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590654403.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590654403,"title":"Product #18 - 4484","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T18:14:38.627Z","handle":"product-18-4484","updated_at":"2016-09-23T18:14:38.660Z","published_at":"2015-09-23T18:14:38.589Z","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631143683,"title":"SKU-29","price":"19.99","sku":"SKU-29","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-29","option2":null,"option3":null,"created_at":"2016-09-23T14:14:39-04:00","updated_at":"2016-09-23T14:14:39-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314156931,"product_id":8590654403,"name":"Title","position":1,"values":["SKU-29"]}],"images":[{"variant_ids":["28631143683"],"attachment":null}],"image":null}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:39 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590654403
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/010e9405-d773-425a-b9db-0661ea9ac6e0?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 010e9405-d773-425a-b9db-0661ea9ac6e0
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590654403,"title":"Product #18 - 4484","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:38-04:00","handle":"product-18-4484","updated_at":"2016-09-23T14:14:39-04:00","published_at":"2015-09-23T14:14:38-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631143683,"product_id":8590654403,"title":"SKU-29","price":"19.99","sku":"SKU-29","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-29","option2":null,"option3":null,"created_at":"2016-09-23T14:14:39-04:00","updated_at":"2016-09-23T14:14:39-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314156931,"product_id":8590654403,"name":"Title","position":1,"values":["SKU-29"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:39 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:40 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 33/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/c1c74b6c-a9d2-475a-a04b-0dc8f19fc82e?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
-      X-Request-Id:
-      - c1c74b6c-a9d2-475a-a04b-0dc8f19fc82e
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"errors":"Not Found"}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:40 GMT
-- request:
-    method: post
-    uri: https://glossier-pop-staging.myshopify.com/admin/products.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"title":"Product #19 - 8235","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","created_at":"2016-09-23T18:14:40.043Z","updated_at":"2016-09-23T18:14:40.068Z","published_at":"2015-09-23T18:14:40.030Z","vendor":"Default
-        Vendor","handle":"product-19-8235","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-30","inventory_management":"shopify","updated_at":"2016-09-23T18:14:40.062Z","option1":"SKU-30"}]}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:40 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590654787
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/ee408ed1-9e2b-4057-8162-7a61d2786f4b?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - ee408ed1-9e2b-4057-8162-7a61d2786f4b
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590654787,"title":"Product #19 - 8235","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:40-04:00","handle":"product-19-8235","updated_at":"2016-09-23T14:14:40-04:00","published_at":"2015-09-23T14:14:40-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631144643,"product_id":8590654787,"title":"SKU-30","price":"19.99","sku":"SKU-30","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-30","option2":null,"option3":null,"created_at":"2016-09-23T14:14:40-04:00","updated_at":"2016-09-23T14:14:40-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314157443,"product_id":8590654787,"name":"Title","position":1,"values":["SKU-30"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:41 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590654787.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:41 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/4f9734f8-875f-4da0-8f32-5a78b5681d88?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 4f9734f8-875f-4da0-8f32-5a78b5681d88
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590654787,"title":"Product #19 - 8235","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:40-04:00","handle":"product-19-8235","updated_at":"2016-09-23T14:14:40-04:00","published_at":"2015-09-23T14:14:40-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631144643,"product_id":8590654787,"title":"SKU-30","price":"19.99","sku":"SKU-30","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-30","option2":null,"option3":null,"created_at":"2016-09-23T14:14:40-04:00","updated_at":"2016-09-23T14:14:40-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314157443,"product_id":8590654787,"name":"Title","position":1,"values":["SKU-30"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:41 GMT
-- request:
-    method: put
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590654787.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590654787,"title":"Product #19 - 8235","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T18:14:40.043Z","handle":"product-19-8235","updated_at":"2016-09-23T18:14:40.068Z","published_at":"2015-09-23T18:14:40.030Z","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631144643,"title":"SKU-30","price":"19.99","sku":"SKU-30","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-30","option2":null,"option3":null,"created_at":"2016-09-23T14:14:40-04:00","updated_at":"2016-09-23T14:14:40-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314157443,"product_id":8590654787,"name":"Title","position":1,"values":["SKU-30"]}],"images":[{"variant_ids":["28631144643"],"attachment":null}],"image":null}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:41 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590654787
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/7ad0b4b6-614e-4af6-8a0f-95b5eae402f6?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 7ad0b4b6-614e-4af6-8a0f-95b5eae402f6
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590654787,"title":"Product #19 - 8235","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:40-04:00","handle":"product-19-8235","updated_at":"2016-09-23T14:14:41-04:00","published_at":"2015-09-23T14:14:40-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631144643,"product_id":8590654787,"title":"SKU-30","price":"19.99","sku":"SKU-30","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-30","option2":null,"option3":null,"created_at":"2016-09-23T14:14:40-04:00","updated_at":"2016-09-23T14:14:40-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314157443,"product_id":8590654787,"name":"Title","position":1,"values":["SKU-30"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:41 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:42 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 34/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/ccb73d97-01a0-4096-886a-43498af430c1?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
-      X-Request-Id:
-      - ccb73d97-01a0-4096-886a-43498af430c1
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"errors":"Not Found"}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:42 GMT
-- request:
-    method: post
-    uri: https://glossier-pop-staging.myshopify.com/admin/products.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"title":"Product #20 - 7162","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","created_at":"2016-09-23T18:14:41.711Z","updated_at":"2016-09-23T18:14:41.738Z","published_at":"2015-09-23T18:14:41.699Z","vendor":"Default
-        Vendor","handle":"product-20-7162","variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKU-31","inventory_management":"shopify","updated_at":"2016-09-23T18:14:41.732Z","option1":"SKU-31"}]}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:42 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590655299
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/e93ea1c1-dd52-47d4-9414-9bb386e6271e?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - e93ea1c1-dd52-47d4-9414-9bb386e6271e
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590655299,"title":"Product #20 - 7162","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:42-04:00","handle":"product-20-7162","updated_at":"2016-09-23T14:14:42-04:00","published_at":"2015-09-23T14:14:41-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631145731,"product_id":8590655299,"title":"SKU-31","price":"19.99","sku":"SKU-31","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-31","option2":null,"option3":null,"created_at":"2016-09-23T14:14:42-04:00","updated_at":"2016-09-23T14:14:42-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158083,"product_id":8590655299,"name":"Title","position":1,"values":["SKU-31"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:42 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590655299.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:42 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/c283b62c-660e-493e-9794-dbae7b21a16f?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - c283b62c-660e-493e-9794-dbae7b21a16f
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590655299,"title":"Product #20 - 7162","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:42-04:00","handle":"product-20-7162","updated_at":"2016-09-23T14:14:42-04:00","published_at":"2015-09-23T14:14:41-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631145731,"product_id":8590655299,"title":"SKU-31","price":"19.99","sku":"SKU-31","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-31","option2":null,"option3":null,"created_at":"2016-09-23T14:14:42-04:00","updated_at":"2016-09-23T14:14:42-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158083,"product_id":8590655299,"name":"Title","position":1,"values":["SKU-31"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:42 GMT
-- request:
-    method: put
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590655299.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590655299,"title":"Product #20 - 7162","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T18:14:41.711Z","handle":"product-20-7162","updated_at":"2016-09-23T18:14:41.738Z","published_at":"2015-09-23T18:14:41.699Z","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631145731,"title":"SKU-31","price":"19.99","sku":"SKU-31","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-31","option2":null,"option3":null,"created_at":"2016-09-23T14:14:42-04:00","updated_at":"2016-09-23T14:14:42-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158083,"product_id":8590655299,"name":"Title","position":1,"values":["SKU-31"]}],"images":[{"variant_ids":["28631145731"],"attachment":null}],"image":null}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:43 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590655299
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/0ca9ac5e-99bd-4ebb-aee4-ba4458fc3a9e?source%5Baction%5D=update&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 0ca9ac5e-99bd-4ebb-aee4-ba4458fc3a9e
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590655299,"title":"Product #20 - 7162","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:42-04:00","handle":"product-20-7162","updated_at":"2016-09-23T14:14:42-04:00","published_at":"2015-09-23T14:14:41-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631145731,"product_id":8590655299,"title":"SKU-31","price":"19.99","sku":"SKU-31","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":"shopify","option1":"SKU-31","option2":null,"option3":null,"created_at":"2016-09-23T14:14:42-04:00","updated_at":"2016-09-23T14:14:42-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158083,"product_id":8590655299,"name":"Title","position":1,"values":["SKU-31"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:43 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:43 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 35/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/fdd9ea15-babe-403d-9e40-10f6fd372716?source%5Baction%5D=error_404&source%5Bcontroller%5D=admin%2Ferrors&source%5Bsection%5D=admin
-      X-Request-Id:
-      - fdd9ea15-babe-403d-9e40-10f6fd372716
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"errors":"Not Found"}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:43 GMT
-- request:
-    method: post
-    uri: https://glossier-pop-staging.myshopify.com/admin/products.json
-    body:
-      encoding: UTF-8
-      string: '{"product":{"title":"Product #21 - 9708","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c/p\u003e","created_at":"2016-09-23T18:14:43.284Z","updated_at":"2016-09-23T18:14:43.334Z","published_at":"2015-09-23T18:14:43.267Z","vendor":"Default
-        Vendor","handle":"product-21-9708","options":[{"name":"foo-size-16"},{"name":"foo-size-17"},{"name":"foo-size-18"}],"variants":[{"weight":"0.0","weight_unit":"oz","price":"19.99","sku":"SKUS-M/SKUS-1/SKUS-2/SKUS-3","updated_at":"2016-09-23T18:14:43.332Z","option1":"S","option2":"S","option3":"S"}]}}'
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Content-Type:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 201
-      message: Created
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:44 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      Location:
-      - https://glossier-pop-staging.myshopify.com/admin/products/8590655747
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/3e148c97-4352-4aea-9d66-2df57745b7d1?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 3e148c97-4352-4aea-9d66-2df57745b7d1
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: UTF-8
-      string: '{"product":{"id":8590655747,"title":"Product #21 - 9708","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:43-04:00","handle":"product-21-9708","updated_at":"2016-09-23T14:14:43-04:00","published_at":"2015-09-23T14:14:43-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631146691,"product_id":8590655747,"title":"S
-        \/ S \/ S","price":"19.99","sku":"SKUS-M\/SKUS-1\/SKUS-2\/SKUS-3","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-23T14:14:43-04:00","updated_at":"2016-09-23T14:14:43-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158659,"product_id":8590655747,"name":"foo-size-16","position":1,"values":["S"]},{"id":10314158723,"product_id":8590655747,"name":"foo-size-17","position":2,"values":["S"]},{"id":10314158787,"product_id":8590655747,"name":"foo-size-18","position":3,"values":["S"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:44 GMT
-- request:
-    method: get
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590655747.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Authorization:
-      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
-      Accept:
-      - application/json
-      User-Agent:
-      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 23 Sep 2016 18:14:44 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Vary:
-      - Accept-Encoding
-      X-Frame-Options:
-      - DENY
-      X-Shopid:
-      - '6779563'
-      X-Shardid:
-      - '2'
-      X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
-      Http-X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
-      X-Stats-Userid:
-      - '0'
-      X-Stats-Apiclientid:
-      - '1413328'
-      X-Stats-Apipermissionid:
-      - '23658502'
-      X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/1ee57c64-e77c-4d14-8b13-20337c140d81?source%5Baction%5D=show&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
-      X-Request-Id:
-      - 1ee57c64-e77c-4d14-8b13-20337c140d81
-      P3p:
-      - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
-      X-Dc:
-      - ash
-      X-Download-Options:
-      - noopen
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Content-Type-Options:
-      - nosniff
-      - nosniff
-    body:
-      encoding: ASCII-8BIT
-      string: '{"product":{"id":8590655747,"title":"Product #21 - 9708","body_html":"\u003cp\u003eAs
-        seen on TV!\u003c\/p\u003e","vendor":"Default Vendor","product_type":"","created_at":"2016-09-23T14:14:43-04:00","handle":"product-21-9708","updated_at":"2016-09-23T14:14:43-04:00","published_at":"2015-09-23T14:14:43-04:00","template_suffix":null,"published_scope":"global","tags":"","variants":[{"id":28631146691,"product_id":8590655747,"title":"S
-        \/ S \/ S","price":"19.99","sku":"SKUS-M\/SKUS-1\/SKUS-2\/SKUS-3","position":1,"grams":0,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"S","option2":"S","option3":"S","created_at":"2016-09-23T14:14:43-04:00","updated_at":"2016-09-23T14:14:43-04:00","taxable":true,"barcode":null,"image_id":null,"inventory_quantity":1,"weight":0.0,"weight_unit":"oz","old_inventory_quantity":1,"requires_shipping":true}],"options":[{"id":10314158659,"product_id":8590655747,"name":"foo-size-16","position":1,"values":["S"]},{"id":10314158723,"product_id":8590655747,"name":"foo-size-17","position":2,"values":["S"]},{"id":10314158787,"product_id":8590655747,"name":"foo-size-18","position":3,"values":["S"]}],"images":[],"image":null}}'
-    http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:44 GMT
+  recorded_at: Fri, 23 Sep 2016 20:24:10 GMT
 - request:
     method: delete
-    uri: https://glossier-pop-staging.myshopify.com/admin/products/8590655747.json
+    uri: https://glossier-pop-staging.myshopify.com/admin/products/8592445507.json
     body:
       encoding: US-ASCII
       string: ''
@@ -1075,7 +236,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 23 Sep 2016 18:14:44 GMT
+      - Fri, 23 Sep 2016 20:24:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -1091,9 +252,9 @@ http_interactions:
       X-Shardid:
       - '2'
       X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
+      - 3/40
       Http-X-Shopify-Shop-Api-Call-Limit:
-      - 36/40
+      - 3/40
       X-Stats-Userid:
       - '0'
       X-Stats-Apiclientid:
@@ -1103,9 +264,9 @@ http_interactions:
       Location:
       - https://glossier-pop-staging.myshopify.com/admin/products
       X-Xss-Protection:
-      - 1; mode=block; report=/xss-report/3c9a97d1-ec75-41ac-adec-7239b9dcee60?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
+      - 1; mode=block; report=/xss-report/1324badf-5f24-4976-8134-ce14ecb8c5af?source%5Baction%5D=destroy&source%5Bcontroller%5D=admin%2Fproducts&source%5Bsection%5D=admin
       X-Request-Id:
-      - 3c9a97d1-ec75-41ac-adec-7239b9dcee60
+      - 1324badf-5f24-4976-8134-ce14ecb8c5af
       P3p:
       - CP="NOI DSP COR NID ADMa OPTa OUR NOR"
       X-Dc:
@@ -1121,5 +282,5 @@ http_interactions:
       encoding: ASCII-8BIT
       string: "{}"
     http_version: 
-  recorded_at: Fri, 23 Sep 2016 18:14:44 GMT
+  recorded_at: Fri, 23 Sep 2016 20:24:10 GMT
 recorded_with: VCR 3.0.3
