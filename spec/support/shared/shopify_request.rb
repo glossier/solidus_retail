@@ -1,7 +1,7 @@
 RSpec.shared_context 'shopify_request' do
   require 'shopify_api'
 
-  before :all do
+  before :each do
     ActiveResource::Base.format = :json
     ShopifyAPI.constants.each do |const|
       begin

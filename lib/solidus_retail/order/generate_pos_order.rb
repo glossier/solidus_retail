@@ -29,7 +29,7 @@ module SolidusRetail
         # Assign user afterwards
         # (so a credit card payment does not get created automatically if user
         # has a CC profile in the database - see Spree::Order::Checkout)
-        if user = Spree::User.find_by_email(order.email)
+        if user = Spree.user_class.find_by_email(order.email)
           order.user = user
           order.save
         end
@@ -111,6 +111,7 @@ module SolidusRetail
         order.next!
         order.payments.each(&:capture!)
         mark_as_shipped(order)
+        order.complete
       end
 
       def mark_as_shipped(order)
