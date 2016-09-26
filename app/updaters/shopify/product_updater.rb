@@ -1,11 +1,11 @@
 module Shopify
   class ProductUpdater
-    def initialize(spree_product_id:, product_klass: Spree::Product,
+    def initialize(spree_product:,
                    product_api: ShopifyAPI::Product,
                    attributor: Shopify::ProductAttributes,
                    exporter: Shopify::ProductExporter)
 
-      @spree_product = product_klass.find(spree_product_id)
+      @spree_product = spree_product
       @product_api = product_api
       @exporter = exporter
       @attributor = attributor
