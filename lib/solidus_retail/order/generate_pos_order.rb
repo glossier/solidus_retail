@@ -45,31 +45,15 @@ module SolidusRetail
 
       def add_line_items(order, pos_order)
         pos_order.line_items.each do |item|
-          if item.title == 'Phase 2 Set'
-            add_phase_two_to_order(order, pos_order, item)
-          else
-            line_item = Spree::LineItem.new(quantity: item.quantity)
-            line_item.variant = Spree::Variant.find_by(sku: item.sku)
-            line_item.price = item.price
-            line_item.currency = pos_order.currency
+          line_item = Spree::LineItem.new(quantity: item.quantity)
+          line_item.variant = Spree::Variant.find_by(sku: item.sku)
+          line_item.price = item.price
+          line_item.currency = pos_order.currency
 
-            order.line_items << line_item
-            line_item.order = order
-          end
+          order.line_items << line_item
+          line_item.order = order
         end
         order.save!
-      end
-
-      def add_phase_two_to_order(order, pos_order, item)
-        # Parts need to be infered from item.variant_title where order =
-        # Gen G / Boy Brow / Concealer
-        # For ex: variant_title"=>"Cake / Brown / Medium"
-        line_item = Spree::LineItem.new(quantity: item.quantity)
-        line_item.variant = Spree::Variant.find_by(sku: 'PHASE2')
-        line_item.price = item.price
-
-        order.line_items << line_item
-        line_item.order = order
       end
 
       # transitions
