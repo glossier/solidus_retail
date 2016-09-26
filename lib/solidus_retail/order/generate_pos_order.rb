@@ -100,7 +100,7 @@ module SolidusRetail
       end
 
       def transition_order_from_payment_to_confirm!(order)
-        payment_method = Spree::PaymentMethod.where(environment: Rails.env.to_s).find_by(name: 'Shopify')
+        payment_method = Spree::PaymentMethod.find_by(name: 'Shopify')
         payment = order.payments.create(payment_method: payment_method)
         payment.amount = order.total
         payment.save

@@ -16,7 +16,6 @@ RSpec.describe SolidusRetail::Order::GeneratePosOrder, type: :model do
 
   before :each do
     allow(Spree::Variant).to receive(:find_by) { variant }
-    allow(Spree::PaymentMethod).to receive_message_chain(:where, :find_by) { payment_method }
     allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
     variant.stock_items.first.update_attribute(:count_on_hand, 1900)
   end
