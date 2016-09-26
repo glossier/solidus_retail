@@ -111,7 +111,8 @@ module SolidusRetail
         order.next!
         order.payments.each(&:capture!)
         mark_as_shipped(order)
-        order.complete
+        Spree::OrderUpdater.new(order).update
+        order.complete!
       end
 
       def mark_as_shipped(order)
