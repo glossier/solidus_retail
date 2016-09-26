@@ -38,6 +38,4 @@ Gem::Specification.new do |s|
   # Required for Solidus Gateway to work
   s.add_development_dependency "sass-rails"
   s.add_development_dependency "coffee-rails"
-  s.add_development_dependency 'webmock'
-  s.add_development_dependency 'vcr'
 end
