@@ -5,7 +5,7 @@ describe 'Update a Spree Variant to Shopify', :vcr do
   include_context 'shopify_helpers'
 
   let(:spree_product) { create(:product, name: 'Product Name') }
-  let!(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
+  let(:spree_variant) { create(:variant, product: spree_product, sku: 'susan_sku') }
 
   before do
     export_product_and_variants!(spree_product)
@@ -34,6 +34,7 @@ describe 'Update a Spree Variant to Shopify', :vcr do
     let!(:old_pos_variant_id) { spree_variant.pos_variant_id }
 
     before do
+      update_variant!(spree_variant)
       cleanup_shopify_variant_from_spree!(spree_variant)
     end
 
