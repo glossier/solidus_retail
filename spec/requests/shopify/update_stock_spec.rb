@@ -5,7 +5,7 @@ describe 'Update the Shopify Variant quantity with the Spree Variant quantity', 
   include_context 'shopify_helpers'
 
   let(:spree_product) { create(:product, name: 'Product Name', disable_shopify_sync: true) }
-  let!(:spree_variant) { create(:variant, product: spree_product, sku: 'susan') }
+  let!(:spree_variant) { create(:variant, product: spree_product, sku: 'susan', disable_shopify_sync: true) }
 
   before do
     export_product_and_variants!(spree_product)

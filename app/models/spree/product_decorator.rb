@@ -1,11 +1,17 @@
 module Spree
   module ProductDecorator
-    attr_accessor :disable_shopify_sync
+    attr_reader :disable_shopify_sync
 
     def self.prepended(base)
       base.after_create :create_shopify_product, if: :should_export_to_shopify?
       base.after_update :update_shopify_product, if: :should_export_to_shopify?
       base.after_destroy :destroy_shopify_product, if: :should_export_to_shopify?
+    end
+
+    def disable_shopify_sync=(value)
+      return false if value != true
+      master.disable_shopify_sync = true
+      @disable_shopify_sync = true
     end
 
     private
