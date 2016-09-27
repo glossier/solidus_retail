@@ -4,11 +4,8 @@ RSpec.shared_context 'shopify_request' do
   before :each do
     ActiveResource::Base.format = :json
     ShopifyAPI.constants.each do |const|
-      begin
-        const = "ShopifyAPI::#{const}".constantize
-        const.format = :json if const.respond_to?(:format=)
-      rescue NameError
-      end
+      const = "ShopifyAPI::#{const}".constantize
+      const.format = :json if const.respond_to?(:format=)
     end
 
     ShopifyAPI::Base.clear_session
