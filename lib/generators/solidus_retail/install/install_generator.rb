@@ -3,6 +3,12 @@ module SolidusRetail
     class InstallGenerator < Rails::Generators::Base
       class_option :auto_run_migrations, type: :boolean, default: false
 
+      def self.source_paths
+        paths = superclass.source_paths
+        paths << File.expand_path('../templates', __FILE__)
+        paths.flatten
+      end
+
       def add_javascripts
         append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/solidus_retail\n"
         append_file 'vendor/assets/javascripts/spree/backend/all.js', "//= require spree/backend/solidus_retail\n"
