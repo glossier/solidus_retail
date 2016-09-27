@@ -560,4 +560,181 @@ http_interactions:
       string: "{}"
     http_version: 
   recorded_at: Thu, 22 Sep 2016 18:25:30 GMT
+- request:
+    method: post
+    uri: https://glossier-pop-staging.myshopify.com/admin/gift_cards.json
+    body:
+      encoding: UTF-8
+      string: '{"gift_card":{"initial_value":25}}'
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 501
+      message: Not Implemented
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Sep 2016 19:12:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/407fd5f5-b123-4c96-97f9-96007770234b?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fgift_cards&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 407fd5f5-b123-4c96-97f9-96007770234b
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"errors":"[API] That action is not currently supported."}'
+    http_version: 
+  recorded_at: Tue, 27 Sep 2016 19:12:00 GMT
+- request:
+    method: post
+    uri: https://glossier-pop-staging.myshopify.com/admin/gift_cards.json
+    body:
+      encoding: UTF-8
+      string: '{"gift_card":{"initial_value":25}}'
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 501
+      message: Not Implemented
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Sep 2016 19:12:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/5b8a3f8c-c9cb-4a24-9cbe-88ed62135585?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fgift_cards&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 5b8a3f8c-c9cb-4a24-9cbe-88ed62135585
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"errors":"[API] That action is not currently supported."}'
+    http_version: 
+  recorded_at: Tue, 27 Sep 2016 19:12:23 GMT
+- request:
+    method: post
+    uri: https://glossier-pop-staging.myshopify.com/admin/gift_cards.json
+    body:
+      encoding: UTF-8
+      string: '{"gift_card":{"initial_value":25}}'
+    headers:
+      Authorization:
+      - Basic MWI3ZjYzYmYyNDg4MzFjN2FlMmJlYWNmOWJjMzBiYmI6YjFjOTE1NTE1ZDA4ZTIwMzc5MzBhODQ0Zjc0MzY2MTA=
+      Content-Type:
+      - application/json
+      User-Agent:
+      - ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 501
+      message: Not Implemented
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Sep 2016 19:14:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Shopid:
+      - '6779563'
+      X-Shardid:
+      - '2'
+      X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      Http-X-Shopify-Shop-Api-Call-Limit:
+      - 1/40
+      X-Xss-Protection:
+      - 1; mode=block; report=/xss-report/89c4c428-6f17-4d1f-b4ae-0f5c959d81fc?source%5Baction%5D=create&source%5Bcontroller%5D=admin%2Fgift_cards&source%5Bsection%5D=admin
+      X-Request-Id:
+      - 89c4c428-6f17-4d1f-b4ae-0f5c959d81fc
+      X-Dc:
+      - ash
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"errors":"[API] That action is not currently supported."}'
+    http_version: 
+  recorded_at: Tue, 27 Sep 2016 19:14:01 GMT
 recorded_with: VCR 3.0.3
