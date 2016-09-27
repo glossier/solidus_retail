@@ -67,6 +67,15 @@ RSpec.shared_context 'spree_builders' do
     option_type
   end
 
+  def build_spree_gift_card(amount: 10.0, currency: 'USD')
+    gift_card = double(:gift_card)
+
+    allow(gift_card).to receive(:amount).and_return(amount)
+    allow(gift_card).to receive(:currency).and_return(currency)
+
+    gift_card
+  end
+
   def build_date_time(year: 1991, month: 3, day: 24, hour: 12, minute: 0, second: 0)
     DateTime.new(year, month, day, hour, minute, second)
   end
