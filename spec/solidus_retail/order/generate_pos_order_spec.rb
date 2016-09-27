@@ -33,6 +33,21 @@ RSpec.describe SolidusRetail::Order::GeneratePosOrder, type: :model do
       subject
       expect(last_order).to be_complete
     end
+
+    describe 'with bundled products' do
+      let(:part_variant) { create :variant }
+
+      before :each do
+        allow_any_instance_of(ShopifyAPI::LineItem).to receive(:sku) { "PHASE2/GBB100-SET/GML100-SET/GSC100-SET" }
+        variant.update_attribute(:sku, 'PHASE2')
+        variant.product.parts << part_variant
+      end
+
+      it 'processes as an assembled or bundled product depending on the sku' do
+        subject
+        expect(last_order.line_items.first.product.assembly?).to be_truthy
+      end
+    end
   end
 
   def last_order

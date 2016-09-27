@@ -45,15 +45,28 @@ module SolidusRetail
 
       def add_line_items(order, pos_order)
         pos_order.line_items.each do |item|
-          line_item = Spree::LineItem.new(quantity: item.quantity)
-          line_item.variant = Spree::Variant.find_by(sku: item.sku)
-          line_item.price = item.price
-          line_item.currency = pos_order.currency
+          if item.sku =~ /\w\/\w/
+            add_bundled_item(order, item)
+          else
+            line_item = Spree::LineItem.new(quantity: item.quantity)
+            line_item.variant = Spree::Variant.find_by(sku: item.sku)
+            line_item.price = item.price
+            line_item.currency = pos_order.currency
 
-          order.line_items << line_item
-          line_item.order = order
+            order.line_items << line_item
+            line_item.order = order
+          end
         end
         order.save!
+      end
+
+      def add_bundled_item(order, item)
+        line_item = Spree::LineItem.new(quantity: item.quantity).tap do |li|
+          li.variant = Spree::Variant.find_by(sku: item.sku.split('/')[0])
+          li.price = item.price
+        end
+        order.line_items << line_item
+        line_item.order = order
       end
 
       # transitions
