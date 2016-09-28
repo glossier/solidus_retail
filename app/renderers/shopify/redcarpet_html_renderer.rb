@@ -11,6 +11,7 @@ module Shopify
     end
 
     def render(content)
+      return '' if content.nil?
       converter.render(content).strip
     end
 
