@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe ImageConverter do
     include_context 'spree_builders'
 

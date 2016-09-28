@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe VariantConverter do
     include_context 'spree_builders'
 

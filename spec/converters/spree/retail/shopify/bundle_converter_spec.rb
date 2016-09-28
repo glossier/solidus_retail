@@ -1,24 +1,28 @@
 require 'spec_helper'
 
-module Shopify
-  RSpec.describe ProductConverter do
-    include_context 'spree_builders'
+module Spree::Retail::Shopify
+  RSpec.describe BundleConverter do
+    include_context 'phase_2_bundle'
 
-    let(:product) { build_spree_product }
+    let(:option_types) do
+      [phase_2_part_1_option_type.name,
+       phase_2_part_2_option_type.name,
+       phase_2_part_3_option_type.name]
+    end
 
     describe '.initialize' do
-      subject { described_class.new(product: product) }
+      subject { described_class.new(bundle: phase_2_bundle, option_types: option_types) }
 
-      it 'returns an instance of the product converter' do
+      it 'returns an instance of the bundle converter' do
         expect(subject).to be_a described_class
       end
     end
 
     describe '.to_hash' do
-      subject { described_class.new(product: product).to_hash }
+      subject { described_class.new(bundle: phase_2_bundle, option_types: option_types).to_hash }
 
       it 'converts the name key to the title key' do
-        expect(subject[:title]).to eql('name')
+        expect(subject[:title]).to eql('Phase 2')
       end
 
       it 'converts the description key to the body html key' do
@@ -43,6 +47,16 @@ module Shopify
 
       it 'converts the slug value to the handle value' do
         expect(subject[:handle]).to eql('slug')
+      end
+
+      it 'has all the options types' do
+        options = subject[:options]
+
+        expect(options.count).to eql(3)
+
+        expect(options.first[:name]).to eql('brow shade')
+        expect(options.second[:name]).to eql('lip shade')
+        expect(options.third[:name]).to eql('concealer shade')
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe PartConverter do
     include_context 'phase_2_bundle'
 
