@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe PartPresenter do
     include Spree::Retail::PresenterHelper
     include_context 'phase_2_bundle'
