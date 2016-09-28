@@ -2,9 +2,9 @@ module Spree
   module Retail
     module Shopify
       class ImageAttributes
-        include Spree::Retail::PresenterHelper
+        include PresenterHelper
 
-        def initialize(spree_variant, image_converter: Shopify::ImageConverter)
+        def initialize(spree_variant, image_converter: ImageConverter)
           @spree_variant = spree_variant
           @converter = image_converter
         end

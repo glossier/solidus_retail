@@ -2,7 +2,7 @@ module Spree
   module Retail
     module Shopify
       class ProductExporter
-        def initialize(spree_product:, product_api: ShopifyAPI::Product, attributor: Shopify::ProductAttributes)
+        def initialize(spree_product:, product_api: ShopifyAPI::Product, attributor: ProductAttributes)
           @spree_product = spree_product
           @product_api = product_api
           @attributor = attributor
@@ -41,8 +41,8 @@ module Spree
         end
 
         def save_associations_for(spree_product, shopify_product)
-          Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
-          Shopify::AssociationSaver.save_pos_variant_id_for_variants(spree_product.variants_including_master, shopify_product.variants)
+          AssociationSaver.save_pos_product_id(spree_product, shopify_product)
+          AssociationSaver.save_pos_variant_id_for_variants(spree_product.variants_including_master, shopify_product.variants)
         end
 
         def product_attributes_with_variants

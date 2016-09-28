@@ -2,9 +2,9 @@ module Spree
   module Retail
     module Shopify
       class VariantAttributes
-        include Spree::Retail::PresenterHelper
+        include PresenterHelper
 
-        def initialize(spree_variant, converter: Shopify::VariantConverter)
+        def initialize(spree_variant, converter: VariantConverter)
           @spree_variant = spree_variant
           @converter = converter
         end

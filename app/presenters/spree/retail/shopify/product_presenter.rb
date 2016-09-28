@@ -13,7 +13,7 @@ module Spree
         private
 
         def html_renderer
-          Shopify::RedcarpetHTMLRenderer.new
+          Spree::Retail::RedcarpetHTMLRenderer.new
         end
       end
     end

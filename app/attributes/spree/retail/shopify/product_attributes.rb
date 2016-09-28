@@ -2,11 +2,11 @@ module Spree
   module Retail
     module Shopify
       class ProductAttributes
-        include Spree::Retail::PresenterHelper
+        include PresenterHelper
 
-        def initialize(spree_product, product_converter: Shopify::ProductConverter,
-                       image_attributor: Shopify::ImageAttributes,
-                       variant_attributor: Shopify::VariantAttributes)
+        def initialize(spree_product, product_converter: ProductConverter,
+                       image_attributor: ImageAttributes,
+                       variant_attributor: VariantAttributes)
 
           @spree_product = spree_product
           @converter = product_converter

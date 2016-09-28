@@ -2,9 +2,9 @@ module Spree
   module Retail
     module Shopify
       class PartAttributes
-        include Spree::Retail::PresenterHelper
+        include PresenterHelper
 
-        def initialize(part:, permutation:, part_converter: Shopify::PartConverter)
+        def initialize(part:, permutation:, part_converter: PartConverter)
           @part = part
           @converter = part_converter
           @permutation = permutation

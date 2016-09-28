@@ -4,7 +4,7 @@ module Spree
       class BundledProductExporter
         def initialize(spree_product:,
                        product_api: ShopifyAPI::Product,
-                       bundle_attributes: Shopify::BundledProductAttributes)
+                       bundle_attributes: BundledProductAttributes)
 
           @spree_product = spree_product
           @product_api = product_api
@@ -30,7 +30,7 @@ module Spree
         end
 
         def save_associations_for(spree_product, shopify_product)
-          Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
+          AssociationSaver.save_pos_product_id(spree_product, shopify_product)
         end
 
         def product_attributes_with_parts

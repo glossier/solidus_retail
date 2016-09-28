@@ -2,10 +2,10 @@ module Spree
   module Retail
     module Shopify
       class ProductUpdater
-        def initialize(spree_product_id:, product_klass: Spree::Product,
+        def initialize(spree_product_id:, product_klass: ::Spree::Product,
                        product_api: ShopifyAPI::Product,
-                       attributor: Shopify::ProductAttributes,
-                       exporter: Shopify::ProductExporter)
+                       attributor: ProductAttributes,
+                       exporter: ProductExporter)
 
           @spree_product = product_klass.find(spree_product_id)
           @product_api = product_api
@@ -31,7 +31,7 @@ module Spree
 
         def update_shopify_product(shopify_product)
           shopify_product.update_attributes(product_attributes)
-          Shopify::AssociationSaver.save_pos_product_id(spree_product, shopify_product)
+          AssociationSaver.save_pos_product_id(spree_product, shopify_product)
 
           shopify_product
         end

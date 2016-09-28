@@ -1,6 +1,6 @@
 require 'redcarpet'
 
-module Shopify
+module Spree
   module Retail
     class RedcarpetHTMLRenderer
       def initialize(options: {}, extensions: {})

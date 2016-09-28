@@ -2,7 +2,8 @@ require 'spec_helper'
 
 module Spree::Retail::Shopify
   RSpec.describe PartPresenter do
-    include Spree::Retail::PresenterHelper
+    include PresenterHelper
+
     include_context 'phase_2_bundle'
 
     subject { present(phase_2_part_1, :part) }
