@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'redcarpet'
   s.add_dependency 'solidus_core', ['< 1.4', '>= 1.3.0.alpha']
   s.add_dependency 'solidus_gateway', '< 1.4'
+  s.add_dependency 'solidus_product_assembly'
 
   s.add_development_dependency 'capybara', '~> 2.7'
   s.add_development_dependency 'poltergeist', '~> 1.10'
