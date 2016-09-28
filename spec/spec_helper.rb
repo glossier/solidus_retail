@@ -1,24 +1,3 @@
-# Run Coverage report
-require 'simplecov'
-SimpleCov.start do
-  add_filter 'spec/dummy'
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Helpers', 'app/helpers'
-  add_group 'Mailers', 'app/mailers'
-  add_group 'Models', 'app/models'
-  add_group 'Views', 'app/views'
-  add_group 'Delegators', 'app/delegators'
-  add_group 'Policies', 'app/policies'
-  add_group 'Renderers', 'app/renderers'
-  add_group 'Converters', 'app/converters'
-  add_group 'Exporters', 'app/exporters'
-  add_group 'Jobs', 'app/jobs'
-  add_group 'Permuters', 'app/permuters'
-  add_group 'Presenters', 'app/presenters'
-  add_group 'Services', 'app/services'
-  add_group 'Libraries', 'lib'
-end
-
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
@@ -27,8 +6,6 @@ require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
-require 'webmock/rspec'
-require 'vcr'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -96,18 +73,20 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  # Make sure that only requests specs are VCRed
-  config.around(:each) do |example|
-    if example.metadata[:type] == :request
-      name = example.metadata[:full_description].split(/\s+/, 2).join('/').underscore.tr('.', '/').gsub(/[^\w\/]+/, '_').gsub(/\/$/, '')
-      VCR.use_cassette(name, {}, &example)
-    else
-      VCR.turned_off(&example)
-    end
-  end
-
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = 'random'
+
+  config.before(:all) do
+    begin
+      Spree::Retail::Config.shopify_api_key   = ENV.fetch('SHOPIFY_API_KEY')
+      Spree::Retail::Config.shopify_password  = ENV.fetch('SHOPIFY_PASSWORD')
+      Spree::Retail::Config.shopify_shop_name = ENV.fetch('SHOPIFY_SHOP_NAME')
+      ShopifyAPI::Base.site = Spree::Retail::Config.shop_url
+    rescue KeyError
+      puts 'You must set the required environment variables: Please see https://github.com/glossier/solidus_retail for ways to accomplish this.'
+      exit
+    end
+  end
 
   config.around(:each) do |example|
     begin
