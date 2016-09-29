@@ -13,7 +13,7 @@ module SolidusRetail
         puts "Fetching Shopify orders from #{from} to #{to}"
         ShopifyAPI::Order.where(limit: 250, created_at_min: from, created_at_max: to).each do |order|
           puts "Generating order for shopify order #{order.order_number}"
-          SolidusRetail::Order::GeneratePosOrder.new(order).process
+          Spree::GeneratePosOrder.new(order).process
         end
       rescue => e
         puts "Error with #{e}"
