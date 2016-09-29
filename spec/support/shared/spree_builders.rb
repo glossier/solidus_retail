@@ -32,12 +32,14 @@ RSpec.shared_context 'spree_builders' do
   def build_spree_variant(product: nil, sku: 'sku',
                           weight: 10, weight_unit: 'oz',
                           price: 10.45, option_values: [],
+                          pos_variant_id: '321',
                           updated_at: build_date_time)
 
     variant = double(:spree_variant)
 
     allow(variant).to receive(:product).and_return(product)
     allow(variant).to receive(:product_id).and_return(product.id) if product.present?
+    allow(variant).to receive(:pos_variant_id).and_return(pos_variant_id)
     allow(variant).to receive(:weight).and_return(weight)
     allow(variant).to receive(:weight_unit).and_return(weight_unit)
     allow(variant).to receive(:price).and_return(price)

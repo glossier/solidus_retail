@@ -38,8 +38,20 @@ Simply add this require statement to your spec_helper:
 require 'solidus_retail/factories'
 ```
 
-Copyright (c) 2016 [name of extension creator], released under the New BSD License
+Shopify doesn't allow sandbox environment. In order to run the specs locally you
+would have to enter your own Shopify credentials else the spec suite will throw
+you an error. 
 
+In order to correctly run the spec suite of this gem, you must entered your own
+Shopify credentials. Here are the keys that are required:
+
+```ruby
+SHOPIFY_PASSWORD=
+SHOPIFY_API_KEY=
+SHOPIFY_SHOP_NAME=
+```
+
+Copyright (c) 2016 Glossier, released under the New BSD License
 
 [1]: https://travis-ci.org/glossier/solidus_retail.svg?branch=master
 [2]: https://travis-ci.org/glossier/solidus_retail
