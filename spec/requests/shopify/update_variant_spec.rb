@@ -47,6 +47,10 @@ describe 'Update a Spree Variant to Shopify', :vcr do
   end
 
   describe 'when the variant already exists on Shopify' do
+    before do
+      update_variant!(spree_variant)
+    end
+
     it 'does not create a new variant' do
       shopify_product = find_shopify_product(spree_product)
       first_associated_variant_count = shopify_product.variants.count

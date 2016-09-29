@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe ProductOperations do
     include_context 'spree_builders'
 
@@ -10,7 +10,7 @@ module Shopify
       let(:product_exporter_instance) { double('exporter_instance', perform: true) }
 
       before do
-        allow(Shopify::ProductExporter).to receive(:new).and_return(product_exporter_instance)
+        allow(ProductExporter).to receive(:new).and_return(product_exporter_instance)
       end
 
       describe 'a regular product' do

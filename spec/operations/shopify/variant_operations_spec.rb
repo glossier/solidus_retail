@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe VariantOperations do
     include_context 'spree_builders'
 
@@ -10,7 +10,7 @@ module Shopify
     let(:variant_updater_instance) { double('updater_instance', perform: true) }
 
     before do
-      allow(Shopify::VariantUpdater).to receive(:new).and_return(variant_updater_instance)
+      allow(VariantUpdater).to receive(:new).and_return(variant_updater_instance)
     end
 
     describe 'when creating' do
