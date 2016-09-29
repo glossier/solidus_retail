@@ -2,11 +2,11 @@ module Spree
   module Retail
     module Shopify
       class StockUpdater
-        def initialize(spree_variant_id:, variant_klass: Spree::Variant,
+        def initialize(spree_variant:,
                        variant_api: ShopifyAPI::Variant,
                        stock_klass: Spree::StockLocation)
 
-          @spree_variant = variant_klass.find(spree_variant_id)
+          @spree_variant = spree_variant
           @variant_api = variant_api
           @stock_klass = stock_klass
         end
