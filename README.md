@@ -51,7 +51,7 @@ SHOPIFY_API_KEY=
 SHOPIFY_SHOP_NAME=
 ```
 
-Copyright (c) 2016 [name of extension creator], released under the New BSD License
+Copyright (c) 2016 Glossier, released under the New BSD License
 
 [1]: https://travis-ci.org/glossier/solidus_retail.svg?branch=master
 [2]: https://travis-ci.org/glossier/solidus_retail
