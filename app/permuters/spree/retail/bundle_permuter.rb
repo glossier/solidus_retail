@@ -1,8 +1,6 @@
 module Spree
   module Retail
     class BundlePermuter
-      include Spree::Retail::PresenterHelper
-
       class << self
         def all_option_values_per_part(part)
           container = []
