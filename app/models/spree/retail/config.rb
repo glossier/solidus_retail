@@ -4,6 +4,7 @@ module Spree
       class << self
         attr_accessor :shopify_api_key
         attr_accessor :shopify_password
+        attr_accessor :shopify_shared_secret
         attr_accessor :shopify_shop_name
 
         def shop_url
