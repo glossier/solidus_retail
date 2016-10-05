@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-Spree.describe Spree::Retail::GeneratePosOrder, type: :model do
+Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'shopify_request'
 
   let!(:store) { create :store }
