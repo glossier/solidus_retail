@@ -9,7 +9,7 @@ module Spree
         def verify_request_authenticity
           data = request.body.read
 
-          head :unauthorized unless request_authentified?(data, Spree::Retail::Config.shopify_shared_secret)
+          head :unauthorized unless request_authentified?(data, Spree::Retail::Config.shopify_webhook_shared_secret)
         end
 
         def request_authentified?(data, secret)

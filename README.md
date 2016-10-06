@@ -48,7 +48,9 @@ Shopify credentials. Here are the keys that are required:
 ```ruby
 SHOPIFY_PASSWORD=
 SHOPIFY_API_KEY=
+SHOPIFY_SHARED_SECRET=
 SHOPIFY_SHOP_NAME=
+SHOPIFY_WEBHOOK_SHARED_SECRET=
 ```
 
 Copyright (c) 2016 Glossier, released under the New BSD License
