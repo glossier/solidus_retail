@@ -27,7 +27,7 @@ module Spree
         attr_accessor :spree_variant, :variant_api, :stock_klass
 
         def find_shopify_variant_for(spree_variant)
-          variant_api.find_or_initialize_by_id(spree_variant.pos_variant_id, params: { product_id: spree_variant.product.pos_product_id })
+          variant_api.find(spree_variant.pos_variant_id, params: { product_id: spree_variant.product.pos_product_id })
         end
 
         def current_variant_count_on_hand
