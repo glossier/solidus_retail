@@ -11,7 +11,7 @@ module Spree
           end
 
           def shopify_order_id
-            json_body['order']['id']
+            json_body['id']
           end
         end
       end
