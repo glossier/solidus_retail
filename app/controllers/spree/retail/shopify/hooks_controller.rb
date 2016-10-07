@@ -2,7 +2,9 @@ module Spree
   module Retail
     module Shopify
       class HooksController < ApplicationController
-        before_filter :verify_request_authenticity
+        skip_before_action :verify_authenticity_token
+        skip_before_filter :restrict_access
+        # before_filter :verify_request_authenticity
 
         private
 
