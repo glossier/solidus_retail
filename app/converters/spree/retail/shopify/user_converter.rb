@@ -9,25 +9,41 @@ module Spree
 
         def to_hash
           {
-            email: user.weight,
-            first_name: user.weight_unit,
-            last_name: user.price,
+            email: user.email,
+            first_name: user_first_name,
+            last_name: user_last_name,
             verified_email: true
-          }.merge(ship_address).merge(bill_address)
+          }.merge(ship_address_attrs).merge(bill_address_attrs)
         end
 
         private
 
         attr_reader :user, :converter
 
-        def bill_address
-          return {} unless user.bill_address.present?
-          converter.new(user.bill_address, user).to_hash
+        def ship_address
+          user.ship_address
         end
 
-        def ship_address
-          return {} unless user.ship_address.present?
-          converter.new(user.ship_address, user).to_hash
+        def bill_address
+          user.bill_address
+        end
+
+        def bill_address_attrs
+          return {} unless bill_address.present?
+          converter.new(bill_address, user).to_hash
+        end
+
+        def ship_address_attrs
+          return {} unless ship_address.present?
+          converter.new(ship_address, user).to_hash
+        end
+
+        def user_last_name
+          ship_address.present? ? ship_address.lastname : 'UNDEFINED'
+        end
+
+        def user_first_name
+          ship_address.present? ? ship_address.firstname : 'UNDEFINED'
         end
       end
     end

@@ -11,7 +11,7 @@ RSpec.shared_context 'shopify_helpers' do
 
   def find_shopify_user(spree_user)
     spree_user.reload
-    ShopifyAPI::User.find(spree_user.pos_user_id)
+    ShopifyAPI::Customer.find(spree_user.pos_user_id)
   end
 
   # This will auto-destroy the variants, due to the shopify associations.

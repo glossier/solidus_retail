@@ -2,7 +2,7 @@ module Spree
   module Retail
     module Shopify
       class UserExporter
-        def initialize(spree_user:, user_api: ShopifyAPI::User, attributor: UserAttributes)
+        def initialize(spree_user:, user_api: ShopifyAPI::Customer, attributor: UserAttributes)
           @spree_user = spree_user
           @user_api = user_api
           @attributor = attributor
@@ -30,7 +30,7 @@ module Spree
         end
 
         def user_attributes
-          attributor.new(spree_user).attributes_with_variants
+          attributor.new(spree_user).attributes
         end
       end
     end
