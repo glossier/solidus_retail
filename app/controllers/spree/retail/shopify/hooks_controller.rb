@@ -4,7 +4,7 @@ module Spree
       class HooksController < ApplicationController
         skip_before_action :verify_authenticity_token
         skip_before_filter :restrict_access
-        # before_filter :verify_request_authenticity
+        before_filter :verify_request_authenticity
 
         private
 
