@@ -20,6 +20,14 @@ module Spree
             spree_variant
           end
 
+          def save_pos_user_id(spree_user, shopify_user)
+            spree_user.pos_user_id = shopify_user.id
+            spree_user.save
+
+            spree_user.reload
+            spree_user
+          end
+
           def save_pos_product_id(spree_product, shopify_product)
             spree_product.pos_product_id = shopify_product.id
             spree_product.save
