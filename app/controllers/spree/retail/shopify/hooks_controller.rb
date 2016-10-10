@@ -14,10 +14,6 @@ module Spree
           payload_validator = Spree::Retail::Shopify::ShopifyPayload.new(data, env)
           head :unauthorized unless payload_validator.valid?
         end
-
-        def json_body
-          @_json_body ||= JSON.parse(request.body.read)
-        end
       end
     end
   end
