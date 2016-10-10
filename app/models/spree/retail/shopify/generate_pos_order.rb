@@ -105,8 +105,7 @@ module Spree
         end
 
         def transition_order_from_payment_to_confirm!(order)
-          payment_method = Spree::PaymentMethod.find_by(name: 'Shopify')
-          payment = order.payments.create(payment_method: payment_method)
+          payment = order.payments.create(payment_method: default_payment_method)
           payment.amount = order.total
           payment.save
         end
@@ -155,6 +154,12 @@ module Spree
 
         def deployed_environment?
           !Rails.env.development? && !Rails.env.test?
+        end
+
+        private
+
+        def default_payment_method
+          Spree::PaymentMethod.find_by(name: 'Shopify')
         end
       end
     end
