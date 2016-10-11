@@ -7,6 +7,7 @@ module Spree
             shopify_variants.each do |shopify_variant|
               spree_variant = spree_variants.find_by(sku: shopify_variant.sku)
               next if spree_variant.nil?
+              next if !shopify_variant.persisted?
 
               save_pos_variant_id(spree_variant, shopify_variant)
             end

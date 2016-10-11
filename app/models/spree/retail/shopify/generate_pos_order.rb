@@ -56,9 +56,24 @@ module Spree
 
               order.line_items << line_item
               line_item.order = order
+              line_item.adjustments = build_adjustments(item, line_item, order)
+              line_item.save
             end
           end
           order.save!
+        end
+
+        def build_adjustments(shopify_line_item, spree_line_item, order)
+          adjustments = []
+          shopify_line_item.tax_lines.each do |tax|
+            adjustment = spree_line_item.adjustments.tax.build
+            adjustment.amount = tax.price
+            adjustment.label = tax.title
+            adjustment.order = order
+            adjustments << adjustment
+          end
+
+          adjustments
         end
 
         def add_bundled_item(order, item)
