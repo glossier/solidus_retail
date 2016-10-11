@@ -33,6 +33,11 @@ Spree.describe Spree::GeneratePosOrder, type: :model do
       expect(last_order).to be_complete
     end
 
+    it 'creates the related taxes as order adjustments' do
+      subject
+      expect(last_order.line_items.first.adjustments.count).to eql(1)
+    end
+
     describe 'with bundled products' do
       let!(:li_part1) { create :variant, sku: 'GBB100-SET' }
       let!(:li_part2) { create :variant, sku: 'GML100-SET' }
