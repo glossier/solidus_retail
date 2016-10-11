@@ -13,7 +13,7 @@ describe 'Shopify sends an order webhook event to Solidus', :vcr do
   end
 
   context '#create' do
-    let!(:request_body) { read_file_from_endpoint('orders/450789469', 'json') }
+    let!(:request_body) { read_file('orders', 'json') }
 
     it 'returns HTTP 200 status code' do
       call_create_order_hook!
