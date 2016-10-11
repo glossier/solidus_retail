@@ -57,6 +57,7 @@ module Spree
           order.line_items << line_item
           line_item.order = order
           line_item.adjustments = build_adjustments(item, line_item, order)
+          line_item.save
         end
       end
       order.save!
@@ -65,12 +66,10 @@ module Spree
     def build_adjustments(shopify_line_item, spree_line_item, order)
       adjustments = []
       shopify_line_item.tax_lines.each do |tax|
-        adjustment = Spree::Adjustment.new
+        adjustment = spree_line_item.adjustments.tax.build
         adjustment.amount = tax.price
         adjustment.label = tax.title
         adjustment.order = order
-        adjustment.included = false
-        adjustment.adjustable = spree_line_item
         adjustments << adjustment
       end
 
