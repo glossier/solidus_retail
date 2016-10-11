@@ -12,7 +12,7 @@ module Spree
           spree_refund.transaction_id = shopify_refund.transactions.first.id
           spree_refund.created_at = shopify_refund.created_at
           spree_refund.amount = refund_amount_for(shopify_refund)
-          spree_refund.refund_reason_id = refund_reason_for(shopify_refund).id
+          spree_refund.refund_reason_id = refund_reason.id
           spree_refund.save!
 
           shopify_refund
@@ -49,7 +49,7 @@ module Spree
           shopify_refund.transactions.map(&:amount).map(&:to_f).inject(:+)
         end
 
-        def refund_reason_for(shopify_refund)
+        def refund_reason
           Spree::RefundReason.first
         end
       end
