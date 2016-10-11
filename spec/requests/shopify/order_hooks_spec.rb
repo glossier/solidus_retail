@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Shopify sends a webhook event to Solidus', :vcr do
+describe 'Shopify sends an order webhook event to Solidus', :vcr do
   include_context 'shopify_request'
 
   let(:generator_instance) { double('instance', process: true) }
