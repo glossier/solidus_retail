@@ -2,7 +2,7 @@ module Spree
   module Retail
     module Shopify
       class GeneratePosOrder
-        GENERIC_EMAIL = ::Spree::Store.default.mail_from_address || ''
+        GENERIC_EMAIL = 'retailguest@glossier.com'
 
         def initialize(order)
           @order = order
