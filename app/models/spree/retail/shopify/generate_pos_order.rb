@@ -129,14 +129,13 @@ module Spree
           return if order.complete?
           order.next!
           order.payments.each(&:capture!)
-          mark_as_shipped(order)
           Spree::OrderUpdater.new(order).update
           order.complete!
+          mark_as_shipped(order)
         end
 
         def mark_as_shipped(order)
-          order.update_column('shipment_state', 'shipped')
-          order.shipments.last.update_column('state', 'shipped')
+          order.contents.approve(name: 'Shopify Order - Auto Approver')
         end
 
         def customer_email
