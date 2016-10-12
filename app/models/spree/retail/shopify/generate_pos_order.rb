@@ -137,7 +137,8 @@ module Spree
         end
 
         def mark_as_shipped(order)
-          order.contents.approve(name: 'Shopify Order - Auto Approver')
+          order.contents.approve(name: 'Shopify Auto Approver')
+          order.shipments.map(&:ship!)
         end
 
         def customer_email
