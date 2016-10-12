@@ -15,6 +15,7 @@ module Spree
           end
           order = create_order
           order.pos_order_number = @order.name
+          order.pos_order_id = @order.id
           order.email = customer_email
           order.channel = 'pos'
           order.created_at = @order.created_at
@@ -24,7 +25,7 @@ module Spree
           transition_order_from_cart_to_address!(order)
           transition_order_from_address_to_delivery!(order)
           transition_order_from_delivery_to_payment!(order)
-          transition_order_from_payment_to_confirm!(order)
+          transition_order_from_payment_to_confirm!(order, @order)
           transition_order_from_confirm_to_complete!(order)
 
           # Assign user afterwards
@@ -119,9 +120,10 @@ module Spree
           order.next!
         end
 
-        def transition_order_from_payment_to_confirm!(order)
-          payment = order.payments.create(payment_method: default_payment_method)
-          payment.amount = order.total
+        def transition_order_from_payment_to_confirm!(spree_order, shopify_order)
+          payment = spree_order.payments.create(payment_method: default_payment_method)
+          payment.amount = spree_order.total
+          payment.response_code = shopify_order.transactions.first.id
           payment.save
         end
 

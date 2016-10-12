@@ -10,7 +10,8 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   let!(:source) { create :credit_card, name: 'POS' }
   let(:variant) { create :variant }
 
-  let!(:response_mock) { mock_request('orders/450789469', 'json') }
+  let!(:order_response_mock) { mock_request('orders', 'orders/450789469', 'json') }
+  let!(:transaction_response_mock) { mock_request('transactions', 'orders/450789469/transactions', 'json') }
   let(:order_response) { ShopifyAPI::Order.find('450789469') }
 
   before :each do

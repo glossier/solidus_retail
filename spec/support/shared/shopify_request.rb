@@ -14,9 +14,9 @@ RSpec.shared_context 'shopify_request' do
     ShopifyAPI::Base.user = nil
   end
 
-  def mock_request(endpoint, extension)
+  def mock_request(file, endpoint, extension)
     url = "#{ShopifyAPI::Base.site}/#{endpoint}.#{extension}"
-    json = read_file_from_endpoint(endpoint, extension)
+    json = read_file(file, extension)
     stub_request(:get, url)
       .with(headers: { 'Accept' => "application/#{extension}",
                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -24,8 +24,7 @@ RSpec.shared_context 'shopify_request' do
       .to_return(status: 200, body: json, headers: {})
   end
 
-  def read_file_from_endpoint(endpoint, extension)
-    file = endpoint.split('/')[0]
+  def read_file(file, extension)
     File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}").read
   end
 end
