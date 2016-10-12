@@ -10,13 +10,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   let!(:source) { create :credit_card, name: 'POS' }
   let(:variant) { create :variant }
 
-  let!(:response_mock) { mock_request('orders/450789469', 'json') }
+  let!(:order_response_mock) { mock_request('orders', 'orders/450789469', 'json') }
+  let!(:transaction_response_mock) { mock_request('transactions', 'orders/450789469/transactions', 'json') }
   let(:order_response) { ShopifyAPI::Order.find('450789469') }
-  let(:shopify_transaction) { double('transaction', id: 123) }
-  let(:shopify_transactions) { [shopify_transaction] }
 
   before :each do
-    allow_any_instance_of(ShopifyAPI::Order).to receive(:transactions).and_return(shopify_transactions)
     allow(Spree::Variant).to receive(:find_by) { variant }
     allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
     variant.stock_items.first.update_attribute(:count_on_hand, 1900)
