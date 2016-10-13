@@ -41,121 +41,132 @@
     "landing_site_ref": "abc",
     "order_number": 1001,
     "discount_codes": [
-      {
-        "code": "TENOFF",
-        "amount": "10.00"
-      }
+    {
+      "code": "TENOFF",
+      "amount": "10.00"
+    }
     ],
     "note_attributes": [
-      {
-        "name": "custom engraving",
-        "value": "Happy Birthday"
-      },
-      {
-        "name": "colour",
-        "value": "green"
-      }
+    {
+      "name": "custom engraving",
+      "value": "Happy Birthday"
+    },
+    {
+      "name": "colour",
+      "value": "green"
+    }
     ],
     "processing_method": "direct",
     "checkout_id": 450789469,
     "tax_lines": [
-      {
-        "price": "11.94",
-        "rate": 0.06,
-        "title": "State Tax"
-      }
+    {
+      "price": "11.94",
+      "rate": 0.06,
+      "title": "State Tax"
+    }
     ],
     "tags": "",
     "line_items": [
+    {
+      "fulfillment_service": "manual",
+      "fulfillment_status": null,
+      "grams": 200,
+      "id": 466157049,
+      "price": "199.00",
+      "product_id": 632910392,
+      "quantity": 1,
+      "requires_shipping": true,
+      "sku": "IPOD2008GREEN",
+      "taxable": true,
+      "title": "IPod Nano - 8gb",
+      "variant_id": 39072856,
+      "variant_title": "green",
+      "vendor": null,
+      "name": "IPod Nano - 8gb - green",
+      "variant_inventory_management": "shopify",
+      "properties": [
       {
-        "fulfillment_service": "manual",
-        "fulfillment_status": null,
-        "grams": 200,
-        "id": 466157049,
-        "price": "199.00",
-        "product_id": 632910392,
-        "quantity": 1,
-        "requires_shipping": true,
-        "sku": "IPOD2008GREEN",
-        "taxable": true,
-        "title": "IPod Nano - 8gb",
-        "variant_id": 39072856,
-        "variant_title": "green",
-        "vendor": null,
-        "name": "IPod Nano - 8gb - green",
-        "variant_inventory_management": "shopify",
-        "properties": [
-          {
-            "name": "Custom Engraving",
-            "value": "Happy Birthday"
-          }
-        ],
-        "product_exists": true,
-        "tax_lines": [
-
-        ]
-      },
-      {
-        "fulfillment_service": "manual",
-        "fulfillment_status": null,
-        "grams": 200,
-        "id": 518995019,
-        "price": "199.00",
-        "product_id": 632910392,
-        "quantity": 1,
-        "requires_shipping": true,
-        "sku": "IPOD2008RED",
-        "taxable": true,
-        "title": "IPod Nano - 8gb",
-        "variant_id": 49148385,
-        "variant_title": "red",
-        "vendor": null,
-        "name": "IPod Nano - 8gb - red",
-        "variant_inventory_management": "shopify",
-        "properties": [
-
-        ],
-        "product_exists": true,
-        "tax_lines": [
-
-        ]
-      },
-      {
-        "fulfillment_service": "manual",
-        "fulfillment_status": null,
-        "grams": 200,
-        "id": 703073504,
-        "price": "199.00",
-        "product_id": 632910392,
-        "quantity": 1,
-        "requires_shipping": true,
-        "sku": "IPOD2008BLACK",
-        "taxable": true,
-        "title": "IPod Nano - 8gb",
-        "variant_id": 457924702,
-        "variant_title": "black",
-        "vendor": null,
-        "name": "IPod Nano - 8gb - black",
-        "variant_inventory_management": "shopify",
-        "properties": [
-
-        ],
-        "product_exists": true,
-        "tax_lines": [
-
-        ]
+        "name": "Custom Engraving",
+        "value": "Happy Birthday"
       }
+      ],
+      "product_exists": true,
+      "tax_lines": [
+      {
+        "title": "State Tax",
+        "price": "11.94",
+        "rate": 0.06
+      }
+      ]
+    },
+    {
+      "fulfillment_service": "manual",
+      "fulfillment_status": null,
+      "grams": 200,
+      "id": 518995019,
+      "price": "199.00",
+      "product_id": 632910392,
+      "quantity": 1,
+      "requires_shipping": true,
+      "sku": "IPOD2008RED",
+      "taxable": true,
+      "title": "IPod Nano - 8gb",
+      "variant_id": 49148385,
+      "variant_title": "red",
+      "vendor": null,
+      "name": "IPod Nano - 8gb - red",
+      "variant_inventory_management": "shopify",
+      "properties": [
+
+      ],
+      "product_exists": true,
+      "tax_lines": [
+      {
+        "title": "State Tax",
+        "price": "3.98",
+        "rate": 0.06
+      }
+      ]
+    },
+    {
+      "fulfillment_service": "manual",
+      "fulfillment_status": null,
+      "grams": 200,
+      "id": 703073504,
+      "price": "199.00",
+      "product_id": 632910392,
+      "quantity": 1,
+      "requires_shipping": true,
+      "sku": "IPOD2008BLACK",
+      "taxable": true,
+      "title": "IPod Nano - 8gb",
+      "variant_id": 457924702,
+      "variant_title": "black",
+      "vendor": null,
+      "name": "IPod Nano - 8gb - black",
+      "variant_inventory_management": "shopify",
+      "properties": [
+
+      ],
+      "product_exists": true,
+      "tax_lines": [
+      {
+        "title": "State Tax",
+        "price": "3.98",
+        "rate": 0.06
+      }
+      ]
+    }
     ],
     "shipping_lines": [
-      {
-        "code": "Free Shipping",
-        "price": "0.00",
-        "source": "shopify",
-        "title": "Free Shipping",
-        "tax_lines": [
-
-        ]
-      }
+    {
+      "code": "Free Shipping",
+      "price": "0.00",
+      "source": "shopify",
+      "title": "Free Shipping",
+      "tax_lines": [
+      ]
+    }
     ],
     "payment_details": {
       "avs_result_code": null,
@@ -199,57 +210,61 @@
       "province_code": "KY"
     },
     "fulfillments": [
+    {
+      "created_at": "2014-03-07T16:14:08-05:00",
+      "id": 255858046,
+      "order_id": 450789469,
+      "service": "manual",
+      "status": "failure",
+      "tracking_company": null,
+      "updated_at": "2014-03-07T16:14:08-05:00",
+      "tracking_number": "1Z2345",
+      "tracking_numbers": [
+        "1Z2345"
+      ],
+      "tracking_url": "http://wwwapps.ups.com/etracking/tracking.cgi?InquiryNumber1=1Z2345&TypeOfInquiryNumber=T&AcceptUPSLicenseAgreement=yes&submit=Track",
+      "tracking_urls": [
+        "http://wwwapps.ups.com/etracking/tracking.cgi?InquiryNumber1=1Z2345&TypeOfInquiryNumber=T&AcceptUPSLicenseAgreement=yes&submit=Track"
+      ],
+      "receipt": {
+        "testcase": true,
+        "authorization": "123456"
+      },
+      "line_items": [
       {
-        "created_at": "2014-03-07T16:14:08-05:00",
-        "id": 255858046,
-        "order_id": 450789469,
-        "service": "manual",
-        "status": "failure",
-        "tracking_company": null,
-        "updated_at": "2014-03-07T16:14:08-05:00",
-        "tracking_number": "1Z2345",
-        "tracking_numbers": [
-          "1Z2345"
+        "fulfillment_service": "manual",
+        "fulfillment_status": null,
+        "grams": 200,
+        "id": 466157049,
+        "price": "199.00",
+        "product_id": 632910392,
+        "quantity": 1,
+        "requires_shipping": true,
+        "sku": "IPOD2008GREEN",
+        "taxable": true,
+        "title": "IPod Nano - 8gb",
+        "variant_id": 39072856,
+        "variant_title": "green",
+        "vendor": null,
+        "name": "IPod Nano - 8gb - green",
+        "variant_inventory_management": "shopify",
+        "properties": [
+        {
+          "name": "Custom Engraving",
+          "value": "Happy Birthday"
+        }
         ],
-        "tracking_url": "http://wwwapps.ups.com/etracking/tracking.cgi?InquiryNumber1=1Z2345&TypeOfInquiryNumber=T&AcceptUPSLicenseAgreement=yes&submit=Track",
-        "tracking_urls": [
-          "http://wwwapps.ups.com/etracking/tracking.cgi?InquiryNumber1=1Z2345&TypeOfInquiryNumber=T&AcceptUPSLicenseAgreement=yes&submit=Track"
-        ],
-        "receipt": {
-          "testcase": true,
-          "authorization": "123456"
-        },
-        "line_items": [
-          {
-            "fulfillment_service": "manual",
-            "fulfillment_status": null,
-            "grams": 200,
-            "id": 466157049,
-            "price": "199.00",
-            "product_id": 632910392,
-            "quantity": 1,
-            "requires_shipping": true,
-            "sku": "IPOD2008GREEN",
-            "taxable": true,
-            "title": "IPod Nano - 8gb",
-            "variant_id": 39072856,
-            "variant_title": "green",
-            "vendor": null,
-            "name": "IPod Nano - 8gb - green",
-            "variant_inventory_management": "shopify",
-            "properties": [
-              {
-                "name": "Custom Engraving",
-                "value": "Happy Birthday"
-              }
-            ],
-            "product_exists": true,
-            "tax_lines": [
-
-            ]
-          }
+        "product_exists": true,
+        "tax_lines": [
+        {
+          "title": "State Tax",
+          "price": "3.98",
+          "rate": 0.06
+        }
         ]
       }
+      ]
+    }
     ],
     "client_details": {
       "accept_language": null,

@@ -10,7 +10,8 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   let!(:source) { create :credit_card, name: 'POS' }
   let(:variant) { create :variant }
 
-  let!(:response_mock) { mock_request('orders', 'orders/450789469', 'json') }
+  let!(:order_response_mock) { mock_request('orders', 'orders/450789469', 'json') }
+  let!(:transaction_response_mock) { mock_request('transactions', 'orders/450789469/transactions', 'json') }
   let(:order_response) { ShopifyAPI::Order.find('450789469') }
 
   before :each do
@@ -31,6 +32,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
     it 'creates an order that is in the complete state' do
       subject
       expect(last_order).to be_complete
+    end
+
+    it 'creates the related taxes as order adjustments' do
+      subject
+      expect(last_order.line_items.first.adjustments.count).to eql(1)
     end
 
     describe 'with bundled products' do

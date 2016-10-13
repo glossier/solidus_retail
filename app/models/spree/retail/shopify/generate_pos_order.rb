@@ -2,7 +2,7 @@ module Spree
   module Retail
     module Shopify
       class GeneratePosOrder
-        GENERIC_EMAIL = ::Spree::Store.default.mail_from_address || ''
+        GENERIC_EMAIL = 'retailguest@glossier.com'
 
         def initialize(order)
           @order = order
@@ -15,6 +15,7 @@ module Spree
           end
           order = create_order
           order.pos_order_number = @order.name
+          order.pos_order_id = @order.id
           order.email = customer_email
           order.channel = 'pos'
           order.created_at = @order.created_at
@@ -24,7 +25,7 @@ module Spree
           transition_order_from_cart_to_address!(order)
           transition_order_from_address_to_delivery!(order)
           transition_order_from_delivery_to_payment!(order)
-          transition_order_from_payment_to_confirm!(order)
+          transition_order_from_payment_to_confirm!(order, @order)
           transition_order_from_confirm_to_complete!(order)
 
           # Assign user afterwards
@@ -56,9 +57,24 @@ module Spree
 
               order.line_items << line_item
               line_item.order = order
+              line_item.adjustments = build_adjustments(item, line_item, order)
+              line_item.save
             end
           end
           order.save!
+        end
+
+        def build_adjustments(shopify_line_item, spree_line_item, order)
+          adjustments = []
+          shopify_line_item.tax_lines.each do |tax|
+            adjustment = spree_line_item.adjustments.tax.build
+            adjustment.amount = tax.price
+            adjustment.label = tax.title
+            adjustment.order = order
+            adjustments << adjustment
+          end
+
+          adjustments
         end
 
         def add_bundled_item(order, item)
@@ -104,9 +120,10 @@ module Spree
           order.next!
         end
 
-        def transition_order_from_payment_to_confirm!(order)
-          payment = order.payments.create(payment_method: default_payment_method)
-          payment.amount = order.total
+        def transition_order_from_payment_to_confirm!(spree_order, shopify_order)
+          payment = spree_order.payments.create(payment_method: default_payment_method)
+          payment.amount = spree_order.total
+          payment.response_code = shopify_order.transactions.first.id
           payment.save
         end
 
@@ -114,14 +131,14 @@ module Spree
           return if order.complete?
           order.next!
           order.payments.each(&:capture!)
-          mark_as_shipped(order)
           Spree::OrderUpdater.new(order).update
           order.complete!
+          mark_as_shipped(order)
         end
 
         def mark_as_shipped(order)
-          order.update_column('shipment_state', 'shipped')
-          order.shipments.last.update_column('state', 'shipped')
+          order.contents.approve(name: 'Shopify Auto Approver')
+          order.shipments.map(&:ship!)
         end
 
         def customer_email

@@ -24,6 +24,30 @@ describe 'Export a Spree product with its variants on Shopify', :vcr do
     expect(slave_variant.sku).to eql('slave-sku')
   end
 
+  describe 'when exporting multiple times' do
+    before do
+      export_product_and_variants!(spree_product)
+    end
+
+    it 'keeps the product pos id' do
+      expect(spree_product.pos_product_id).not_to be_nil
+
+      export_product_and_variants!(spree_product)
+
+      expect(spree_product.pos_product_id).not_to be_nil
+    end
+
+    it 'keeps the variant pos id on the variants' do
+      spree_variant.reload
+      expect(spree_variant.pos_variant_id).not_to be_nil
+
+      export_product_and_variants!(spree_product)
+
+      spree_variant.reload
+      expect(spree_variant.pos_variant_id).not_to be_nil
+    end
+  end
+
   describe 'with a master variant containe one image' do
     let(:variant_image) { create(:image) }
 
