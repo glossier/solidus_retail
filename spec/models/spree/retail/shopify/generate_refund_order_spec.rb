@@ -17,7 +17,7 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
   let(:refund_response) { ShopifyAPI::Refund.find('149756227', params: { order_id: '3937615427' }) }
 
   before do
-    order.shipments.first.inventory_units.first.variant.update(pos_variant_id: 29637399811)
+    order.shipments.first.inventory_units.first.variant.update(pos_variant_id: '29637399811')
     allow_any_instance_of(Spree::Reimbursement).to receive(:perform!).and_return(true)
   end
 

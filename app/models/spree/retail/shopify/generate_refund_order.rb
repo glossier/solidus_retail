@@ -55,6 +55,7 @@ module Spree
         def create_reimbursement(customer_return)
           reimbursement = Spree::Reimbursement.build_from_customer_return(customer_return)
           reimbursement.save
+          reimbursement.pos_refunded!
           reimbursement.perform!
         end
 
