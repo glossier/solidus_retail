@@ -8,14 +8,14 @@ module Spree
 
         def to_hash
           {
-            address_1: address.address1,
-            address_2: address.address2,
+            address1: address.address1,
+            address2: address.address2,
             city: address.city,
             first_name: address.firstname,
             last_name: address.lastname,
             phone: address.phone,
             zip: address.zipcode,
-            province_code: address.state.iso3,
+            province: address.state.name,
             country_code: address.country.iso3,
             updated_at: address.updated_at
           }

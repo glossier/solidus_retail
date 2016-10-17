@@ -4,7 +4,7 @@ module Spree
       class UserConverter
         def initialize(user:, address_converter: AddressConverter)
           @user = user
-          @converter = address_converter
+          @address_converter = address_converter
         end
 
         def to_hash
@@ -13,29 +13,24 @@ module Spree
             first_name: user_first_name,
             last_name: user_last_name,
             verified_email: true
-          }.merge(ship_address_attrs).merge(bill_address_attrs)
+          }.merge(default_address)
         end
 
         private
 
-        attr_reader :user, :converter
+        attr_reader :user, :address_converter
 
         def ship_address
           user.ship_address
         end
 
-        def bill_address
-          user.bill_address
-        end
-
-        def bill_address_attrs
-          return {} unless bill_address.present?
-          converter.new(bill_address, user).to_hash
-        end
-
         def ship_address_attrs
           return {} unless ship_address.present?
-          converter.new(ship_address, user).to_hash
+          address_converter.new(address: ship_address).to_hash
+        end
+
+        def default_address
+          { default_address: ship_address_attrs }
         end
 
         def user_last_name
