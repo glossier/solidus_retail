@@ -2,6 +2,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 require 'solidus_retail/version'
 
+# rubocop:disable BlockLength
 Gem::Specification.new do |s|
   s.name        = 'solidus_retail'
   s.version     = SolidusRetail::VERSION
