@@ -42,6 +42,19 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
     it 'successfully creates a spree customer return' do
       expect{ subject }.to change(Spree::CustomerReturn, :count).by 1
     end
+
+    describe 'when order has already been returned' do
+      subject { described_class.new(refund_response) }
+
+      before do
+        described_class.new(refund_response).process
+      end
+
+      it 'does not create a return authorization' do
+        expect(subject).not_to receive(:create_return_authorization)
+        subject.process
+      end
+    end
   end
 
   private

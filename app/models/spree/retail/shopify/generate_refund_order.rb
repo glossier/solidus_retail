@@ -8,9 +8,20 @@ module Spree
         end
 
         def process
+          if order.returned?
+            logger.info("SKIP - [Spree: #{@order.number} / Shopify: #{@order.pos_order_number}] - refund already imported")
+            return true
+          end
+
           create_return_authorization(order, return_items)
           customer_return = create_customer_return(return_items)
           create_reimbursement(customer_return)
+
+          return true
+
+        rescue => e
+          logger.error("FAILURE - [Spree: #{@order.try(:number)} / Shopify: #{order_id_for(shopify_refund)}]: #{e}")
+          return false
         end
 
         private
@@ -82,6 +93,10 @@ module Spree
 
         def reimbursement_type
           Spree::ReimbursementType.first
+        end
+
+        def logger
+          Logger.new(Rails.root.join('log/import_refund.log'))
         end
       end
     end
