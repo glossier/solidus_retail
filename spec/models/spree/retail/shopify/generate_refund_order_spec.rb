@@ -43,6 +43,11 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
       expect{ subject }.to change(Spree::CustomerReturn, :count).by 1
     end
 
+    it 'sets the order state to returned' do
+      subject
+      expect(last_order).to be_returned
+    end
+
     describe 'when order has already been returned' do
       subject { described_class.new(refund_response) }
 
@@ -58,6 +63,10 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
   end
 
   private
+
+  def last_order
+    Spree::Order.last
+  end
 
   def generate_pos_order!(shopify_order)
     Spree::Retail::Shopify::GeneratePosOrder.new(shopify_order).process
