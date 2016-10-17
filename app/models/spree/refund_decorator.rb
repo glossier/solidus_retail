@@ -4,15 +4,13 @@ module Spree::Retail
     delegate :pos_refunded, to: :reimbursement
 
     def perform!
-      if reimbursement.present? && pos_refunded?
-        return_all_inventory_unit!(reimbursement)
-        try_set_order_to_return!(reimbursement)
-        update_order
+      super unless pos_refunded?
 
-        return true
-      else
-        super
-      end
+      return_all_inventory_unit!(reimbursement)
+      try_set_order_to_return!(reimbursement)
+      update_order
+
+      true
     end
 
     private
