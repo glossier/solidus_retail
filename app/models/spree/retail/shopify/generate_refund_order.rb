@@ -34,12 +34,10 @@ module Spree
         end
 
         def create_return_item(inventory_unit)
-          return_item = Spree::ReturnItem.create(
+          Spree::ReturnItem.create(
             inventory_unit: inventory_unit,
             preferred_reimbursement_type: reimbursement_type
-          )
-          return_item.accept!
-          return_item
+          ).tap(&:accept!)
         end
 
         def create_return_authorization(order, return_items)
