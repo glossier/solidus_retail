@@ -4,7 +4,7 @@ module Spree::Retail
     delegate :pos_refunded, to: :reimbursement
 
     def perform!
-      if pos_refunded
+      if reimbursement && pos_refunded
         return_all_inventory_unit!(reimbursement)
         try_set_order_to_return!(reimbursement)
         update_order

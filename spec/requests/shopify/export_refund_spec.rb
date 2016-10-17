@@ -4,8 +4,7 @@ describe 'Refund a Shopify order on Glossier', :vcr do
   include_context 'shopify_shop'
   let(:refund_reason) { create(:refund_reason) }
 
-  context 'that is partially fulfilled' do
-    let(:pos_order) { create_fulfilled_paid_shopify_order }
+  context 'that is fulfilled' do
     let(:order) { create(:order, pos_order_id: pos_order.id) }
     let(:transaction) { ShopifyAPI::Order.find(pos_order.id).transactions.first }
     let(:payment) do
@@ -14,6 +13,7 @@ describe 'Refund a Shopify order on Glossier', :vcr do
              amount: refund_amount,
              payment_method: shopify_payment_method)
     end
+    let(:pos_order) { create_fulfilled_paid_shopify_order }
 
     let(:refund) do
       refund = Spree::Refund.new
