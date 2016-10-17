@@ -81,7 +81,7 @@ module Spree
           line_item = Spree::LineItem.new(quantity: item.quantity).tap do |li|
             li.variant = Spree::Variant.find_by(sku: item.sku.split('/')[0])
             li.price = item.price
-         end
+          end
           order.line_items << line_item
           add_line_item_parts(item, line_item)
           line_item.order = order

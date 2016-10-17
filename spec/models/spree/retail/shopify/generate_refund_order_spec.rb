@@ -47,6 +47,6 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
   private
 
   def generate_pos_order!(shopify_order)
-    Speee::Retail::Shopify::GeneratePosOrder.new(shopify_order).process
+    Spree::Retail::Shopify::GeneratePosOrder.new(shopify_order).process
   end
 end
