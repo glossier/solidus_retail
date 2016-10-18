@@ -39,6 +39,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       expect(last_order.line_items.first.adjustments.count).to eql(1)
     end
 
+    it 'ships the shipments' do
+      subject
+      expect(last_order.shipments).to all(be_shipped)
+    end
+
     describe 'with bundled products' do
       let!(:li_part1) { create :variant, sku: 'GBB100-SET' }
       let!(:li_part2) { create :variant, sku: 'GML100-SET' }

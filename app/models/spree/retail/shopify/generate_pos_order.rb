@@ -109,14 +109,12 @@ module Spree
         end
 
         def transition_order_from_address_to_delivery!(order)
-          shipment = order.shipments.create
-          shipment.stock_location = Spree::StockLocation.find_by(admin_name: 'POPUP')
-          shipment.save!
-          order.shipments.last.add_shipping_method(Spree::ShippingMethod.find_by(admin_name: 'POS'), true)
           order.next!
         end
 
         def transition_order_from_delivery_to_payment!(order)
+          order.shipments.first.stock_location = Spree::StockLocation.find_by(admin_name: 'POPUP')
+          order.shipments.first.add_shipping_method(Spree::ShippingMethod.find_by(admin_name: 'POS'), true)
           order.next!
         end
 

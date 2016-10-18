@@ -24,7 +24,7 @@ RSpec.shared_context 'shopify_request' do
       .to_return(status: 200, body: json, headers: {})
   end
 
-  def read_file(file, extension)
+  def read_file(file, extension = 'json')
     File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}").read
   end
 end

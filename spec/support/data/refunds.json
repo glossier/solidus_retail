@@ -1,0 +1,69 @@
+{
+  "id": 149756227,
+  "order_id": 3937615427,
+  "created_at": "2016-10-11T09: 16: 33-04: 00",
+  "note": "",
+  "restock": true,
+  "user_id": 8268187,
+  "refund_line_items":  [{
+    "id": 133285059,
+    "quantity": 1,
+    "line_item_id": 7306835459,
+    "subtotal": 12.0,
+    "total_tax": 1.07,
+    "line_item":  {
+      "id": 7306835459,
+      "variant_id": 29637399811,
+      "title": "3 Pink Pouches",
+      "quantity": 1,
+      "price": "12.00",
+      "grams": 0,
+      "sku": "ZIP100-KIT-2",
+      "variant_title": "ZIP100-KIT-2",
+      "vendor": "Glossier",
+      "fulfillment_service": "manual",
+      "product_id": 8754856899,
+      "requires_shipping": false,
+      "taxable": true,
+      "gift_card": false,
+      "name": "3 Pink Pouches - ZIP100-KIT-2",
+      "variant_inventory_management": "shopify",
+      "properties": [],
+      "product_exists": true,
+      "fulfillable_quantity": 0,
+      "total_discount": "0.00",
+      "fulfillment_status": "fulfilled",
+      "tax_lines":  [
+      {
+        "title": "NY State Tax",
+        "price": "0.48",
+        "rate": 0.04
+      },
+      {
+        "title": "New York County Tax",
+        "price": "0.59",
+        "rate": 0.04875
+      }]
+    }}
+  ],
+  "transactions":  [{
+    "id": 4300001923,
+    "order_id": 3937615427,
+    "amount": "13.07",
+    "kind": "refund",
+    "gateway": "cash",
+    "status": "success",
+    "message": "Refunded 13.07 from manual gateway",
+    "created_at": "2016-10-11T09: 16: 33-04: 00",
+    "test": false,
+    "authorization": null,
+    "currency": "USD",
+    "location_id": null,
+    "user_id": null,
+    "parent_id": 4295757827,
+    "device_id": null,
+    "receipt": {},
+    "error_code": null,
+    "source_name": "web"}],
+    "order_adjustments": []
+}
