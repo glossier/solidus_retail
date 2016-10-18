@@ -41,7 +41,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
 
     it 'ships the shipments' do
       subject
-      expect(last_order.shipments.first.state).to eql('shipped')
+      expect(last_order.shipments).to all(be_shipped)
     end
 
     describe 'with bundled products' do
