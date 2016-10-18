@@ -34,10 +34,12 @@ module Spree
         end
 
         def user_last_name
+          return user.last_name if user.respond_to?(:last_name)
           ship_address.present? ? ship_address.lastname : 'UNDEFINED'
         end
 
         def user_first_name
+          return user.first_name if user.respond_to?(:first_name)
           ship_address.present? ? ship_address.firstname : 'UNDEFINED'
         end
       end
