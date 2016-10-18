@@ -52,15 +52,11 @@ module Spree::Retail::Shopify
       end
 
       it 'uses the sku has the unique constraint value' do
-        expect(subject[:option1]).to eql('boy-brow')
+        expect(subject[:option1]).to eql('smells like flowers')
       end
 
       it 'has the inventory management set to shopify' do
         expect(subject[:inventory_management]).to eql('shopify')
-      end
-
-      it 'uses the same options_text has the title' do
-        expect(subject[:title]).to eql('smells like flowers')
       end
     end
   end
