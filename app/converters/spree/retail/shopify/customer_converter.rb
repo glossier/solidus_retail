@@ -9,11 +9,8 @@ module Spree
         def to_hash
           {
             email: shopify_customer.email,
-            first_name: shopify_customer.first_name,
-            last_name: shopify_customer.last_name,
-            password: development_default_password
-            # verified_email: shopify_customer.verified_email,
-            # updated_at: shopify_customer.updated_at
+            password: development_default_password,
+            updated_at: shopify_customer.updated_at
           }
         end
 

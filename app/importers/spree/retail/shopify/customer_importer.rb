@@ -8,10 +8,10 @@ module Spree
         end
 
         def perform
+          attributes = customer_attributes_for(shopify_customer)
           if customer_already_exists?(shopify_customer)
             raise "Please define me"
           else
-            attributes = customer_attributes_for(shopify_customer)
             create_spree_user_with(attributes)
           end
         end

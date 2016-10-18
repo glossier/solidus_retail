@@ -20,14 +20,6 @@ module Spree::Retail::Shopify
         it 'the shopify email address' do
           expect(last_user.email).to eql shopify_customer.email
         end
-
-        it 'the shopify first name' do
-          expect(last_user.first_name).to eql shopify_customer.first_name
-        end
-
-        it 'the shopify last name' do
-          expect(last_user.last_name).to eql shopify_customer.last_name
-        end
       end
     end
 
