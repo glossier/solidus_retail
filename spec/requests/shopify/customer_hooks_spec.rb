@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe 'Shopify sends a customer webhook event to Solidus', :vcr do
+  include_context 'ignore_shopify_hook_authentication'
   include_context 'shopify_request'
 
   let(:importer_instance) { double('instance', perform: true) }
   let(:shopify_customer) { double('shopify_customer') }
 
   before do
-    # TODO: Put that into a context v
-    allow_any_instance_of(Spree::Retail::Shopify::HooksController).to receive(:verify_request_authenticity).and_return(true)
     allow(ShopifyAPI::Customer).to receive(:find).and_return(shopify_customer)
     allow(Spree::Retail::Shopify::CustomerImporter).to receive(:new).and_return(importer_instance)
   end
