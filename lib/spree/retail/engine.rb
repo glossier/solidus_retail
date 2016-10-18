@@ -1,5 +1,6 @@
 require 'solidus_core'
 require 'shopify_api'
+require 'solidus_product_assembly'
 
 module Spree
   module Retail
