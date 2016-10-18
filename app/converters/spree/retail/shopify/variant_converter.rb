@@ -23,8 +23,10 @@ module Spree
 
         attr_reader :variant, :aggregated
 
+        # NOTE: We can't manually set the title of the variant, the first
+        # option is always the title of the variant, which is really weird :(
         def variant_uniqueness_constraint
-          { option1: variant.sku }
+          { option1: variant.options_text }
         end
 
         def variant_product_id

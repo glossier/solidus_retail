@@ -21,6 +21,7 @@ module Spree::Retail::Shopify
         build_spree_variant(weight: 10, weight_unit: 'oz',
                             price: 23.32, sku: 'boy-brow',
                             product: spree_product,
+                            options_text: 'smells like flowers',
                             updated_at: updated_at_date)
       end
 
@@ -51,7 +52,11 @@ module Spree::Retail::Shopify
       end
 
       it 'uses the sku has the unique constraint value' do
-        expect(subject[:option1]).to eql('boy-brow')
+        expect(subject[:option1]).to eql('smells like flowers')
+      end
+
+      it 'has the inventory management set to shopify' do
+        expect(subject[:inventory_management]).to eql('shopify')
       end
     end
   end
