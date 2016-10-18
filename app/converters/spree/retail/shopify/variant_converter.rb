@@ -15,6 +15,7 @@ module Spree
             sku: variant.sku,
             inventory_management: 'shopify',
             requires_shipping: false,
+            title: variant.options_text,
             updated_at: variant.updated_at
           }.merge(variant_uniqueness_constraint).merge(variant_product_id)
         end
