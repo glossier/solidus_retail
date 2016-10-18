@@ -13,11 +13,12 @@ Spree.describe Spree::Retail::Shopify::GenerateRefundOrder, type: :model do
   let!(:source) { create :credit_card, name: 'POS' }
   let!(:variant) { create :variant, price: 12.00, pos_variant_id: '29637399811' }
 
-  let!(:order_response_mock) { mock_request('orders', 'orders/450789469', 'json') }
-  let(:order_response) { ShopifyAPI::Order.find('450789469') }
-  let!(:refund_response_mock) { mock_request('refunds', 'orders/450789469/refunds/149756227', 'json') }
-  let!(:transaction_response_mock) { mock_request('transactions', 'orders/450789469/transactions', 'json') }
-  let(:refund_response) { ShopifyAPI::Refund.find('149756227', params: { order_id: '450789469' }) }
+  let(:shopify_order_id) { '450789469' }
+  let!(:order_response_mock) { mock_request('orders', "orders/#{shopify_order_id}", 'json') }
+  let(:order_response) { ShopifyAPI::Order.find(shopify_order_id) }
+  let!(:refund_response_mock) { mock_request('refunds', "orders/#{shopify_order_id}/refunds/149756227", 'json') }
+  let!(:transaction_response_mock) { mock_request('transactions', "orders/#{shopify_order_id}/transactions", 'json') }
+  let(:refund_response) { ShopifyAPI::Refund.find('149756227', params: { order_id: shopify_order_id }) }
 
   before :each do
     allow(Spree::Variant).to receive(:find_by) { variant }
