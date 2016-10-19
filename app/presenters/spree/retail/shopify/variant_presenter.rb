@@ -9,6 +9,12 @@ module Spree
         def default_pos_image
           images.first
         end
+
+        def title
+          return sku unless option_values.any?
+
+          option_values.first.presentation
+        end
       end
     end
   end

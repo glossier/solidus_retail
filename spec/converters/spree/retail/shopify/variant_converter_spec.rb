@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Spree::Retail::Shopify
   RSpec.describe VariantConverter do
+    include PresenterHelper
     include_context 'spree_builders'
 
     let(:spree_variant) { build_spree_variant }
@@ -17,15 +18,17 @@ module Spree::Retail::Shopify
     describe '.to_hash' do
       let(:spree_product) { build_spree_product(id: 321, pos_product_id: 123) }
       let(:updated_at_date) { build_date_time(year: 2016, month: 1, day: 1, hour: 12, minute: 0, second: 0 ) }
+      let(:option_value) { build_spree_option_value(presentation: 'jam') }
       let(:spree_variant) do
         build_spree_variant(weight: 10, weight_unit: 'oz',
                             price: 23.32, sku: 'boy-brow',
                             product: spree_product,
-                            options_text: 'smells like flowers',
+                            option_values: [option_value],
                             updated_at: updated_at_date)
       end
+      let(:presented_variant) { present(spree_variant, :variant) }
 
-      subject { described_class.new(variant: spree_variant).to_hash }
+      subject { described_class.new(variant: presented_variant).to_hash }
 
       it 'keeps the same weight value' do
         expect(subject[:weight]).to eql(10)
@@ -51,8 +54,22 @@ module Spree::Retail::Shopify
         expect(subject[:updated_at]).to eql(updated_at_date)
       end
 
-      it 'uses the sku has the unique constraint value' do
-        expect(subject[:option1]).to eql('smells like flowers')
+      it 'uses the first presentation value has the unique constraint value' do
+        expect(subject[:option1]).to eql('jam')
+      end
+
+      describe 'when it has no option_values' do
+        let(:spree_variant) do
+          build_spree_variant(weight: 10, weight_unit: 'oz',
+                              price: 23.32, sku: 'boy-brow',
+                              product: spree_product,
+                              option_values: [],
+                              updated_at: updated_at_date)
+        end
+
+        it 'uses the sku has the unique constraint value' do
+          expect(subject[:option1]).to eql('boy-brow')
+        end
       end
 
       it 'has the inventory management set to shopify' do
