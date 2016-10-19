@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Spree::Retail::Shopify
   RSpec.describe VariantConverter do
+    include PresenterHelper
     include_context 'spree_builders'
 
     let(:spree_variant) { build_spree_variant }
@@ -25,8 +26,9 @@ module Spree::Retail::Shopify
                             option_values: [option_value],
                             updated_at: updated_at_date)
       end
+      let(:presented_variant) { present(spree_variant, :variant) }
 
-      subject { described_class.new(variant: spree_variant).to_hash }
+      subject { described_class.new(variant: presented_variant).to_hash }
 
       it 'keeps the same weight value' do
         expect(subject[:weight]).to eql(10)

@@ -26,7 +26,7 @@ module Spree
         # NOTE: We can't manually set the title of the variant, the first
         # option is always the title of the variant, which is really weird.
         def variant_uniqueness_constraint
-          { option1: variant_title_value }
+          { option1: variant.title }
         end
 
         def variant_product_id
@@ -41,12 +41,6 @@ module Spree
 
         def variant_product
           variant.product
-        end
-
-        def variant_title_value
-          return variant.sku unless variant.option_values.any?
-
-          variant.option_values.first.presentation
         end
       end
     end
