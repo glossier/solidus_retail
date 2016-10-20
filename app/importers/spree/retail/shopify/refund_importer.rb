@@ -42,11 +42,6 @@ module Spree
         def spree_order_id_for(shopify_refund)
           shopify_refund.prefix_options[:order_id]
         end
-
-        # def shipping_manifest
-        #   manifest = Spree::ShippingManifest.new(inventory_units: order.shipments.first.inventory_units.where(carton_id: nil))
-        #   manifest.items
-        # end
       end
     end
   end
