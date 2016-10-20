@@ -2,11 +2,11 @@ module Spree
   module Retail
     module Shopify
       class RefundImporter
-        def initialize(shopify_refund, callback, logger: RefunderLogger)
+        def initialize(shopify_refund, callback, logger: RefundLogger)
           @shopify_refund = shopify_refund
           @spree_order = find_spree_order_for(shopify_refund)
           @callback = callback
-          @logger = logger
+          @logger = logger.new(shopify_refund)
         end
 
         def perform

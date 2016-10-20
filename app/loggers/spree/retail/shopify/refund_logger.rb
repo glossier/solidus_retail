@@ -1,7 +1,7 @@
 module Spree
   module Retail
     module Shopify
-      class RefunderLogger
+      class RefundLogger < GenericLogger
         def initialize(shopify_refund)
           @shopify_refund = shopify_refund
         end
@@ -17,18 +17,6 @@ module Spree
         private
 
         attr_accessor :shopify_refund
-
-        def skip(reason = nil)
-          logger.info("SKIP - #{format_string(reason)}")
-        end
-
-        def error(reason = nil)
-          logger.error("ERROR - #{format_string(reason)}")
-        end
-
-        def format_string(reason = nil)
-          "#{object_representation} #{reason}"
-        end
 
         def object_representation
           "[Shopify Refund ID: #{shopify_refund.id}]"
