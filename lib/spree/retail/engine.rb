@@ -7,8 +7,9 @@ module Spree
       isolate_namespace Spree
       engine_name 'solidus_retail'
 
-      require 'dotenv-rails'
-      Dotenv.load
+      initializer "spree.gateway.payment_methods", after: "spree.register.payment_methods" do |app|
+        app.config.spree.payment_methods << Spree::Gateway::ShopifyGateway
+      end
 
       # use rspec for tests
       config.generators do |g|
