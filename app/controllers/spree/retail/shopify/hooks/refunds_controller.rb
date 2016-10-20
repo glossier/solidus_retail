@@ -5,9 +5,15 @@ module Spree
         class RefundsController < HooksController
           def create
             shopify_refund = ShopifyAPI::Refund.find(shopify_refund_id, params: { order_id: shopify_order_id })
-            success = Spree::Retail::Shopify::GenerateRefundOrder.new(shopify_refund).process
+            Spree::Retail::Shopify::RefundImporter.new(shopify_refund, self).perform
+          end
 
-            success ? head(:ok) : head(:internal_server_error)
+          def success_case
+            head :ok
+          end
+
+          def failure_case
+            head :internal_server_error
           end
 
           private
