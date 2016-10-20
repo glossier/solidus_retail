@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail::Shopify
   RSpec.describe ProductPresenter do
-    include Spree::Retail::PresenterHelper
+    include Spree::Retail::Shopify::PresenterHelper
+
     include_context 'spree_builders'
 
     let(:product) { build_spree_product(description: 'La-Mulana') }

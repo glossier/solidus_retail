@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Shopify
+module Spree::Retail
   RSpec.describe RedcarpetHTMLRenderer do
     include_context 'spree_builders'
 
