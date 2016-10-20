@@ -1,17 +1,14 @@
 module Spree
   module Retail
     module Shopify
-      class ReturnItems
-        def initialize(order, shopify_refund)
-          @order = order
-          @shopify_refund = shopify_refund
-        end
+      module ReturnItems
+        extend self
 
-        def all
+        def all_for(order, shopify_refund_line_items)
           return_items = []
-          shopify_refund.refund_line_items.each do |rli|
-            inventory_unit = find_inventory_by_shopify_variant_id(order, rli.line_item.variant_id)
-            return_items << create_return_item(inventory_unit)
+          shopify_refund_line_items.each do |rli|
+              inventory_unit = order.all_inventory_units.find_by(pos_variant_id: rli.line_item.variant_id)
+              return_items << create_return_item(inventory_unit)
           end
 
           return_items
@@ -25,12 +22,6 @@ module Spree
         end
 
         private
-
-        attr_accessor :order, :shopify_refund
-
-        def find_inventory_by_shopify_variant_id(order, shopify_variant_id)
-          order.shipments.first.inventory_units.find { |unit| unit.variant.pos_variant_id.to_i == shopify_variant_id.to_i }
-        end
 
         def reimbursement_type
           Spree::ReimbursementType.first
