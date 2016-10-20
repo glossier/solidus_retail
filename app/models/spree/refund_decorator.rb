@@ -2,13 +2,13 @@ module Spree::Retail
   module RefundDecorator
     delegate :pos_order_id, to: :payment
     delegate :pos_refunded, :pos_refunded?,
-             :return_order!, to: :reimbursement, allow_nil: true
+             :return_order, to: :reimbursement, allow_nil: true
 
     def perform!
       return super if !pos_refunded?
 
       return_all_inventory_unit!(reimbursement)
-      return_order!
+      return_order
       update_order
 
       true

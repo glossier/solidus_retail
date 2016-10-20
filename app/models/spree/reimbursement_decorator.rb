@@ -4,8 +4,8 @@ module Spree::Retail
       update_attribute(:pos_refunded, true)
     end
 
-    def return_order!
-      order.return!
+    def return_order
+      order.return
     end
   end
 end
