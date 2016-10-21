@@ -1,29 +1,22 @@
 require 'spec_helper'
 
 Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
+  include_context 'create_default_shop'
   include_context 'shopify_request'
 
-  let!(:store) { create :store }
-  let!(:shipping_method) { create :shipping_method, admin_name: 'POS' }
-  let!(:stock_location) { create :stock_location, admin_name: 'POPUP' }
-  let!(:payment_method) { create :retail_payment_method }
-  let!(:source) { create :credit_card, name: 'POS' }
+  let(:shopify_order) { create_shopify_order('450789469') }
   let(:variant) { create :variant }
-
-  let!(:order_response_mock) { mock_request('orders', 'orders/450789469', 'json') }
-  let!(:transaction_response_mock) { mock_request('transactions', 'orders/450789469/transactions', 'json') }
-  let(:order_response) { ShopifyAPI::Order.find('450789469') }
 
   before :each do
     allow(Spree::Variant).to receive(:find_by) { variant }
-    allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
     variant.stock_items.first.update_attribute(:count_on_hand, 1900)
+    allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
   end
 
-  subject { described_class.new(order_response) }
+  subject { described_class.new(shopify_order) }
 
   describe '#process' do
-    subject { described_class.new(order_response).process }
+    subject { described_class.new(shopify_order).process }
 
     it 'successfully creates a solidus order' do
       expect{ subject }.to change(Spree::Order, :count).by 1

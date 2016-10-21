@@ -6,6 +6,8 @@ module Spree
           def create
             shopify_refund = ShopifyAPI::Refund.find(shopify_refund_id, params: { order_id: shopify_order_id })
             Spree::Retail::Shopify::RefundImporter.new(shopify_refund, self).perform
+
+            head :ok
           end
 
           def success_case

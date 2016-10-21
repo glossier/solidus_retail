@@ -23,7 +23,7 @@ module Spree
         end
 
         def logger
-          Logger.new(Rails.root.join('log/import_refund.log'))
+          Logger.new(Rails.root.join('log/retail_import_refund.log'))
         end
       end
     end

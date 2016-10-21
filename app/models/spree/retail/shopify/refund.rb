@@ -6,21 +6,22 @@ module Spree
 
         def create(order, return_items)
           create_return_authorization(order, return_items)
-          create_reimbursement(return_items)
+          customer_return = customer_return(return_items)
+          create_reimbursement(customer_return)
         end
 
         private
 
         def create_return_authorization(order, return_items)
-          ReturnAuthorization.create(order, return_items)
+          Spree::Retail::Shopify::ReturnAuthorization.create(order, return_items)
         end
 
-        def create_reimbursement
-          Reimbursement.create(customer_return)
+        def create_reimbursement(customer_return)
+          Spree::Retail::Shopify::Reimbursement.create(customer_return)
         end
 
         def customer_return(return_items)
-          CustomerReturn.create(return_items)
+          Spree::Retail::Shopify::CustomerReturn.create(return_items)
         end
       end
     end

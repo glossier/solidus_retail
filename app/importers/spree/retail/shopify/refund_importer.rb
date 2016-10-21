@@ -2,7 +2,9 @@ module Spree
   module Retail
     module Shopify
       class RefundImporter
-        def initialize(shopify_refund, callback, logger: RefundLogger)
+        include PresenterHelper
+
+        def initialize(shopify_refund, callback:, logger: RefundLogger)
           @shopify_refund = shopify_refund
           @spree_order = find_spree_order_for(shopify_refund)
           @callback = callback
@@ -11,7 +13,7 @@ module Spree
 
         def perform
           unless refund_already_exists?(spree_order)
-            Refund.create(spree_order, return_items)
+            Spree::Retail::Shopify::Refund.create(spree_order, return_items)
           end
 
           callback.success_case
@@ -32,7 +34,8 @@ module Spree
         end
 
         def return_items
-          @_return_items ||= ReturnItems.new(spree_order, shopify_refund).all
+          refund_line_items = shopify_refund.refund_line_items
+          @_return_items ||= ReturnItems.all_for(presented_order, refund_line_items)
         end
 
         def find_spree_order_for(shopify_refund)
@@ -41,6 +44,10 @@ module Spree
 
         def spree_order_id_for(shopify_refund)
           shopify_refund.prefix_options[:order_id]
+        end
+
+        def presented_order
+          present(spree_order, :order)
         end
       end
     end

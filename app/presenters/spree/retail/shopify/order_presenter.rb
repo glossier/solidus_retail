@@ -3,7 +3,7 @@ module Spree
     module Shopify
       class OrderPresenter < Delegator
         def all_inventory_units
-          shipments.map(&:inventory_units).uniq
+          shipments.flat_map(&:inventory_units).uniq
         end
       end
     end

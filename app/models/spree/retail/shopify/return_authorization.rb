@@ -20,6 +20,10 @@ module Spree
           Spree::ReturnReason.first
         end
 
+        def stock_location_to_refund
+          Spree::StockLocation.first
+        end
+
         def note
           "Automated refund made by Shopify"
         end

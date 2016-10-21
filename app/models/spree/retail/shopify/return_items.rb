@@ -7,8 +7,8 @@ module Spree
         def all_for(order, shopify_refund_line_items)
           return_items = []
           shopify_refund_line_items.each do |rli|
-              inventory_unit = order.all_inventory_units.find_by(pos_variant_id: rli.line_item.variant_id)
-              return_items << create_return_item(inventory_unit)
+            inventory_unit = order.all_inventory_units.detect { |iu| iu.variant.pos_variant_id == rli.line_item.variant_id.to_s }
+            return_items << create(inventory_unit)
           end
 
           return_items
