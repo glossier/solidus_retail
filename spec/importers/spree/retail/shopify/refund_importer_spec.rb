@@ -45,9 +45,6 @@ module Spree::Retail::Shopify
         end
       end
 
-      describe 'when it is a partial refund' do
-      end
-
       describe 'when order has already been returned' do
         subject { described_class.new(shopify_refund, callback: callback) }
 
