@@ -16,9 +16,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency 'shopify_api', '~> 4.0'
   s.add_dependency 'redcarpet'
-  s.add_dependency 'solidus_core', ['> 2.0']
+  s.add_dependency 'solidus_core', ['>= 2.0']
   s.add_dependency 'solidus_gateway', '< 1.4'
 
   s.add_development_dependency 'capybara', '~> 2.7'
