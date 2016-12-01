@@ -1,0 +1,8 @@
+<!-- insert_before 'div.omega.eight.columns' -->
+
+<div class="four columns">
+  <div class="field">
+    <%= label_tag :q_number_cont, Spree.t(:pos_order_number, :number => '') %>
+    <%= f.text_field :pos_order_number_cont %>
+  </div>
+</div>
