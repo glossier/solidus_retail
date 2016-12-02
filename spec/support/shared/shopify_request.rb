@@ -1,30 +1,14 @@
 RSpec.shared_context 'shopify_request' do
-  require 'shopify_api'
+  include_context 'shopify_mock'
 
-  before :each do
-    ActiveResource::Base.format = :json
-    ShopifyAPI.constants.each do |const|
-      const = "ShopifyAPI::#{const}".constantize
-      const.format = :json if const.respond_to?(:format=)
-    end
-
-    ShopifyAPI::Base.clear_session
-    ShopifyAPI::Base.site = "https://this-is-my-test-shop.myshopify.com/admin"
-    ShopifyAPI::Base.password = nil
-    ShopifyAPI::Base.user = nil
+  def create_shopify_order(order_id)
+    @mocked_order = mock_request('orders', "orders/#{order_id}", 'json')
+    @mocked_transactions = mock_request('transactions', "orders/#{order_id}/transactions", 'json')
+    ShopifyAPI::Order.find(order_id)
   end
 
-  def mock_request(file, endpoint, extension)
-    url = "#{ShopifyAPI::Base.site}/#{endpoint}.#{extension}"
-    json = read_file(file, extension)
-    stub_request(:get, url)
-      .with(headers: { 'Accept' => "application/#{extension}",
-                       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                       'User-Agent' => 'ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1' })
-      .to_return(status: 200, body: json, headers: {})
-  end
-
-  def read_file(file, extension = 'json')
-    File.open("#{File.dirname(__FILE__)}/../data/#{file}.#{extension}").read
+  def create_shopify_refund(order_id:, refund_id:)
+    @mocked_refund = mock_request('refunds', "orders/#{order_id}/refunds/#{refund_id}", 'json')
+    ShopifyAPI::Refund.find(refund_id, params: { order_id: order_id })
   end
 end
