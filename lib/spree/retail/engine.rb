@@ -1,4 +1,5 @@
 require 'solidus_core'
+require 'deface'
 require 'shopify_api'
 
 module Spree
