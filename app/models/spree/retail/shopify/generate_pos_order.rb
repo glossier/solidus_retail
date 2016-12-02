@@ -6,6 +6,7 @@ module Spree
 
         def initialize(order)
           @order = order
+          Spree::Config.stock.estimator_class = "::Spree::Retail::Stock::Estimator"
         end
 
         def process
