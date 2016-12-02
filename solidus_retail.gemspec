@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sqlite3', '~> 1.3'
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'pry-byebug'
+  s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'vcr', '~> 3.0'
   s.add_development_dependency 'webmock', '~> 2.1'
 
