@@ -3,13 +3,13 @@ require 'spec_helper'
 describe 'Shopify sends a refund webhook event to Solidus', :vcr do
   include_context 'shopify_request'
 
-  let(:generator_instance) { double('instance', process: true) }
+  let(:importer_instance) { double('instance', perform: true) }
   let(:spree_refund) { double('spree_refund') }
 
   before do
     allow_any_instance_of(Spree::Retail::Shopify::HooksController).to receive(:verify_request_authenticity).and_return(true)
     allow(ShopifyAPI::Refund).to receive(:find).and_return(spree_refund)
-    allow(Spree::Retail::Shopify::GenerateRefundOrder).to receive(:new).and_return(generator_instance)
+    allow(Spree::Retail::Shopify::RefundImporter).to receive(:new).and_return(importer_instance)
   end
 
   context '#create' do
@@ -21,7 +21,7 @@ describe 'Shopify sends a refund webhook event to Solidus', :vcr do
     end
 
     it 'calls the pos refund order generator' do
-      expect(generator_instance).to receive(:process).and_return(true)
+      expect(importer_instance).to receive(:perform).and_return(true)
       call_create_refund_hook!
     end
 
