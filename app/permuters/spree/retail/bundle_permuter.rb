@@ -6,8 +6,11 @@ module Spree
           container = []
 
           part.product.variants.each do |variant|
-            next if variant.option_values.empty?
-            container << option_value_per_variant(variant)
+            if variant.option_values.empty?
+              container << dummy_option_value_per_variant(variant)
+            else
+              container << option_value_per_variant(variant)
+            end
           end
 
           container
@@ -47,6 +50,14 @@ module Spree
             sku: variant.sku,
             option_type_text: option_type_string_for(option_type),
             option_value_text: option_value_string_for(option_value)
+          }
+        end
+
+        def dummy_option_value_per_variant(variant)
+          {
+            sku: variant.sku,
+            option_type_text: "option#{variant.product.name}",
+            option_value_text: "n/a"
           }
         end
 
