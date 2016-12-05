@@ -38,6 +38,27 @@ describe 'Export a bundled Spree product with its assembly on Shopify', :vcr do
     expect(variant.sku).to eql('SKUS-M/SKUS-1/SKUS-2/SKUS-3')
   end
 
+  it 'can create a bunlded product that contains parts without option types' do
+    bundle.parts.each do |part|
+      part.option_values.clear
+      part.save
+    end
+    bundle.reload
+    shopify_product = export_bundle!(bundle)
+    variant = shopify_product.variants.first
+
+    expect(variant.sku).to eql('SKUS-M/SKUS-1/SKUS-2/SKUS-3')
+  end
+
+  it 'can create a bunlded product that contains a mix of parts with and without option types' do
+    bundle.parts.first.option_values.clear
+    bundle.reload
+    shopify_product = export_bundle!(bundle)
+    variant = shopify_product.variants.first
+
+    expect(variant.sku).to eql('SKUS-M/SKUS-1/SKUS-2/SKUS-3')
+  end
+
   it 'creates a bundle product with the option types' do
     shopify_product = export_bundle!(bundle)
     options = shopify_product.options
