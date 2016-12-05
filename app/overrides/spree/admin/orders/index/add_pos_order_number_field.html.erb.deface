@@ -2,7 +2,7 @@
 
 <div class="four columns">
   <div class="field">
-    <%= label_tag :q_number_cont, Spree.t(:pos_order_number, :number => '') %>
+    <%= label_tag :q_pos_order_number_cont, Spree.t(:pos_order_number, :number => '') %>
     <%= f.text_field :pos_order_number_cont %>
   </div>
 </div>
