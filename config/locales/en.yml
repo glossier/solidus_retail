@@ -3,3 +3,6 @@
 
 en:
   hello: Hello world
+
+  spree:
+    pos_order_number: POS Order Number
