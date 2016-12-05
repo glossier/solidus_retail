@@ -49,7 +49,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       before :each do
         allow_any_instance_of(ShopifyAPI::LineItem).to receive(:sku) { "PHASE2/GBB100-SET/GML100-SET/GSC100-SET" }
         variant.update_attribute(:sku, 'PHASE2')
-        variant.product.parts << part_variant
+        variant.product.parts << [li_part1, li_part2, li_part3]
         ensure_stock
         subject
       end
