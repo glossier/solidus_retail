@@ -17,11 +17,7 @@ RSpec.shared_context 'shopify_mock' do
   def mock_request(file, endpoint, extension)
     url = "#{shopify_base_url}/#{endpoint}.#{extension}"
     json = read_file(file, extension)
-    stub_request(:get, url)
-      .with(headers: { 'Accept' => "application/#{extension}",
-                       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                       'User-Agent' => 'ShopifyAPI/4.3.2 ActiveResource/4.1.0 Ruby/2.3.1' })
-      .to_return(status: 200, body: json, headers: {})
+    stub_request(:get, url).to_return(status: 200, body: json, headers: {})
   end
 
   def read_file(file, extension = 'json')
