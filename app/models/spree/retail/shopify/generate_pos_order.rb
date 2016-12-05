@@ -10,7 +10,7 @@ module Spree
         end
 
         def process
-          if deployed_environment? && Spree::Order.complete.where('pos_order_number = ?', @order.name.to_s).count > 0
+          if deployed_environment? && Spree::Order.where('pos_order_number = ?', @order.name.to_s).count > 0
             puts "skipping #{@order.order_number} - already imported"
             return
           end
@@ -38,8 +38,6 @@ module Spree
           end
 
           order
-        rescue => e
-          puts "#{@order.try(:name)}: #{e}"
         end
 
         def create_order
