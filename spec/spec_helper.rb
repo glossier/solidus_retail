@@ -23,6 +23,11 @@ require 'spree/testing_support/url_helpers'
 # Requires factories defined in lib/solidus_retail/factories.rb
 require 'spree/retail/factories'
 require 'active_resource/base_decorator'
+require 'pry-rails'
+
+# env vars
+require 'dotenv'
+Dotenv.load('.env')
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods

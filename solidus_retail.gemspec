@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'vcr', '~> 3.0'
   s.add_development_dependency 'webmock', '~> 2.1'
+  s.add_development_dependency 'dotenv-rails'
 
   # Required for Solidus Gateway to work
   s.add_development_dependency "sass-rails"
