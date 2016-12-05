@@ -38,8 +38,6 @@ module Spree
           end
 
           order
-        rescue => e
-          puts "#{@order.try(:name)}: #{e}"
         end
 
         def create_order
