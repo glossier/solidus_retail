@@ -89,8 +89,8 @@ module Spree
         end
 
         def add_line_item_parts(item, line_item)
-          Spree::Variant.where(sku: item.sku.split('/')[1..3]).each do |part_variant|
-            line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
+          Spree::Variant.where(sku: item.sku.split('/').drop(1)).each do |part_variant|
+            line_item.part_line_items.create(variant: part_variant.gsub("-SET", ""), quantity: 1, line_item: line_item)
           end
         end
 
