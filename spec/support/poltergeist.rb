@@ -16,11 +16,12 @@ Capybara.register_driver :poltergeist do |app|
       googleapis.com
       googleadservices.com
       googletagmanager.com
-      google-analytics.com))
+      google-analytics.com)
+  )
 end
 
 Capybara.raise_server_errors   = false
 Capybara.always_include_port   = true
 Capybara.javascript_driver     = :poltergeist
 Capybara.default_max_wait_time = 10
-Capybara.server_port           = 61454
+Capybara.server_port           = 61_454
