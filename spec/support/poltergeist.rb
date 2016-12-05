@@ -16,8 +16,8 @@ Capybara.register_driver :poltergeist do |app|
       googleapis.com
       googleadservices.com
       googletagmanager.com
-      google-analytics.com)
-  )
+      google-analytics.com
+    ))
 end
 
 Capybara.raise_server_errors   = false
