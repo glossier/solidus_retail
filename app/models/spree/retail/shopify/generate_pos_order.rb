@@ -39,7 +39,6 @@ module Spree
 
           order
         rescue => e
-          Raven.capture_exception(e)
           puts "#{@order.try(:name)}: #{e}"
         end
 
