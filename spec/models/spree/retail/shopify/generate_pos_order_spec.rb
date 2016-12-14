@@ -5,6 +5,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'shopify_request'
 
   let(:shopify_order) { create_shopify_order('450789469') }
+  let(:shopify_cash_order) { create_shopify_order('450789470') }
   let(:variant) { create :variant }
 
   before :each do
@@ -24,6 +25,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
 
     it 'creates an order that is in the complete state' do
       subject
+      expect(last_order).to be_complete
+    end
+
+    it 'creates an order that was paid for with cash' do
+      subject { described_class.new(shopify_cash_order).process }
       expect(last_order).to be_complete
     end
 
