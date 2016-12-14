@@ -122,7 +122,8 @@ module Spree
         def transition_order_from_payment_to_confirm!(spree_order, shopify_order)
           payment = spree_order.payments.create(payment_method: default_payment_method)
           payment.amount = spree_order.total
-          payment.response_code = shopify_order.transactions.find { |t| t.kind == 'capture' }.id
+          captured_payment = shopify_order.transactions.find { |t| t.kind == 'capture' }
+          payment.response_code = captured_payment.nil? ? shopify_order.transactions.first.id : captured_payment.id
           payment.save
         end
 
