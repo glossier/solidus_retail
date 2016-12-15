@@ -10,7 +10,7 @@ module Spree
         end
 
         def process
-          if deployed_environment? && Spree::Order.complete.where('pos_order_number = ?', @order.name.to_s).count > 0
+          if deployed_environment? && Spree::Order.where('pos_order_number = ?', @order.name.to_s).count > 0
             puts "skipping #{@order.order_number} - already imported"
             return
           end
@@ -38,8 +38,6 @@ module Spree
           end
 
           order
-        rescue => e
-          puts "#{@order.try(:name)}: #{e}"
         end
 
         def create_order
@@ -89,7 +87,7 @@ module Spree
         end
 
         def add_line_item_parts(item, line_item)
-          Spree::Variant.where(sku: item.sku.split('/')[1..3]).each do |part_variant|
+          Spree::Variant.where(sku: variant_skus_for_bundle(item)).each do |part_variant|
             line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
           end
         end
@@ -124,7 +122,8 @@ module Spree
         def transition_order_from_payment_to_confirm!(spree_order, shopify_order)
           payment = spree_order.payments.create(payment_method: default_payment_method)
           payment.amount = spree_order.total
-          payment.response_code = shopify_order.transactions.first.id
+          captured_payment = shopify_order.transactions.find { |t| t.kind == 'capture' }
+          payment.response_code = captured_payment.nil? ? shopify_order.transactions.first.id : captured_payment.id
           payment.save
         end
 
@@ -181,6 +180,14 @@ module Spree
 
         def default_payment_method
           Spree::PaymentMethod.find_by(name: 'Shopify')
+        end
+
+        def variant_skus_for_bundle(item)
+          variants = []
+          item.sku.split('/').drop(1).each do |v|
+            variants << v.gsub("-SET", "")
+          end
+          variants
         end
       end
     end
