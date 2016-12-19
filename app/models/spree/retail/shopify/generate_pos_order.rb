@@ -24,7 +24,7 @@ module Spree
           add_line_items(order, @order)
 
           transition_order_from_cart_to_address!(order)
-          transition_order_from_address_to_delivery!(order)
+          transition_order_from_address_to_delivery!(order, @order)
           transition_order_from_delivery_to_payment!(order)
           transition_order_from_payment_to_confirm!(order, @order)
           transition_order_from_confirm_to_complete!(order)
@@ -107,7 +107,8 @@ module Spree
           order.next!
         end
 
-        def transition_order_from_address_to_delivery!(order)
+        def transition_order_from_address_to_delivery!(spree_order, shopify_order)
+          apply_promotions(spree_order, shopify_order)
           order.next!
         end
 
@@ -134,6 +135,12 @@ module Spree
           Spree::OrderUpdater.new(order).update
           order.complete!
           mark_as_shipped(order)
+        end
+
+        def apply_promotions(spree_order, shopify_order)
+          spree_code = Spree::Promotion.find_by(code: shopify_order.discount_codes[0])
+          byebug
+          return true if spree_code.present?
         end
 
         def mark_as_shipped(order)
