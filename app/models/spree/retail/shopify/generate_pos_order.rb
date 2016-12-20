@@ -137,9 +137,9 @@ module Spree
           mark_as_shipped(order)
         end
 
-        def apply_promotions(spree_order, shopify_order)
-          spree_code = Spree::Promotion.find_by(code: shopify_order.discount_codes[0].code)
-          return true if spree_code.present?
+        def apply_adjustment(spree_order, shopify_order)
+          shopify_discount = shopify_order.discount_codes[0]
+          spree_order.adjustments.create!(amount: shopify_discount.amount, label: shopify_discount.code, order: spree_order)
         end
 
         def mark_as_shipped(order)
