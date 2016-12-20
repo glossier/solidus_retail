@@ -138,8 +138,7 @@ module Spree
         end
 
         def apply_promotions(spree_order, shopify_order)
-          spree_code = Spree::Promotion.find_by(code: shopify_order.discount_codes[0])
-          byebug
+          spree_code = Spree::Promotion.find_by(code: shopify_order.discount_codes[0].code)
           return true if spree_code.present?
         end
 
