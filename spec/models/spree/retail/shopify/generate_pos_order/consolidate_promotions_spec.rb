@@ -26,8 +26,8 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
 
       it 'creates an adjustment with the same amount and label as the shopify discount' do
         apply_adjustment(spree_order, discounted_shopify_order)
-        expect(spree_order.adjustments[0].amount).to eq(discounted_shopify_order.discount_codes[0].amount.to_f)
-        expect(spree_order.adjustments[0].label).to eq(discounted_shopify_order.discount_codes[0].code)
+        expect(spree_order.adjustments.first.amount).to eq(discounted_shopify_order.discount_codes.first.amount.to_f)
+        expect(spree_order.adjustments.first.label).to eq(discounted_shopify_order.discount_codes.first.code)
       end
     end
 

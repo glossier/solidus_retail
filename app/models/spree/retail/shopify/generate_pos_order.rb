@@ -138,7 +138,7 @@ module Spree
         end
 
         def apply_adjustment(spree_order, shopify_order)
-          shopify_discount = shopify_order.discount_codes[0]
+          shopify_discount = shopify_order.discount_codes.first
           return unless shopify_discount
           spree_order.adjustments.create!(amount: shopify_discount.amount, label: shopify_discount.code, order: spree_order)
         end
