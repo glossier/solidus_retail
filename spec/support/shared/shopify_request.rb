@@ -2,7 +2,7 @@ RSpec.shared_context 'shopify_request' do
   include_context 'shopify_mock'
 
   def create_shopify_order(order_id)
-    @mocked_order = mock_request('orders', "orders/#{order_id}", 'json')
+    @mocked_order = mock_request("order_#{order_id}", "orders/#{order_id}", 'json')
     @mocked_transactions = mock_request('transactions', "orders/#{order_id}/transactions", 'json')
     ShopifyAPI::Order.find(order_id)
   end
