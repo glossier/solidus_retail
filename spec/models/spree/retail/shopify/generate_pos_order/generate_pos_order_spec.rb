@@ -4,7 +4,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'create_default_shop'
   include_context 'shopify_request'
 
-  let(:shopify_order) { create_shopify_order('450789469') }
+  let(:shopify_order) { create_shopify_order('450789471') }
   let(:shopify_cash_order) { create_shopify_order('450789470') }
   let(:variant) { create :variant }
 
@@ -41,6 +41,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
     it 'ships the shipments' do
       subject
       expect(last_order.shipments).to all(be_shipped)
+    end
+
+    it 'successfully creates an adjustment if there is a shopify discount code present' do
+      subject
+      expect(last_order.adjustments.count).to eq(1)
     end
 
     describe 'with bundled products' do

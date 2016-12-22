@@ -20,7 +20,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
         spree_order.save!
         spree_order.line_items.create!(variant: variant, quantity: 1)
       end
-      
+
       it 'creates the adjustment on the spree order given the amount of the shopify discount amount' do
         subject
         expect(spree_order.adjustments[0].amount).to eq(shopify_order.discount_codes[0].amount.to_f)
