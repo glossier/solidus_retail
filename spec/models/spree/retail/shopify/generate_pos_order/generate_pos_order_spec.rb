@@ -43,7 +43,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       expect(last_order.shipments).to all(be_shipped)
     end
 
-    it 'successfully creates an adjustment if there is a shopify discount code present' do
+    it 'creates an adjustment if there is a shopify discount code present' do
       subject
       expect(last_order.adjustments.count).to eq(1)
     end

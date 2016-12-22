@@ -5,54 +5,39 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'shopify_request'
 
   describe '#apply_adjustments' do
+    let(:discounted_shopify_order) { create_shopify_order('450789471') }
+    let!(:shopify_order) { create_shopify_order('450789469') }
+    let(:spree_order){ Spree::Order.new(state: 'address') }
+    let(:variant) { create :variant }
 
-    describe 'a shopify order with one discount code' do
-      let(:shopify_order) { create_shopify_order('450789471') }
-      let(:spree_order){ Spree::Order.new(state: 'address') }
-      let(:variant) { create :variant }
+    before :each do
+      allow(Spree::Variant).to receive(:find_by) { variant }
+      variant.stock_items.first.update_attribute(:count_on_hand, 1900)
+      allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
+      spree_order.save!
+      spree_order.line_items.create!(variant: variant, quantity: 1)
+    end
 
-      subject { described_class.new(shopify_order).apply_adjustment(spree_order, shopify_order) }
-
-      before :each do
-        allow(Spree::Variant).to receive(:find_by) { variant }
-        variant.stock_items.first.update_attribute(:count_on_hand, 1900)
-        allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
-        spree_order.save!
-        spree_order.line_items.create!(variant: variant, quantity: 1)
-      end
-
-      it 'creates the adjustment on the spree order given the amount of the shopify discount amount' do
-        subject
-        expect(spree_order.adjustments[0].amount).to eq(shopify_order.discount_codes[0].amount.to_f)
-        expect(spree_order.adjustments[0].label).to eq(shopify_order.discount_codes[0].code)
-      end
-
-      it 'updates the Spree order to have the same total adjustment as the Shopify total discount' do
-        subject
+    context 'a shopify order with one discount code' do
+      it 'creates an adjustment on the spree order' do
+        apply_adjustment(spree_order, discounted_shopify_order)
         expect(spree_order.adjustments.count).to eq(1)
-        expect(spree_order.adjustments.first.label).to eq('TWENTYOFF')
+      end
+
+      it 'creates an adjustment with the same amount and label as the shopify discount' do
+        apply_adjustment(spree_order, discounted_shopify_order)
+        expect(spree_order.adjustments[0].amount).to eq(discounted_shopify_order.discount_codes[0].amount.to_f)
+        expect(spree_order.adjustments[0].label).to eq(discounted_shopify_order.discount_codes[0].code)
       end
     end
 
-    describe 'a shopify order with no discount code' do
-      let!(:shopify_order) { create_shopify_order('450789469') }
-      let(:spree_order){ Spree::Order.new(state: 'address') }
-      let(:variant) { create :variant }
-
-      subject { described_class.new(shopify_order) }
-
-      before :each do
-        allow(Spree::Variant).to receive(:find_by) { variant }
-        variant.stock_items.first.update_attribute(:count_on_hand, 1900)
-        allow_any_instance_of(Spree::Order).to receive(:ensure_available_shipping_rates) { true }
-        spree_order.save!
-        spree_order.line_items.create!(variant: variant, quantity: 1)
-      end
-
-      it 'does not do anything' do
-        subject.apply_adjustment(spree_order, shopify_order)
-        expect(spree_order.adjustments).to be_empty
-      end
+    it 'does not create an adjustment for an order with no shopify discount' do
+      apply_adjustment(spree_order, shopify_order)
+      expect(spree_order.adjustments).to be_empty
     end
+  end
+
+  def apply_adjustment(spree_order, shopify_order)
+    Spree::Retail::Shopify::GeneratePosOrder.new(shopify_order).apply_adjustment(spree_order, shopify_order)
   end
 end
