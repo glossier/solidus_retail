@@ -25,15 +25,15 @@
     "source_identifier": "fhwdgads",
     "source_name": "web",
     "source_url": null,
-    "subtotal_price": "12.00",
+    "subtotal_price": "0.00",
     "taxes_included": false,
     "test": false,
     "token": "b1946ac92492d2347c6235b4d2611184",
-    "total_discounts": "20.00",
+    "total_discounts": "40.00",
     "total_line_items_price": "40.00",
-    "total_price": "41.07",
-    "total_price_usd": "41.07",
-    "total_tax": "1.07",
+    "total_price": "0.00",
+    "total_price_usd": "0.00",
+    "total_tax": "0.00",
     "total_weight": 0,
     "updated_at": "2008-01-10T11:00:00-05:00",
     "user_id": null,
@@ -58,13 +58,7 @@
     ],
     "processing_method": "direct",
     "checkout_id": 450789471,
-    "tax_lines": [
-    {
-      "price": "1.07",
-      "rate": 0.06,
-      "title": "State Tax"
-    }
-    ],
+    "tax_lines": [],
     "tags": "",
     "line_items": [
     {
@@ -94,7 +88,7 @@
       "tax_lines": [
       {
         "title": "State Tax",
-        "price": "1.07",
+        "price": "0.00",
         "rate": 0.06
       }
       ]
@@ -200,7 +194,7 @@
         "tax_lines": [
         {
           "title": "State Tax",
-          "price": "3.98",
+          "price": "0.00",
           "rate": 0.06
         }
         ]

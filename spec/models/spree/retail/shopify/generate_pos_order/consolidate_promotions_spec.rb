@@ -19,7 +19,7 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       spree_order.line_items.create!(variant: variant, quantity: 1)
     end
 
-    context 'a shopify order with one discount code' do
+    context 'a shopify order with a discount code' do
       it 'creates an adjustment on the spree order' do
         apply_adjustment(spree_order, discounted_shopify_order)
         expect(spree_order.adjustments.count).to eq(1)
@@ -31,9 +31,15 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
         expect(spree_order.adjustments.first.label).to eq(discounted_shopify_order.discount_codes.first.code)
       end
 
-      it 'creates an adjustment with the adjustment type of "ShopifyOrder"' do
+      it 'creates an adjustment with the adjustment type of "ShopifyDiscount"' do
         apply_adjustment(spree_order, discounted_shopify_order)
-        expect(spree_order.adjustments.first.source_type).to eq("ShopifyOrder")
+        expect(spree_order.adjustments.first.source_type).to eq("ShopifyDiscount")
+      end
+
+      it 'creates an adjustment for a free order' do
+        apply_adjustment(spree_order, free_shopify_order)
+        expect(spree_order.adjustments.count).to eq(1)
+        expect(spree_order.adjustments.first.amount).to eq(free_shopify_order.total_line_items_price.to_f)
       end
     end
 
