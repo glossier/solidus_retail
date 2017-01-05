@@ -107,9 +107,9 @@ module Spree
           order.next!
         end
 
-        def transition_order_from_address_to_delivery!(spree_order)
-          apply_adjustment(spree_order)
-          spree_order.next!
+        def transition_order_from_address_to_delivery!(order)
+          apply_adjustment(order)
+          order.next!
         end
 
         def transition_order_from_delivery_to_payment!(order)
