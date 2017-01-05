@@ -140,7 +140,7 @@ module Spree
         def apply_adjustment(spree_order, shopify_order)
           shopify_discount = shopify_order.discount_codes.first
           return unless shopify_discount
-          spree_order.adjustments.create!(amount: shopify_discount.amount, label: shopify_discount.code, order: spree_order)
+          spree_order.adjustments.create!(amount: shopify_discount.amount, label: shopify_discount.code, order: spree_order, source_type: "ShopifyOrder")
         end
 
         def mark_as_shipped(order)

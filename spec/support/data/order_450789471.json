@@ -42,8 +42,8 @@
     "order_number": 1001,
     "discount_codes": [
     {
-      "code": "TWENTYOFF",
-      "amount": "20.00"
+      "code": "FREEORDER",
+      "amount": "40.00"
     }
     ],
     "note_attributes": [

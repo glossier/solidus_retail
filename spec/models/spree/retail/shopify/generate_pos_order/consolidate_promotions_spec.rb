@@ -5,7 +5,8 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'shopify_request'
 
   describe '#apply_adjustments' do
-    let(:discounted_shopify_order) { create_shopify_order('450789471') }
+    let(:discounted_shopify_order) { create_shopify_order('450789470') }
+    let(:free_shopify_order) { create_shopify_order('450789471')}
     let!(:shopify_order) { create_shopify_order('450789469') }
     let(:spree_order){ Spree::Order.new(state: 'address') }
     let(:variant) { create :variant }
@@ -28,6 +29,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
         apply_adjustment(spree_order, discounted_shopify_order)
         expect(spree_order.adjustments.first.amount).to eq(discounted_shopify_order.discount_codes.first.amount.to_f)
         expect(spree_order.adjustments.first.label).to eq(discounted_shopify_order.discount_codes.first.code)
+      end
+
+      it 'creates an adjustment with the adjustment type of "ShopifyOrder"' do
+        apply_adjustment(spree_order, discounted_shopify_order)
+        expect(spree_order.adjustments.first.source_type).to eq("ShopifyOrder")
       end
     end
 

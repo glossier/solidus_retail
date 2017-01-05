@@ -29,10 +29,10 @@
     "taxes_included": false,
     "test": false,
     "token": "b1946ac92492d2347c6235b4d2611184",
-    "total_discounts": "0.00",
-    "total_line_items_price": "12.00",
-    "total_price": "13.07",
-    "total_price_usd": "13.07",
+    "total_discounts": "20.00",
+    "total_line_items_price": "42.00",
+    "total_price": "43.07",
+    "total_price_usd": "43.07",
     "total_tax": "1.07",
     "total_weight": 0,
     "updated_at": "2008-01-10T11:00:00-05:00",
@@ -40,7 +40,12 @@
     "browser_ip": null,
     "landing_site_ref": "abc",
     "order_number": 1001,
-    "discount_codes": [],
+    "discount_codes": [
+      {
+        "code": "TWENTYOFF",
+        "amount": "20.00"
+      }
+    ],
     "note_attributes": [
     {
       "name": "custom engraving",
