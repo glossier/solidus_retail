@@ -3,7 +3,7 @@ require 'spec_helper'
 Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
   include_context 'create_default_shop'
   include_context 'shopify_request'
-  
+
   let(:shopify_cash_order) { create_shopify_order('450789469') }
   let(:shopify_order) { create_shopify_order('450789470') }
   let(:variant) { create :variant }
