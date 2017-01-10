@@ -108,6 +108,7 @@ module Spree
         end
 
         def transition_order_from_address_to_delivery!(order)
+          apply_adjustment(order)
           order.next!
         end
 
@@ -134,6 +135,12 @@ module Spree
           Spree::OrderUpdater.new(order).update
           order.complete!
           mark_as_shipped(order)
+        end
+
+        def apply_adjustment(spree_order)
+          shopify_discount = @order.discount_codes.first
+          return unless shopify_discount
+          spree_order.adjustments.create!(amount: shopify_discount.amount, label: shopify_discount.code, order: spree_order, adjustment_reason: adjustment_reason)
         end
 
         def mark_as_shipped(order)
@@ -188,6 +195,10 @@ module Spree
             variants << v.gsub("-SET", "")
           end
           variants
+        end
+
+        def adjustment_reason
+          Spree::AdjustmentReason.find_or_create_by(name: 'Shopify Discount', code: 'shopify_discount')
         end
       end
     end
