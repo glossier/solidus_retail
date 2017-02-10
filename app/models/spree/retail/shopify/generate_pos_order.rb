@@ -77,19 +77,13 @@ module Spree
         end
 
         def add_bundled_item(order, item)
-          line_item = Spree::LineItem.new(quantity: item.quantity).tap do |li|
-            li.variant = Spree::Variant.find_by(sku: item.sku.split('/')[0])
-            li.price = item.price
-          end
-          order.line_items << line_item
-          add_line_item_parts(item, line_item)
-          line_item.order = order
-        end
+          variant = Spree::Variant.find_by(sku: item.sku.split('/')[0])
 
-        def add_line_item_parts(item, line_item)
-          Spree::Variant.where(sku: variant_skus_for_bundle(item)).each do |part_variant|
-            line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
-          end
+          line_item = order.contents.add(
+            variant,
+            item.quantity, { stock_location_quantities: nil }
+          )
+          line_item.update(price: item.price)
         end
 
         # transitions
