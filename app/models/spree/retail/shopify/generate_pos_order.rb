@@ -18,7 +18,6 @@ module Spree
           order.pos_order_number = @order.name
           order.pos_order_id = @order.id
           order.email = customer_email
-          order.channel = 'pos'
           order.created_at = @order.created_at
           order.save!
           add_line_items(order, @order)
@@ -36,6 +35,8 @@ module Spree
             order.user = user
             order.save
           end
+
+          order.update(channel: 'pos')
 
           order
         end
