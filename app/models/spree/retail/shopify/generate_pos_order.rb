@@ -51,7 +51,9 @@ module Spree
               add_bundled_item(order, item)
             else
               line_item = Spree::LineItem.new(quantity: item.quantity)
-              line_item.variant = Spree::Variant.find_by(sku: item.sku)
+              # This is because we're seeing some line items returned from Shopify with a nil sku
+              sku = item.sku.blank? ? ShopifyAPI::Variant.find(item.variant_id).sku : item.sku
+              line_item.variant = Spree::Variant.find_by(sku: sku)
               line_item.price = item.price
               line_item.currency = pos_order.currency
 
@@ -71,6 +73,7 @@ module Spree
             adjustment.amount = tax.price
             adjustment.label = tax.title
             adjustment.order = order
+            adjustment.finalized = true
             adjustments << adjustment
           end
 
