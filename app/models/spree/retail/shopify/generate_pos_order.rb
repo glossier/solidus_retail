@@ -17,6 +17,7 @@ module Spree
           order = create_order
           order.pos_order_number = @order.name
           order.pos_order_id = @order.id
+          order.channel = 'pos'
           order.email = customer_email
           order.created_at = @order.created_at
           order.save!
@@ -35,8 +36,6 @@ module Spree
             order.user = user
             order.save
           end
-
-          order.update(channel: 'pos')
 
           order
         end
@@ -86,13 +85,15 @@ module Spree
             li.price = item.price
           end
           order.line_items << line_item
-          add_line_item_parts(item, line_item)
+          add_line_item_parts(item, line_item, order)
           line_item.order = order
         end
 
-        def add_line_item_parts(item, line_item)
+        def add_line_item_parts(item, line_item, order)
           Spree::Variant.where(sku: variant_skus_for_bundle(item)).each do |part_variant|
             line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
+            line_item.adjustments = build_adjustments(item, line_item, order)
+            line_item.save
           end
         end
 
