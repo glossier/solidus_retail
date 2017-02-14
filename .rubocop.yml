@@ -207,15 +207,13 @@ Metrics/AbcSize:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  Exclude:
+    - "**/*.rb"
 
 Metrics/BlockNesting:
   Enabled: false
 
 Metrics/ClassLength:
-  Enabled: false
-
-Metrics/ModuleLength:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
@@ -225,6 +223,9 @@ Metrics/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
