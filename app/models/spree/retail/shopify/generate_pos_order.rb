@@ -17,8 +17,8 @@ module Spree
           order = create_order
           order.pos_order_number = @order.name
           order.pos_order_id = @order.id
-          order.email = customer_email
           order.channel = 'pos'
+          order.email = customer_email
           order.created_at = @order.created_at
           order.save!
           add_line_items(order, @order)
@@ -50,7 +50,9 @@ module Spree
               add_bundled_item(order, item)
             else
               line_item = Spree::LineItem.new(quantity: item.quantity)
-              line_item.variant = Spree::Variant.find_by(sku: item.sku)
+              # This is because we're seeing some line items returned from Shopify with a nil sku
+              sku = item.sku.blank? ? ShopifyAPI::Variant.find(item.variant_id).sku : item.sku
+              line_item.variant = Spree::Variant.find_by(sku: sku)
               line_item.price = item.price
               line_item.currency = pos_order.currency
 
@@ -70,6 +72,7 @@ module Spree
             adjustment.amount = tax.price
             adjustment.label = tax.title
             adjustment.order = order
+            adjustment.finalized = true
             adjustments << adjustment
           end
 
@@ -82,13 +85,15 @@ module Spree
             li.price = item.price
           end
           order.line_items << line_item
-          add_line_item_parts(item, line_item)
+          add_line_item_parts(item, line_item, order)
           line_item.order = order
         end
 
-        def add_line_item_parts(item, line_item)
+        def add_line_item_parts(item, line_item, order)
           Spree::Variant.where(sku: variant_skus_for_bundle(item)).each do |part_variant|
             line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
+            line_item.adjustments = build_adjustments(item, line_item, order)
+            line_item.save
           end
         end
 
