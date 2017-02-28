@@ -39,6 +39,14 @@ module Spree::Retail::Shopify
           expect(last_order).to be_returned
         end
 
+        it 'matches the Shopify refund total' do
+          subject.perform
+          last_order_refund_total = last_order.reimbursements.map(&:total).inject(:+)
+          refund_transaction_total = shopify_refund.transactions.first.amount.to_f
+
+          expect(last_order_refund_total).to eql(refund_transaction_total)
+        end
+
         it 'goes through the success path' do
           expect(callback).to receive(:success_case).once
           subject.perform
