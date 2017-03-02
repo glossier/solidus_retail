@@ -37,7 +37,7 @@ module Spree
           def total_price_of_inventory_unit(inventory_unit)
             prices = []
             inventory_unit.line_item.parts.each do |p|
-              variant = p.product.variants.detect(&:part?)
+              variant = p.product.variants.first
               prices << variant.price
             end
 
