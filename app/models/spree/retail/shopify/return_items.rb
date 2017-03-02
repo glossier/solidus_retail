@@ -28,7 +28,8 @@ module Spree
         def create(inventory_unit)
           Spree::ReturnItem.create(
             inventory_unit: inventory_unit,
-            preferred_reimbursement_type: reimbursement_type
+            preferred_reimbursement_type: reimbursement_type,
+            refund_amount_calculator: default_refund_calculator
           ).tap(&:accept!)
         end
 
@@ -36,6 +37,10 @@ module Spree
 
         def reimbursement_type
           Spree::ReimbursementType.first
+        end
+
+        def default_refund_calculator
+          Spree::Retail::Calculator::Returns::DefaultRefundAmount
         end
 
         def variant_skus_for_bundle(item)
