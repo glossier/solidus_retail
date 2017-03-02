@@ -18,7 +18,6 @@ module Spree
 
           callback.success_case
         rescue => e
-          require 'pry'; binding.pry
           logger.exception_raised(e)
           callback.failure_case
         end
