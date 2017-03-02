@@ -8,7 +8,8 @@ module Spree
           def compute(return_item)
             return 0.0.to_d if return_item.part_of_exchange?
             if return_item.inventory_unit.line_item.parts.any?
-              return_item.inventory_unit.line_item.amount * percentage_of_line_item_for_bundles(return_item.inventory_unit)
+              ratio_of_total = return_item.variant.price / total_price_of_inventory_unit(return_item.inventory_unit) * 100
+              ratio_of_total * BigDecimal.new(return_item.inventory_unit.line_item.price) / 100
             else
               weighted_order_adjustment_amount(return_item.inventory_unit) + weighted_line_item_amount(return_item.inventory_unit)
             end
@@ -33,11 +34,21 @@ module Spree
             1 / BigDecimal.new(inventory_unit.line_item.quantity)
           end
 
-          def percentage_of_line_item_for_bundles(inventory_unit)
-            inventory_unit.variant.price / BigDecimal.new(inventory_unit.line_item.amount)
+          def total_price_of_inventory_unit(inventory_unit)
+            prices = []
+            inventory_unit.line_item.parts.each do |p|
+              variant = p.product.variants.detect(&:part?)
+              prices << variant.price
+            end
+
+            prices.sum
           end
+
+          def percentage_of_line_item_for_bundles(inventory_unit)
+            inventory_unit.variant.price / BigDecimal.new(inventory_unit.line_item.price)
           end
         end
       end
     end
   end
+end
