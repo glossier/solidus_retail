@@ -15,7 +15,13 @@ module Spree
           # an adjustment for every tax type. When we need to calculate the tax
           # for the refund process, we need to retrieve those adjustments and
           # count them has taxes so we can refund the proper amount to the client.
-          adjustment_amount = return_item.inventory_unit.line_item.adjustments.map(&:amount).inject(:+)
+          line_item = return_item.inventory_unit.line_item
+          adjustment_amount = line_item.adjustments.map(&:amount).inject(:+)
+
+          # Parts man....
+          if line_item.parts.any?
+            adjustment_amount /= line_item.parts.count
+          end
 
           # For sakes of clarity
           additional_tax_total = adjustment_amount
