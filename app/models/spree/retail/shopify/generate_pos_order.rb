@@ -6,7 +6,6 @@ module Spree
 
         def initialize(order)
           @order = order
-          Spree::Config.stock.estimator_class = "::Spree::Retail::Stock::Estimator"
         end
 
         def process
@@ -120,7 +119,7 @@ module Spree
         def transition_order_from_delivery_to_payment!(order)
           order.shipments.first.stock_location = Spree::StockLocation.find_by(admin_name: 'POPUP')
           if order.shipments.first.shipping_method.nil?
-            order.shipments.first.add_shipping_method(Spree::ShippingMethod.find_by(admin_name: 'POS'), true)
+            order.shipments.first.add_shipping_method(Spree::ShippingMethod.find_by(admin_name: '00FESP'), true)
           end
           order.next!
         end

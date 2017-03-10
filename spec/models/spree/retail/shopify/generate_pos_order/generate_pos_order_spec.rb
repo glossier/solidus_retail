@@ -48,6 +48,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       expect(last_order.adjustments.count).to eq(1)
     end
 
+    it 'selects the standard shipping method' do
+      subject
+      expect(last_order.shipments.first.shipping_method.admin_name).to eq('00FESP')
+    end
+
     describe 'with bundled products' do
       let!(:li_part1) { create :variant, sku: 'GBB100-SET' }
       let!(:li_part2) { create :variant, sku: 'GML100-SET' }
