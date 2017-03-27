@@ -10,6 +10,6 @@ VCR.configure do |c|
 
   c.default_cassette_options = {
     record: ENV.key?('TRAVIS') ? :none : :new_episodes,
-    match_requests_on: [:method, :path]
+    match_requests_on: %i(method path)
   }
 end

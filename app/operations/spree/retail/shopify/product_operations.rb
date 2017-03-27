@@ -10,9 +10,9 @@ module Spree
 
           def update(spree_product:)
             if spree_product.assembly?
-              service = BundledProductExporter.new(spree_product: spree_product)
+              service = ::Spree::Retail::Shopify::BundledProductExporter.new(spree_product: spree_product)
             else
-              service = ProductUpdater.new(spree_product: spree_product)
+              service = ::Spree::Retail::Shopify::ProductUpdater.new(spree_product: spree_product)
             end
 
             service.perform
