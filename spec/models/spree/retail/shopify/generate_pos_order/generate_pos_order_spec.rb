@@ -54,18 +54,15 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
     end
 
     describe 'with bundled products' do
-      let!(:li_part1) { create :variant, sku: 'GBB100-SET' }
-      let!(:li_part2) { create :variant, sku: 'GML100-SET' }
-      let!(:li_part3) { create :variant, sku: 'GSC100-SET' }
-      let!(:single_sku_1) { create :variant, sku: 'GBB100' }
-      let!(:single_sku_2) { create :variant, sku: 'GML100' }
-      let!(:single_sku_3) { create :variant, sku: 'GSC100' }
+      let!(:li_part1) { create :variant, sku: 'GBB100' }
+      let!(:li_part2) { create :variant, sku: 'GML100' }
+      let!(:li_part3) { create :variant, sku: 'GSC100' }
       let(:part_variant) { create :variant }
 
       before :each do
-        allow_any_instance_of(ShopifyAPI::LineItem).to receive(:sku) { "PHASE2/GBB100-SET/GML100-SET/GSC100-SET" }
+        allow_any_instance_of(ShopifyAPI::LineItem).to receive(:sku) { "PHASE2/GBB100/GML100/GSC100" }
         variant.update_attribute(:sku, 'PHASE2')
-        variant.product.parts << [li_part1, li_part2, li_part3]
+        variant.parts << [li_part1, li_part2, li_part3]
         ensure_stock
         subject
       end
@@ -75,13 +72,13 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       end
 
       it 'adds the specific line item parts that the user chose during checkout' do
-        expect(line_item_parts.map(&:variant)).to eq [single_sku_1, single_sku_2, single_sku_3]
+        expect(line_item_parts.map(&:variant)).to eq [li_part1, li_part2, li_part3]
       end
     end
   end
 
   def bundled_product_order?
-    last_order.line_items.first.product.assembly?
+    last_order.line_items.first.variant.parts.any?
   end
 
   def line_item_parts
