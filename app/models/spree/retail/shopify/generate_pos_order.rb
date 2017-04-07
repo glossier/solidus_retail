@@ -194,11 +194,11 @@ module Spree
         end
 
         def variant_skus_for_bundle(item)
-          variants = []
-          item.sku.split('/').drop(1).each do |v|
-            variants << v.gsub("-SET", "")
+          [].tap do |variants|
+            item.sku.split('/').drop(1).each do |v|
+              variants << v
+            end
           end
-          variants
         end
 
         def adjustment_reason
