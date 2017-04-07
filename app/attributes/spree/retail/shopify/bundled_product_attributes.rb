@@ -44,7 +44,7 @@ module Spree
         end
 
         def master_part
-          bundle.master
+          bundle.variants.first
         end
       end
     end
