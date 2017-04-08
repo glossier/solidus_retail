@@ -2,7 +2,9 @@ RSpec.shared_context 'phase_2_bundle' do
   include_context 'spree_builders'
 
   let(:phase_2_master_variant) { build_spree_variant(sku: 'PHASE2') }
+  let(:phase_2_variant) { build_spree_variant(sku: 'PHASE2', parts: [phase_2_part_1, phase_2_part_2, phase_2_part_3]) }
   let(:phase_2_bundle) { build_spree_product(name: 'Phase 2', master: phase_2_master_variant, parts: [phase_2_part_1, phase_2_part_2, phase_2_part_3]) }
+  let(:new_phase_2_bundle) { build_spree_product(name: 'Phase 2', variants: [phase_2_variant])}
   let(:phase_2_part_1) { build_spree_variant(sku: 'boybrow', product: phase_2_part_1_product) }
   let(:phase_2_part_2) { build_spree_variant(sku: 'GenG', product: phase_2_part_2_product) }
   let(:phase_2_part_3) { build_spree_variant(sku: 'GSC', product: phase_2_part_3_product) }
