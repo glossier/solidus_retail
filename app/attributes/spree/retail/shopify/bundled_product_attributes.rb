@@ -36,10 +36,7 @@ module Spree
             attrs_var[:variants] << part_attributes_for(permutation)
           end
 
-          attrs_var.tap do |var|
-            next unless var[:sku] =~ /-master/
-            var[:sku].chomp('-master')
-          end
+          attrs_var
         end
 
         def part_attributes_for(permutation)
