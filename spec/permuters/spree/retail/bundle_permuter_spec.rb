@@ -30,7 +30,7 @@ module Spree
       end
 
       describe '#all_option_values_per_bundle' do
-        subject { described_class.all_option_values_per_bundle(phase_2_bundle) }
+        subject { described_class.all_option_values_per_bundle(new_phase_2_bundle) }
 
         it 'returns all the possible option values per bundle' do
           expect(subject.count).to eql(3)
@@ -43,7 +43,7 @@ module Spree
         end
 
         describe 'for a single option value hash' do
-          let(:option_values_per_bundle) { described_class.all_option_values_per_bundle(phase_2_bundle) }
+          let(:option_values_per_bundle) { described_class.all_option_values_per_bundle(new_phase_2_bundle) }
           let(:option_values_per_part) { option_values_per_bundle.first }
           subject { option_values_per_part.first }
 
@@ -62,7 +62,7 @@ module Spree
       end
 
       describe '#all_option_values_permutation' do
-        subject { described_class.all_option_values_permutation(phase_2_bundle) }
+        subject { described_class.all_option_values_permutation(new_phase_2_bundle) }
 
         it 'returns a correct count of permutation' do
           expect(subject.count).to eql(8)
@@ -72,7 +72,7 @@ module Spree
         end
 
         describe 'for a single option value hash' do
-          let(:option_values_per_bundle) { described_class.all_option_values_permutation(phase_2_bundle) }
+          let(:option_values_per_bundle) { described_class.all_option_values_permutation(new_phase_2_bundle) }
           let(:option_values_per_part) { option_values_per_bundle.first }
           subject { option_values_per_part.first }
 
