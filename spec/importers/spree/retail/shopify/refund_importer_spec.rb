@@ -34,6 +34,20 @@ module Spree::Retail::Shopify
           expect{ subject.perform }.to change(Spree::CustomerReturn, :count).by 1
         end
 
+        it 'adds the correct amount of taxes to the order' do
+          subject.perform
+          expect(last_order.total).to eql(13.07)
+        end
+
+        it 'adds the adjustmennts containing the taxes to the line item' do
+          subject.perform
+          line_item = last_order.line_items.first
+
+          expect(line_item.adjustments.count).to eql(2)
+          expect(line_item.adjustments[0].label).to eql('NY State Tax')
+          expect(line_item.adjustments[1].label).to eql('New York County Tax')
+        end
+
         it 'sets the order state to returned' do
           subject.perform
           expect(last_order).to be_returned

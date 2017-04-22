@@ -14,6 +14,7 @@ module Spree
         def perform
           unless refund_already_exists?(spree_order)
             Spree::Retail::Shopify::Refund.create(spree_order, return_items)
+            sync_taxes(shopify_refund.refund_line_items, spree_order)
           end
 
           callback.success_case
@@ -48,6 +49,33 @@ module Spree
 
         def presented_order
           present(spree_order, :order)
+        end
+
+        # NOTE: When adding a refund to an order, the adjustments disappear.
+        # The way we are syncing the taxes from Shopify to Solidus is by making
+        # adjustments. In that scenario, we have to re-add the adjustments.
+        def sync_taxes(refund_line_items, spree_order)
+          refund_line_items.each do |line|
+            shopify_line_item = line.line_item
+            spree_line_item = spree_order.line_items.detect{ |li| li.variant.sku == shopify_line_item.sku }
+            if spree_line_item.present?
+              spree_line_item.adjustments = build_adjustments(shopify_line_item, spree_line_item, spree_order)
+              spree_line_item.save
+            end
+          end
+        end
+
+        def build_adjustments(shopify_line_item, spree_line_item, order)
+          adjustments = []
+          shopify_line_item.tax_lines.each do |tax|
+            adjustment = spree_line_item.adjustments.tax.build
+            adjustment.amount = tax.price
+            adjustment.label = tax.title
+            adjustment.order = order
+            adjustments << adjustment
+          end
+
+          adjustments
         end
       end
     end
