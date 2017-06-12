@@ -89,7 +89,7 @@ module Spree
         end
 
         def add_line_item_parts(item, line_item, order)
-          Spree::Variant.where(sku: variant_skus_for_bundle(item), hidden: false).each do |part_variant|
+          Spree::Variant.where(sku: variant_skus_for_bundle(item)).each do |part_variant|
             line_item.part_line_items.create(variant: part_variant, quantity: 1, line_item: line_item)
             line_item.adjustments = build_adjustments(item, line_item, order)
             line_item.save
