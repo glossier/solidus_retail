@@ -38,6 +38,11 @@ Spree.describe Spree::Retail::Shopify::GeneratePosOrder, type: :model do
       expect(last_order.line_items.first.adjustments.count).to eql(1)
     end
 
+    it 'creates an order with a store_id set to 1 by default' do
+      subject
+      expect(last_order.store_id).to eql(1)
+    end
+
     it 'ships the shipments' do
       subject
       expect(last_order.shipments).to all(be_shipped)
