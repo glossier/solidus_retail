@@ -19,7 +19,7 @@ module Spree
         def all_option_values_per_bundle(bundle)
           option_values = []
 
-          bundle.parts.each do |part|
+          bundle.variants.first.parts.each do |part|
             values = all_option_values_per_part(part)
             option_values << values if values.any?
           end

@@ -40,7 +40,8 @@ module Spree
         end
 
         def create_order
-          Spree::Order.new(currency: ::Spree::Config[:currency], pos: true)
+          default_store = Store.find_by(default: true)
+          Spree::Order.new(currency: ::Spree::Config[:currency], pos: true, store_id: default_store.id)
         end
 
         def add_line_items(order, pos_order)

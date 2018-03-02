@@ -22,7 +22,7 @@ module Spree
         end
 
         def bundle
-          product.master
+          product.variants.first
         end
 
         def sku_separator
